@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CyXmlSerializer>
+<!--This file is machine generated and read. It is not intended to be edited by hand.-->
+<!--Due to this, there is no schema for this file.-->
+<CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21 type_name="CyDesigner.Common.ProjMgmt.Model.CyPrjMgmtWrkspcCustomData" version="4">
+<CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997 type_name="CyDesigner.Common.Base.CyCustomData" version="2">
+<userData>
+<dataGuid v="1b906a0f-a7b6-4e4d-a428-82f98b53cb35">
+<CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35 type_name="CyDesigner.Common.ProjMgmt.GUI.CyExplorerWindow+CyExplorerWindowState" version="3" SelectedTab="Source">
+<TreeKeys>
+<v>Source</v>
+<v>Components</v>
+<v>Output</v>
+</TreeKeys>
+<TreeStates>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="FinalProject\FinalProject_1-1">
+<ExpandedNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1\TopDesign</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\Pins</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\Analog</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\Clocks</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\Interrupts</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\DMA</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\System</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\Directives</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\Flash Security</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.cydwr\EEPROM</v>
+<v>FinalProject\FinalProject_1-1\Header Files</v>
+<v>FinalProject\FinalProject_1-1\Header Files\cyapicallbacks.h</v>
+<v>FinalProject\FinalProject_1-1\Source Files</v>
+<v>FinalProject\FinalProject_1-1\Source Files\main.c</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+<v>FinalProject\FinalProject_1-1\TopDesign</v>
+<v>FinalProject\FinalProject_1-1\TopDesign\TopDesign.cysch</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+<v>FinalProject\FinalProject_1-1\TopDesign</v>
+<v>FinalProject\FinalProject_1-1\TopDesign\TopDesign.cysch</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.gpdsc</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.rpt</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1_timing.html</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.gpdsc</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1.rpt</v>
+<v>FinalProject\FinalProject_1-1\FinalProject_1-1_timing.html</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStates>
+<TreeKeysV2>
+<v>Datasheet</v>
+</TreeKeysV2>
+<TreeStatesV2>
+<CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237 type_name="CyDesigner.Common.Base.Controls.CyTreeViewState" version="1" SelectedNodeId="">
+<ExpandedNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+<v>FinalProject\FinalProject_1-1\PSoC 5LP Architecture TRM</v>
+<v>FinalProject\FinalProject_1-1\CY8C58LP Family Datasheet</v>
+<v>FinalProject\FinalProject_1-1\System Reference Guides</v>
+<v>FinalProject\FinalProject_1-1\System Reference Guides\cy_boot_v6_10</v>
+<v>FinalProject\FinalProject_1-1\cy_clock_v2_20</v>
+<v>FinalProject\FinalProject_1-1\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>FinalProject\FinalProject_1-1\cy_isr_v1_71.pdf</v>
+<v>FinalProject\FinalProject_1-1\cy_pins_v2_20</v>
+<v>FinalProject\FinalProject_1-1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>FinalProject\FinalProject_1-1\CyControlReg_v1_80.pdf</v>
+<v>FinalProject\FinalProject_1-1\Gnd_v1_0.pdf</v>
+<v>FinalProject\FinalProject_1-1\KIT-059_v1_0_A.pdf</v>
+<v>FinalProject\FinalProject_1-1\Power_v1_0.pdf</v>
+<v>FinalProject\FinalProject_1-1\PWM_v3_30</v>
+<v>FinalProject\FinalProject_1-1\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>FinalProject\FinalProject_1-1\Timer_v2_80</v>
+<v>FinalProject\FinalProject_1-1\Timer_v2_80\Timer_v2_80.pdf</v>
+<v>FinalProject\FinalProject_1-1\UART_v2_50.pdf</v>
+<v>FinalProject\FinalProject_1-1\ZeroTerminal.pdf</v>
+</ExpandedNodeIds>
+<VisibleNodeIds>
+<v>FinalProject</v>
+<v>FinalProject\FinalProject_1-1</v>
+<v>FinalProject\FinalProject_1-1\PSoC 5LP Architecture TRM</v>
+<v>FinalProject\FinalProject_1-1\CY8C58LP Family Datasheet</v>
+<v>FinalProject\FinalProject_1-1\System Reference Guides</v>
+<v>FinalProject\FinalProject_1-1\System Reference Guides\cy_boot_v6_10</v>
+<v>FinalProject\FinalProject_1-1\cy_clock_v2_20</v>
+<v>FinalProject\FinalProject_1-1\cy_clock_v2_20\cy_clock_v2_20.pdf</v>
+<v>FinalProject\FinalProject_1-1\cy_isr_v1_71.pdf</v>
+<v>FinalProject\FinalProject_1-1\cy_pins_v2_20</v>
+<v>FinalProject\FinalProject_1-1\cy_pins_v2_20\cy_pins_v2_20.pdf</v>
+<v>FinalProject\FinalProject_1-1\CyControlReg_v1_80.pdf</v>
+<v>FinalProject\FinalProject_1-1\Gnd_v1_0.pdf</v>
+<v>FinalProject\FinalProject_1-1\KIT-059_v1_0_A.pdf</v>
+<v>FinalProject\FinalProject_1-1\Power_v1_0.pdf</v>
+<v>FinalProject\FinalProject_1-1\PWM_v3_30</v>
+<v>FinalProject\FinalProject_1-1\PWM_v3_30\PWM_v3_30.pdf</v>
+<v>FinalProject\FinalProject_1-1\Timer_v2_80</v>
+<v>FinalProject\FinalProject_1-1\Timer_v2_80\Timer_v2_80.pdf</v>
+<v>FinalProject\FinalProject_1-1\UART_v2_50.pdf</v>
+<v>FinalProject\FinalProject_1-1\ZeroTerminal.pdf</v>
+</VisibleNodeIds>
+</CyGuid_2a325b3b-c96a-4e9f-b7a0-2c44ecb5f237>
+</TreeStatesV2>
+</CyGuid_1b906a0f-a7b6-4e4d-a428-82f98b53cb35>
+</dataGuid>
+<dataGuid v="6c335137-fa19-46ce-bc2d-2fbeb6d5f2a2">
+<CyGuid_70084457-cd6a-4593-9ed0-7f6eeb432dc2 type_name="CyDesigner.Common.ProjMgmt.GUI.CyDependenciesCustomData" version="1">
+<dictName v=".\FinalProject_1-1.cydsn\FinalProject_1-1.cyprj">
+<listName />
+</dictName>
+</CyGuid_70084457-cd6a-4593-9ed0-7f6eeb432dc2>
+</dataGuid>
+<dataGuid v="5f2be1a5-0687-4501-bb8c-cf21cb8211bf">
+<CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf type_name="CyDesigner.Common.ProjMgmt.GUI.CyBookmarkData" version="1">
+<indicators />
+</CyGuid_5f2be1a5-0687-4501-bb8c-cf21cb8211bf>
+</dataGuid>
+</userData>
+</CyGuid_fdba8dfd-b15b-4469-9bbb-9e40c3e70997>
+<Unloaded />
+<OpenDocs>
+<name v=".\FinalProject_1-1.cydsn\TopDesign\TopDesign.cysch" />
+</OpenDocs>
+<OpenDocsLayout><![CDATA[<?xml version="1.0"?><!--
+
+  Actipro Docking/MDI for WinForms
+  Copyright (c) 2001-2016 Actipro Software LLC.  All rights reserved.
+  http://www.actiprosoftware.com
+
+--><DocumentLayout Version="1.0"><LayoutData><TabbedMdiRootContainer Orientation="Horizontal"><TabbedMdiContainer Size="1395, 624" SelectedTabbedMdiWindow="d05ca5c5-da58-4d9a-8dac-ac77dd39bed2"><ToolWindow Key="Start Page:bd4649ab-da6b-4d04-a663-c722b8bf99db:Start Page" Guid="d05ca5c5-da58-4d9a-8dac-ac77dd39bed2" /><DocumentWindow Key="\\Mac\Home\Documents\PSoC Creator\Workspace01\FinalProject_1-1.cydsn\TopDesign\TopDesign.cysch" Guid="fff3d3da-4641-46ab-863a-3a69c6cc3b7a" /></TabbedMdiContainer></TabbedMdiRootContainer><FloatingContainers /></LayoutData></DocumentLayout>]]></OpenDocsLayout>
+<config v="" />
+<AutoUpdate v="true" />
+</CyGuid_843a90a4-0c4b-4e44-991d-05e7fb117a21>
+</CyXmlSerializer>
