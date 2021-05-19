@@ -22,7 +22,7 @@ Export/
 *.svd
 *.log
 .*DS_Store
-*.mauro
+*FinalProject.cywrk.mauro
 *.Beatrice
 *.david
 
