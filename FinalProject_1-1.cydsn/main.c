@@ -27,6 +27,7 @@
 
 
 uint8_t angle;
+uint8_t angle_2;
 
 int main(void)
 {
@@ -36,12 +37,14 @@ int main(void)
     Timer_Sonar_Start();
     UART_1_Start();
     PWM_Servo1_Start();
+    PWM_Servo2_Start();
     
     // Call the Custom_ISR_Start function -- defined in isr.c
     Custom_ISR_Start();
     /* Send message over UART */
     UART_1_PutString("HC-SR04 Program Started\r\n");
-    Servo_SetPosition(0);
+    Servo_SetPosition1(0);
+    Servo_SetPosition2(0); //DA VEDERE, PROBABILMENTE PI/2
     
     for(;;)
     {
@@ -60,7 +63,7 @@ int main(void)
         {
             
             
-            Servo_SetPosition(angle*10);
+            Servo_SetPosition1(angle*10);
             
             ControlReg_TRIGGER_Write(HIGH);
             CyDelayUs(10);
@@ -69,7 +72,7 @@ int main(void)
             
             if(angle==17)
                 angle=0;
-            
+                Servo_SetPosition2(angle_2+1);
         }
     }
 }

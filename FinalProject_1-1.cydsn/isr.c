@@ -49,7 +49,6 @@ CY_ISR(ISR_ULTRASONIC){
         (int)((timer_period - Timer_Sonar_ReadCapture())/58.0*10));
     UART_1_PutString(message);
 }
-/* [] END OF FILE */
 
 
 /* [] END OF FILE */

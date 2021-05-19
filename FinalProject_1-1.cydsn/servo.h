@@ -76,8 +76,11 @@
     #define SERVO_PWM_LIMIT_H   1399
     
     uint16_t Servo_Map(uint16_t x, uint16_t in_min, uint16_t in_max, uint16_t out_min, uint16_t out_max);
-    uint16_t Servo_SetPosition(uint16_t deg);
-    uint16_t Servo_GetPosition(void);
+    uint16_t Servo_SetPosition1(uint16_t deg);
+    
+    uint16_t Servo_SetPosition2(uint16_t deg);
+    uint16_t Servo_GetPosition1(void);
+    uint16_t Servo_GetPosition2(void);
     void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t);
     
     #ifdef __cpluscplus
