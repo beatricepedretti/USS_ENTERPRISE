@@ -21,6 +21,8 @@
     #define LOW 0U
 #endif
 
+int i = 0;
+
 uint8_t pos_servo1;
 uint8_t pos_servo2;
 uint8_t angle;
@@ -29,6 +31,10 @@ uint8_t angle_2;
 uint8_t d_2; //di quanto l'aggancio del servo2 è spostata rispetto all'albero del servo1
 uint8_t Z1 = 30; //altezza albero servo2 in mm, quindi altezza servo1 + metà spessore servo2. Ho messo 30 a caso
 uint8_t aggancio_sonar = 4;//da misurare
+
+float x_array[18];
+float y_array[18];
+float z_array[18];
 
 float X;
 float Y;
@@ -84,13 +90,20 @@ int main(void)
             //Y=cos()*cos()*distance;
             //Z=sin()*distance;
             
-            X=sin(pos_servo1-90)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
-            Z=Z1+(distance+aggancio_sonar)*sin(pos_servo2-90); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
-            Y=(d_2+distance+aggancio_sonar)*cos(pos_servo1-90);
+            X = sin(pos_servo1-90)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
+            Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2-90); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
+            Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1-90);
             
-            if(angle==17)
+            x_array[i]=X;
+            y_array[i]=Y;
+            z_array[i]=Z;
+            i++;
+            
+            if(angle==17){
+                i=0;
                 angle=0;
                 Servo_SetPosition2(angle_2+1);
+            }
         }
     }
 }

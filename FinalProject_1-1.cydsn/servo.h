@@ -50,6 +50,14 @@
     uint16_t Servo_SetPosition2(uint16_t deg);
     uint16_t Servo_GetPosition1(void);
     uint16_t Servo_GetPosition2(void);
+    
+    /*typedef struct{
+        double X; 
+        double Y;
+        double Z;
+    } Pos;
+    */
+    
     void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t);
     
     #ifdef __cpluscplus
