@@ -6,10 +6,6 @@
  * the HC-SR04 UltraSonic sensor with the 
  * PSoC 5LP.
  *
- * @author Davide Marzorati
- * @date 12/10/2018
- *
- * ========================================
 */
 #include "isr.h"
 #include "project.h"
@@ -25,9 +21,19 @@
     #define LOW 0U
 #endif
 
-
+uint8_t pos_servo1;
+uint8_t pos_servo2;
 uint8_t angle;
 uint8_t angle_2;
+
+uint8_t d_2; //di quanto l'aggancio del servo2 è spostata rispetto all'albero del servo1
+uint8_t Z1 = 30; //altezza albero servo2 in mm, quindi altezza servo1 + metà spessore servo2. Ho messo 30 a caso
+uint8_t aggancio_sonar = 4;//da misurare
+
+float X;
+float Y;
+float Z;
+
 
 int main(void)
 {
@@ -69,6 +75,18 @@ int main(void)
             CyDelayUs(10);
             ControlReg_TRIGGER_Write(LOW);
             CyDelay(1000);
+            
+            pos_servo1 = Servo_GetPosition1(); 
+            pos_servo2 = Servo_GetPosition2(); 
+            
+            //quello che sarebbe secondo le formule date da cerveri..
+            //X=sin()*cos()*distance; 
+            //Y=cos()*cos()*distance;
+            //Z=sin()*distance;
+            
+            X=sin(pos_servo1-90)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
+            Z=Z1+(distance+aggancio_sonar)*sin(pos_servo2-90); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
+            Y=(d_2+distance+aggancio_sonar)*cos(pos_servo1-90);
             
             if(angle==17)
                 angle=0;

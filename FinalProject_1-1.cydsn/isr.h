@@ -10,24 +10,18 @@
  * ========================================
 */
 
-/**
- * @file isr.h
- * @brief Header file for ISR functions.
- * 
- * This header file contains some function definitions
- * to be used with the ISR component.
- * 
- * @author Davide Marzorati
- * @date March 28, 2019
- */
+
 
 #ifndef ISR_H
     #define ISR_H
 
     #include "cytypes.h"
     
+    #include "math.h"
+    
     
     // Message to send over UART
+    uint8_t distance;
     char message[30];
     // Timer period value
     int timer_period;

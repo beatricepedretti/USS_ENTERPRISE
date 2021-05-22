@@ -10,16 +10,6 @@
  * ========================================
 */
 
-/**
- * @brief Source file for ISR functions.
- * 
- * This source file contains some function declaration
- * to be used with the ISR component.
- * 
- * @author Davide Marzorati
- * @date March 28, 2019
- */
-
 #include "isr.h"
 #include "stdio.h"
 #include "UART_1.h"
@@ -45,8 +35,8 @@ void Custom_ISR_Start(void) {
 
 CY_ISR(ISR_ULTRASONIC){
     // Compute distance and send it over uart
-    sprintf(message, "Distance: %d mm\r\n",
-        (int)((timer_period - Timer_Sonar_ReadCapture())/58.0*10));
+    distance=(uint8_t)((timer_period - Timer_Sonar_ReadCapture())/58.0*10);
+    sprintf(message, "Distance: %d mm\r\n", distance);
     UART_1_PutString(message);
 }
 
