@@ -21,10 +21,11 @@
     
     
     // Message to send over UART
-    uint8_t distance;
+    uint16_t distance;
     char message[30];
+    //char message_1[30];
     // Timer period value
-    int timer_period;
+    uint16_t timer_period;
     
     /**
     * @brief Start the ISR component.
@@ -36,6 +37,8 @@
     * @return Nothing
     */
     void Custom_ISR_Start(void);
+    
+    
     
     /**
     * @brief ISR routine.
@@ -50,4 +53,3 @@
 /* [] END OF FILE */
 
 
-/* [] END OF FILE */

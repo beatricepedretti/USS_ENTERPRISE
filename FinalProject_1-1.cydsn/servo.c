@@ -100,7 +100,7 @@ uint16_t Servo_GetPosition2(void) {
  *  \param[in]      t: the time between two consecutive positions.
  *  \note           This is a blocking function.
  */
-void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t) {
+/*void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t) {
     
     // Check : current position = xi ?
     if ( Servo_GetPosition() != xi ) {
@@ -119,12 +119,12 @@ void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t) {
         Servo_SetPosition(xi);
         CyDelay(dt);
         
-    }
+    } 
     
     // Force final position --> ?
     Servo_SetPosition(xf);
     
-}
+}*/
 
 /* [] END OF FILE */
 

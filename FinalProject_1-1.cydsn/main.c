@@ -21,9 +21,14 @@
     #define LOW 0U
 #endif
 
+#define PI 3.14159265
+double val = PI / 180;
+
 int i = 0; //indice per salvare coordinate dei punti 3D negli array
 int flag = 0; //flag che potrebbe segnalare a kivy che la scannerizzazione di un livello è pronta, NON so come funziona la comunicazione con kivy
 
+double pos_servo1_rad;
+double pos_servo2_rad;
 uint8_t pos_servo1;
 uint8_t pos_servo2;
 uint8_t angle;
@@ -47,7 +52,10 @@ int main(void)
     CyGlobalIntEnable; /* Enable global interrupts. */
 
     // Init components 
-    Timer_Sonar_Start();
+    
+    Timer_HCSR04_Start();
+    PWM_Trigger_Start();
+    Timer_TRIGGER_Start();
     UART_1_Start();
     PWM_Servo1_Start();
     PWM_Servo2_Start();
@@ -75,14 +83,15 @@ int main(void)
         
         for (angle=0;angle<=18;angle++)
         {
-            
-            
+
             Servo_SetPosition1(angle*10);
             
-            ControlReg_TRIGGER_Write(HIGH);
+            /*ControlReg_TRIGGER_Write(HIGH);
             CyDelayUs(10);
             ControlReg_TRIGGER_Write(LOW);
             CyDelay(1000);
+            */
+            CyDelay(1100);
             
             pos_servo1 = Servo_GetPosition1(); 
             pos_servo2 = Servo_GetPosition2(); 
@@ -92,11 +101,18 @@ int main(void)
             //Y=cos()*cos()*distance;
             //Z=sin()*distance;
             
-            //CALCOLO COORDINATE PUNTO INDIVIDUATO
+            //CONSIDERO L'ANGOLO IN RADIANTI PER FUNZIONE SIN E COS
+            pos_servo1_rad=(pos_servo1-90)*val;
+            pos_servo2_rad=(pos_servo2-90)*val;
             
-            X = sin(pos_servo1-90)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
-            Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2-90); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
-            Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1-90);
+            //CALCOLO COORDINATE PUNTO INDIVIDUATO
+            X = sin(pos_servo1_rad)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
+            Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
+            Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad); 
+           
+            /*sprintf(message_1, "Coord: %d mm\r\n", X);
+            UART_1_PutString(message_1);
+            */
             
             x_array[i]=X;
             y_array[i]=Y;
@@ -108,6 +124,8 @@ int main(void)
             if(angle==18){ 
                 angle_2=angle_2+10;
                 Servo_SetPosition2(angle_2);
+                if (angle_2==180)
+                    angle_2=0; //?
                 flag=1;
                 i=0;
                 angle=0;
