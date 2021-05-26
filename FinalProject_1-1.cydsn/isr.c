@@ -10,12 +10,7 @@
  * ========================================
 */
 
-#include "isr.h"
-#include "stdio.h"
-#include "UART_1.h"
-#include "Timer_HCSR04.h"
-#include "ISR_HCSR04.h"
-
+#include "project_utils.h"
 /**
 * @brief Conversion factor from time to mm.
 */

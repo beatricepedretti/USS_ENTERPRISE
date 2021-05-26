@@ -11,13 +11,9 @@
 */
 
 
-#include "servo.h"
+#include "project_utils.h"
 
-#include "math.h" //potremmo includere questa libreria in un .h che poi richiamiamo sempre
-#include "PWM_Servo1.h"
-#include "PWM_Servo2.h"
-#include "stdio.h"
-#include "stdlib.h"
+
 
 /**
  *  \brief          Map value in new interval.

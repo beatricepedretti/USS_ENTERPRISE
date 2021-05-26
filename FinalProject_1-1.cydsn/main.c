@@ -7,10 +7,7 @@
  * PSoC 5LP.
  *
 */
-#include "isr.h"
-#include "project.h"
-#include "stdio.h"
-#include "servo.h"
+#include "project_utils.h"
 
 
 #ifndef HIGH
@@ -23,13 +20,17 @@
 
 #define PI 3.14159265
 #define array_length 100
-double val = PI / 180;
+#define STEP_ANGLE 10
+
+
+double val = PI / SERVO_LIMIT_H;
 
 int i = 0; //indice per salvare coordinate dei punti 3D negli array
 int flag = 0; //flag che potrebbe segnalare a kivy che la scannerizzazione di un livello è pronta, NON so come funziona la comunicazione con kivy
 
 double pos_servo1_rad;
 double pos_servo2_rad;
+
 uint16_t pos_servo1;
 uint16_t pos_servo2;
 uint8_t angle;
@@ -65,9 +66,9 @@ int main(void)
     Custom_ISR_Start();
     /* Send message over UART */
     UART_1_PutString("HC-SR04 Program Started\r\n");
-    Servo_SetPosition1(0);
-    Servo_SetPosition2(10); //DA VEDERE, PROBABILMENTE PI/2
-    angle_2=0;
+    Servo_SetPosition1(SERVO_LIMIT_L);
+    Servo_SetPosition2(SERVO_LIMIT_L); //DA VEDERE, PROBABILMENTE PI/2
+    angle_2=SERVO_LIMIT_L;
     
     for(;;)
     {
@@ -84,12 +85,12 @@ int main(void)
         
    
         
-        for (angle=0;angle<=18;angle++)
+        for (angle=0;angle<=(SERVO_LIMIT_H/STEP_ANGLE);angle++)
         {
 
-            Servo_SetPosition1(angle*10);
+            Servo_SetPosition1(angle*STEP_ANGLE);
             
-            CyDelay(1100);
+            CyDelay(500);
             
             pos_servo1 = Servo_GetPosition1(); 
             pos_servo2 = Servo_GetPosition2(); 
@@ -100,8 +101,8 @@ int main(void)
             //Z=sin()*distance;
 
             //CONSIDERO L'ANGOLO IN RADIANTI PER FUNZIONE SIN E COS
-            pos_servo1_rad=(pos_servo1-90)*val;
-            pos_servo2_rad=(pos_servo2-90)*val;
+            pos_servo1_rad=(pos_servo1-SERVO_MID_ANGLE)*val;
+            pos_servo2_rad=(pos_servo2-SERVO_MID_ANGLE)*val;
             /*
             sprintf(message_1, "coord: %d mm\r\n", (int)pos_servo1_rad);
             UART_1_PutString(message_1);
@@ -126,18 +127,18 @@ int main(void)
             
             //CONTROLLO ACQUISIZIONE 180 GRADI, CAMBIO LIVELLO DI SCANNERIZZAZIONE
             
-            if(angle==18){ 
+            if(angle==(SERVO_LIMIT_H/STEP_ANGLE)){ 
                /* memset(x_array,0,array_length);
                 memset(y_array,0,array_length);
                 memset(z_array,0,array_length);
                 */
-                angle_2=angle_2+10;
+                angle_2=angle_2+STEP_ANGLE;
                 Servo_SetPosition2(angle_2);
-                if (angle_2==180)
-                    angle_2=0; //?
+                if (angle_2==SERVO_LIMIT_H)
+                    angle_2=SERVO_LIMIT_L; //?
                 flag=1;
                 i=0;
-                angle=0;
+                angle=SERVO_LIMIT_L;
             }
             flag=0;
         }

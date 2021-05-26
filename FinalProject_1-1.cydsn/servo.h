@@ -17,7 +17,7 @@
         extern "C" {
     #endif
     
-    #include <cytypes.h>
+    #include "project_utils.h"
         
     
     /*************************************
@@ -33,6 +33,13 @@
      *  \brief          Highest servo angle.
      */
     #define SERVO_LIMIT_H   180
+    
+    /**
+     *  \brief          Middle servo angle.
+     */
+    
+    #define SERVO_MID_ANGLE 90
+    
 
     /**
      *  \brief          PWM Compare value for \ref SERVO_LIMIT_L angle.

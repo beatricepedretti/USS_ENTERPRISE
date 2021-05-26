@@ -15,16 +15,15 @@
 #ifndef ISR_H
     #define ISR_H
 
-    #include "cytypes.h"
+    #include "project_utils.h"
     
-    #include "math.h"
-    
+    #define STRING_LENGTH 30
     
     // Message to send over UART
     int distance;
-    char message[30];
-    char message_1[30];
-    //char message_1[30];
+    char message[STRING_LENGTH];
+    char message_1[STRING_LENGTH];
+
     // Timer period value
     uint16_t timer_period;
     
@@ -38,8 +37,6 @@
     * @return Nothing
     */
     void Custom_ISR_Start(void);
-    
-    
     
     /**
     * @brief ISR routine.
