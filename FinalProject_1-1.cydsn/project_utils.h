@@ -33,7 +33,9 @@
 
 #define PI 3.14159265
 #define COORD_ARRAY_LENGTH 100
-#define STEP_ANGLE 10
+#define STEP_SWEEP 2
+#define STEP_RISE 5
+#define RISE_LIMIT 90
 #define STRING_LENGTH 30
 
 uint8_t angle;

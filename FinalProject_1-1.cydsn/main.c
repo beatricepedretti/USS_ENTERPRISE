@@ -27,23 +27,23 @@ int main(void)
     {
         if (clockwise == 0)
         {           
-            for (angle=SERVO_LIMIT_L; angle<=(SERVO_LIMIT_H/STEP_ANGLE); angle ++)
+            for (angle=SERVO_LIMIT_L; angle<=(SERVO_LIMIT_H/STEP_SWEEP); angle ++)
             {
-                Servo_SetPosition1(angle*STEP_ANGLE);
-                if (angle == (SERVO_LIMIT_H/STEP_ANGLE))
+                Servo_SetPosition1(angle*STEP_SWEEP);
+                if (angle == (SERVO_LIMIT_H/STEP_SWEEP))
                 {                    
                     clockwise=1;
                     CyDelay(200);
                     next_row();
                 }
-                CyDelay(200);     
+                CyDelay(50);     
             }
         }
         if (clockwise == 1)
         {
-            for (angle=(SERVO_LIMIT_H/STEP_ANGLE);angle >SERVO_LIMIT_L; angle --)
+            for (angle=(SERVO_LIMIT_H/STEP_SWEEP);angle >SERVO_LIMIT_L; angle --)
             {
-                Servo_SetPosition1(angle*STEP_ANGLE);
+                Servo_SetPosition1(angle*STEP_SWEEP);
                 if (angle == (SERVO_LIMIT_L+1))
                 {
                     clockwise = 0;
@@ -53,7 +53,7 @@ int main(void)
                     
                 }
                 
-                CyDelay(200);
+                CyDelay(50);
             }
         }
 

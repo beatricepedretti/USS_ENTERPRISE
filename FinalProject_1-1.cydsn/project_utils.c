@@ -106,9 +106,9 @@ void next_row (void)
     memset(y_array,0,array_length);
     memset(z_array,0,array_length);
     */
-    angle_2=angle_2+STEP_ANGLE;
+    angle_2=angle_2+STEP_RISE;
     Servo_SetPosition2(angle_2);
-    if (angle_2==SERVO_LIMIT_H)
+    if (angle_2==RISE_LIMIT)
         angle_2=SERVO_LIMIT_L;     
 }
 
