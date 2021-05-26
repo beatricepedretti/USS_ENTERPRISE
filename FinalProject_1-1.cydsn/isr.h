@@ -17,7 +17,7 @@
 
     #include "project_utils.h"
     
-    #define STRING_LENGTH 30
+    
     
     // Message to send over UART
     int distance;

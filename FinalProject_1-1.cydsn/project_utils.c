@@ -10,4 +10,108 @@
  * ========================================
 */
 #include "project_utils.h"
+
+
+
+double pos_servo1_rad;
+double pos_servo2_rad;
+
+uint16_t pos_servo1;
+uint16_t pos_servo2;
+
+double val = PI / SERVO_LIMIT_H;
+
+uint8_t d_2; //di quanto l'aggancio del servo2 è spostata rispetto all'albero del servo1
+uint8_t Z1 = 30; //altezza albero servo2 in mm, quindi altezza servo1 + metà spessore servo2. Ho messo 30 a caso
+uint8_t aggancio_sonar = 4;//da misurare
+
+float x_array[COORD_ARRAY_LENGTH];
+float y_array[COORD_ARRAY_LENGTH];
+float z_array[COORD_ARRAY_LENGTH];
+
+float X;
+float Y;
+float Z;
+
+extern volatile uint8_t flag;
+
+
+
+void start_components ()
+{
+    //Init components
+    Timer_HCSR04_Start();
+    PWM_Trigger_Start();
+    Timer_TRIGGER_Start();
+    UART_1_Start();
+    PWM_Servo1_Start();
+    PWM_Servo2_Start();
+    // Call the Custom_ISR_Start function -- defined in isr.c
+    Custom_ISR_Start();
+    /* Send message over UART */
+    UART_1_PutString("HC-SR04 Program Started\r\n");
+}
+
+void set_servos (uint8_t servo_1, uint8_t servo_2)
+{
+    //this function sets the position of the servo motors to the two limit positions
+    //write 0 in the dedicated variable to set position to 0 degrees
+    //write 1 in the corresponding variable to set position to 180 degrees
+    //write anything else to do nothing
+    if (!servo_1)
+        Servo_SetPosition1(SERVO_LIMIT_L);
+    else if (servo_1)
+        Servo_SetPosition1(SERVO_LIMIT_H);
+    if (!servo_2)
+        Servo_SetPosition2(SERVO_LIMIT_L);
+    else if (servo_2)
+        Servo_SetPosition2(SERVO_LIMIT_H);
+}
+
+
+void find_position ()
+{
+    pos_servo1 = Servo_GetPosition1(); 
+    pos_servo2 = Servo_GetPosition2(); 
+
+
+    //CONSIDERO L'ANGOLO IN RADIANTI PER FUNZIONE SIN E COS
+    pos_servo1_rad=(pos_servo1-SERVO_MID_ANGLE)*val;
+    pos_servo2_rad=(pos_servo2-SERVO_MID_ANGLE)*val;
+    /*
+    sprintf(message_1, "coord: %d mm\r\n", (int)pos_servo1_rad);
+    UART_1_PutString(message_1);
+    */
+    //CALCOLO COORDINATE PUNTO INDIVIDUATO
+    X = sin(pos_servo1_rad)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
+    Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
+    Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad); 
+   
+    /*
+    sprintf(message_1, "coord: %d mm\r\n", (int)Z);
+    UART_1_PutString(message_1);
+    */
+
+    
+    /*x_array[i]=X;
+    y_array[i]=Y;
+    z_array[i]=Z;
+    i++;
+        */      
+}
+
+void next_row (void)
+{
+    /* memset(x_array,0,array_length);
+    memset(y_array,0,array_length);
+    memset(z_array,0,array_length);
+    */
+    angle_2=angle_2+STEP_ANGLE;
+    Servo_SetPosition2(angle_2);
+    if (angle_2==SERVO_LIMIT_H)
+        angle_2=SERVO_LIMIT_L;     
+}
+
+
+
 /* [] END OF FILE */

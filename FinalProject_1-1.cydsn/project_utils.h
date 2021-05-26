@@ -23,5 +23,28 @@
 #include "PWM_Servo2.h"
 #include "stdlib.h"
 
+#ifndef HIGH
+    #define HIGH 1u
+#endif
+
+#ifndef LOW
+    #define LOW 0U
+#endif
+
+#define PI 3.14159265
+#define COORD_ARRAY_LENGTH 100
+#define STEP_ANGLE 10
+#define STRING_LENGTH 30
+
+uint8_t angle;
+uint8_t angle_2;
+
+
+
+void start_components(void);
+void set_servos (uint8_t, uint8_t);
+void next_row (void);
+
+
 
 /* [] END OF FILE */
