@@ -111,8 +111,10 @@ int main(void)
             Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
             Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad); 
            
+            /*
             sprintf(message_1, "coord: %d mm\r\n", (int)Z);
             UART_1_PutString(message_1);
+            */
 
             
             /*x_array[i]=X;
