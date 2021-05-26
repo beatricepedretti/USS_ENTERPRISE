@@ -58,6 +58,7 @@ int main(void)
     UART_1_PutString("HC-SR04 Program Started\r\n");
     Servo_SetPosition1(0);
     Servo_SetPosition2(0); //DA VEDERE, PROBABILMENTE PI/2
+    angle_2=0;
     
     for(;;)
     {
@@ -72,7 +73,7 @@ int main(void)
             */
             
         
-        for (angle=0;angle<18;angle++)
+        for (angle=0;angle<=18;angle++)
         {
             
             
@@ -85,7 +86,7 @@ int main(void)
             
             pos_servo1 = Servo_GetPosition1(); 
             pos_servo2 = Servo_GetPosition2(); 
-            
+
             //queste sarebbero le formule date da cerveri..
             //X=sin()*cos()*distance; 
             //Y=cos()*cos()*distance;
@@ -104,11 +105,12 @@ int main(void)
             
             //CONTROLLO ACQUISIZIONE 180 GRADI, CAMBIO LIVELLO DI SCANNERIZZAZIONE
             
-            if(angle==17){
+            if(angle==18){ 
+                angle_2=angle_2+10;
+                Servo_SetPosition2(angle_2);
                 flag=1;
                 i=0;
                 angle=0;
-                Servo_SetPosition2(angle_2+1);
             }
             flag=0;
         }
