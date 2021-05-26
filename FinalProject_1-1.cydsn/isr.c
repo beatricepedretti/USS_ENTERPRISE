@@ -37,9 +37,10 @@ void Custom_ISR_Start(void) {
 
 CY_ISR(ISR_ULTRASONIC){
     // Compute distance and send it over uart
-    distance=(uint16_t)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);
-    sprintf(message, "Distance: %d mm\r\n", distance);
+    distance=(uint)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);
+    /*sprintf(message, "Distance: %d mm\r\n", distance);
     UART_1_PutString(message);
+    */
 }
 
 

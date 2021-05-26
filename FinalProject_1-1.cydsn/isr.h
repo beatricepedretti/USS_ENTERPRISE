@@ -21,8 +21,9 @@
     
     
     // Message to send over UART
-    uint16_t distance;
+    int distance;
     char message[30];
+    char message_1[30];
     //char message_1[30];
     // Timer period value
     uint16_t timer_period;
