@@ -37,15 +37,19 @@
 #define STEP_RISE 5
 #define RISE_LIMIT 90
 #define STRING_LENGTH 30
+#define RISE_DELAY 500
+#define SWEEP_DELAY 200
+#define DISTANCE_TH 300
+#define SIMPLE_SWEEP 0
+#define OBJECT_SHAPER 1
 
 uint8_t angle;
 uint8_t angle_2;
 
-
-
-void start_components(void);
+void start_components();
 void set_servos (uint8_t, uint8_t);
 void next_row (void);
+void sweep (uint8_t, uint8_t);
 
 
 

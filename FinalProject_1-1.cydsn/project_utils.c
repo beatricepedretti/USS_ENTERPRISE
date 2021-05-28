@@ -33,8 +33,8 @@ float X;
 float Y;
 float Z;
 
-extern volatile uint8_t flag;
 
+extern volatile uint8_t clockwise;
 
 
 void start_components ()
@@ -57,7 +57,7 @@ void set_servos (uint8_t servo_1, uint8_t servo_2)
     //this function sets the position of the servo motors to the two limit positions
     //write 0 in the dedicated variable to set position to 0 degrees
     //write 1 in the corresponding variable to set position to 180 degrees
-    //write anything else to do nothing
+
     if (!servo_1)
         Servo_SetPosition1(SERVO_LIMIT_L);
     else if (servo_1)
@@ -112,6 +112,40 @@ void next_row (void)
         angle_2=SERVO_LIMIT_L;     
 }
 
+void sweep (uint8_t low_position, uint8_t high_position)
+{
+    if (clockwise == 0)
+    {           
+        for (angle=low_position; angle<=(high_position/STEP_SWEEP); angle ++)
+        {
+            Servo_SetPosition1(angle*STEP_SWEEP);
+            if (angle == (high_position/STEP_SWEEP))
+            {                    
+                clockwise=1;
+                CyDelay(SWEEP_DELAY);
+                next_row();
+            }
+            CyDelay(RISE_DELAY);     
+        }
+    }
+    if (clockwise == 1)
+    {
+        for (angle=(high_position/STEP_SWEEP);angle >low_position; angle --)
+        {
+            Servo_SetPosition1(angle*STEP_SWEEP);
+            if (angle == (low_position+1))
+            {
+                clockwise = 0;
+                Servo_SetPosition1(low_position);
+                CyDelay(SWEEP_DELAY);
+                next_row();
+                
+            }
+            
+            CyDelay(RISE_DELAY);
+        }
+    }
+}
 
 
 /* [] END OF FILE */

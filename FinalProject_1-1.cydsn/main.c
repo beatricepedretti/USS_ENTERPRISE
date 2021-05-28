@@ -11,7 +11,7 @@
 
 
 volatile uint8_t flag = 0; //flag che potrebbe segnalare a kivy che la scannerizzazione di un livello è pronta, NON so come funziona la comunicazione con kivy
-uint8_t clockwise=0;
+volatile uint8_t clockwise=0;
 
 
 int main(void)
@@ -33,10 +33,10 @@ int main(void)
                 if (angle == (SERVO_LIMIT_H/STEP_SWEEP))
                 {                    
                     clockwise=1;
-                    CyDelay(200);
+                    CyDelay(RISE_DELAY);
                     next_row();
                 }
-                CyDelay(50);     
+                CyDelay(SWEEP_DELAY);     
             }
         }
         if (clockwise == 1)
@@ -48,12 +48,12 @@ int main(void)
                 {
                     clockwise = 0;
                     Servo_SetPosition1(SERVO_LIMIT_L);
-                    CyDelay(200);
+                    CyDelay(RISE_DELAY);
                     next_row();
                     
                 }
                 
-                CyDelay(50);
+                CyDelay(SWEEP_DELAY);
             }
         }
 

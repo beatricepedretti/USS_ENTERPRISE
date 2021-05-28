@@ -253,11 +253,11 @@
     <Group key="Pin">
       <Data key="0c606511-ede4-4165-a80e-d831ff3d506c" value="Pin_ECHO_1" />
       <Data key="8d318d8b-cf7b-4b6b-b02c-ab1c5c49d0ba" value="Pin_Echo" />
-      <Data key="47535a97-0b3a-4e8f-86e4-edbd29fdaa94" value="Pin_TRIGGER" />
+      <Data key="47535a97-0b3a-4e8f-86e4-edbd29fdaa94" value="Pin_TRIGGER_1" />
       <Data key="1425177d-0d0e-4468-8bcc-e638e5509a9b" value="Rx_1" />
       <Data key="c03134fd-fef2-4717-9e97-8f14fc06e4d4" value="Pin_TRIGGER_1" />
       <Data key="dc61dcdf-61b5-424a-a4d1-87da3ce8b53b" value="Servo_PWM_2" />
-      <Data key="de699d0d-50a9-45f8-b101-320d97e2e110" value="Pin_ECHO" />
+      <Data key="de699d0d-50a9-45f8-b101-320d97e2e110" value="Pin_ECHO_1" />
       <Data key="e851a3b9-efb8-48be-bbb8-b303b216c393" value="Pin_Trigger" />
       <Data key="ea0a2d93-2de6-4a4e-963c-17a0a403d610" value="Servo_PWM_1" />
       <Data key="ed092b9b-d398-4703-be89-cebf998501f6" value="Tx_1" />
@@ -3359,7 +3359,7 @@
     </Group>
     <Group key="47535a97-0b3a-4e8f-86e4-edbd29fdaa94">
       <Group key="0">
-        <Data key="Port Format" value="15,5" />
+        <Data key="Port Format" value="12,3" />
       </Group>
     </Group>
     <Group key="1425177d-0d0e-4468-8bcc-e638e5509a9b">
@@ -3379,7 +3379,7 @@
     </Group>
     <Group key="de699d0d-50a9-45f8-b101-320d97e2e110">
       <Group key="0">
-        <Data key="Port Format" value="15,4" />
+        <Data key="Port Format" value="12,2" />
       </Group>
     </Group>
     <Group key="e851a3b9-efb8-48be-bbb8-b303b216c393">
