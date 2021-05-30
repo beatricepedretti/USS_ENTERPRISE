@@ -21,9 +21,9 @@ uint16_t pos_servo2;
 
 double val = PI / SERVO_LIMIT_H;
 
-uint8_t d_2; //di quanto l'aggancio del servo2 è spostata rispetto all'albero del servo1
-uint8_t Z1 = 30; //altezza albero servo2 in mm, quindi altezza servo1 + metà spessore servo2. Ho messo 30 a caso
-uint8_t aggancio_sonar = 4;//da misurare
+uint8_t d_2=13; //di quanto l'aggancio del servo2 è spostata rispetto all'albero del servo1
+uint8_t Z1 = 73; //altezza albero servo2 in mm, quindi altezza servo1 + metà spessore servo2. Ho messo 30 a caso
+uint8_t aggancio_sonar = 57;//da misurare
 
 
 float x_array[COORD_ARRAY_LENGTH];
