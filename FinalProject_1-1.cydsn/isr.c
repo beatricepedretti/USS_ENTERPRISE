@@ -22,6 +22,7 @@
     #define TO_MM 10.00
 #endif
 
+extern volatile uint8_t get_position;
 
 void Custom_ISR_Start(void) {
     // Store the value of the timer
@@ -33,7 +34,9 @@ void Custom_ISR_Start(void) {
 CY_ISR(ISR_ULTRASONIC){
     // Compute distance and send it over uart
     distance=(uint)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);
-    sprintf(message, "Distance: %d mm\r\n", distance);
+    find_position();
+    sprintf(message, "%d\r\n", distance);
+    //sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
     UART_1_PutString(message);
     
 }

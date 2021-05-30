@@ -25,13 +25,12 @@ uint8_t d_2; //di quanto l'aggancio del servo2 è spostata rispetto all'albero d
 uint8_t Z1 = 30; //altezza albero servo2 in mm, quindi altezza servo1 + metà spessore servo2. Ho messo 30 a caso
 uint8_t aggancio_sonar = 4;//da misurare
 
+
 float x_array[COORD_ARRAY_LENGTH];
 float y_array[COORD_ARRAY_LENGTH];
 float z_array[COORD_ARRAY_LENGTH];
 
-float X;
-float Y;
-float Z;
+
 
 
 extern volatile uint8_t clockwise;
@@ -85,7 +84,8 @@ void find_position ()
     //CALCOLO COORDINATE PUNTO INDIVIDUATO
     X = sin(pos_servo1_rad)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
     Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
-    Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad); 
+    Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad);
+    
    
     /*
     sprintf(message_1, "coord: %d mm\r\n", (int)Z);

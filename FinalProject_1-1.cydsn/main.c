@@ -12,7 +12,7 @@
 
 volatile uint8_t flag = 0; //flag che potrebbe segnalare a kivy che la scannerizzazione di un livello è pronta, NON so come funziona la comunicazione con kivy
 volatile uint8_t clockwise=0;
-
+volatile uint8_t get_position = 0;
 
 int main(void)
 {
@@ -36,6 +36,7 @@ int main(void)
                     CyDelay(RISE_DELAY);
                     next_row();
                 }
+               
                 CyDelay(SWEEP_DELAY);     
             }
         }
