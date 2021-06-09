@@ -30,7 +30,8 @@ float x_array[COORD_ARRAY_LENGTH];
 float y_array[COORD_ARRAY_LENGTH];
 float z_array[COORD_ARRAY_LENGTH];
 
-
+extern char received;
+extern int begin_scann;
 
 
 extern volatile uint8_t clockwise;
@@ -113,6 +114,18 @@ void next_row (void)
         angle_2=SERVO_LIMIT_L;     
 }
 
+
+void check_state ()
+{
+    if(received=='s'){
+        begin_scann=0;
+        STEP_SWEEP=1;
+        
+    }
+}
+
+
+/*
 void sweep (uint8_t low_position, uint8_t high_position)
 {
     if (clockwise == 0)
@@ -147,6 +160,6 @@ void sweep (uint8_t low_position, uint8_t high_position)
         }
     }
 }
-
+*/
 
 /* [] END OF FILE */

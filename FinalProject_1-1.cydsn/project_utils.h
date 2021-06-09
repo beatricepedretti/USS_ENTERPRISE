@@ -58,6 +58,6 @@ void next_row (void);
 void sweep (uint8_t, uint8_t);
 void find_position(void);
 
-
+void check_state (void);
 
 /* [] END OF FILE */

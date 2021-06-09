@@ -10,7 +10,7 @@
 #include "project_utils.h"
 #include "isr.h"
 
-uint8_t STEP_SWEEP=1;
+uint8_t STEP_SWEEP=5;
 volatile uint8_t flag = 0; //flag che potrebbe segnalare a kivy che la scannerizzazione di un livello è pronta, NON so come funziona la comunicazione con kivy
 volatile uint8_t clockwise=0;
 volatile uint8_t get_position = 0;
@@ -29,14 +29,14 @@ int main(void)
     
     for(;;)
     {
-        state=received;
-        if(state=='b'){
-            begin_scann=1;
-        }
-        if(begin_scann){
-            if(state==1 || state==5 || state==10){
-                STEP_SWEEP=state;
-            }
+        //state=received;
+        //if(state=='b'){
+        //    begin_scann=1;
+        //}
+        //if(begin_scann){
+           // if(received==1 || received==5 || received==10){
+            //    STEP_SWEEP=received;
+           // }
             if (clockwise == 0)
             {           
                 for (angle=SERVO_LIMIT_L; angle<=(SERVO_LIMIT_H/STEP_SWEEP); angle ++)
@@ -48,7 +48,9 @@ int main(void)
                         CyDelay(RISE_DELAY);
                         next_row();
                     }
-                   
+                    //check_state();
+                    //if (begin_scann==0)
+                    //    break;
                     CyDelay(SWEEP_DELAY);     
                 }
             }
@@ -65,18 +67,21 @@ int main(void)
                         next_row();
                         
                     }
-                    
+                    //check_state();
+                    //if (begin_scann==0)
+                    //    break;
                     CyDelay(SWEEP_DELAY);
                 }
             }
 
         }
+        /*
         if(state=='s'){
             begin_scann=0;
             STEP_SWEEP=1;
             break;
-        }
-    }
+        }*/
+    //}
 }
 
 /* [] END OF FILE */
