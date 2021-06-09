@@ -124,7 +124,3 @@ uint16_t Servo_GetPosition2(void) {
 
 /* [] END OF FILE */
 
-
-
-
-/* [] END OF FILE */

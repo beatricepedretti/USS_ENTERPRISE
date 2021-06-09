@@ -20,6 +20,7 @@
     
     
     // Message to send over UART
+    char received;
     int distance;
     char message[STRING_LENGTH];
     char message_1[STRING_LENGTH];
@@ -45,6 +46,8 @@
     * from a measurement of time.
     */
     CY_ISR_PROTO(ISR_ULTRASONIC);
+    CY_ISR_PROTO(Custom_UART_RX_ISR);
+    
 
 #endif
 

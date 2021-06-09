@@ -43,6 +43,7 @@ void start_components ()
     PWM_Trigger_Start();
     Timer_TRIGGER_Start();
     UART_1_Start();
+    isr_1_StartEx(Custom_UART_RX_ISR);
     PWM_Servo1_Start();
     PWM_Servo2_Start();
     // Call the Custom_ISR_Start function -- defined in isr.c

@@ -33,7 +33,7 @@
 
 #define PI 3.14159265
 #define COORD_ARRAY_LENGTH 100
-#define STEP_SWEEP 10
+//#define STEP_SWEEP 10
 #define STEP_RISE 5
 #define RISE_LIMIT 90
 #define STRING_LENGTH 100
@@ -43,6 +43,7 @@
 #define SIMPLE_SWEEP 0
 #define OBJECT_SHAPER 1
 
+uint8_t STEP_SWEEP;
 uint8_t angle;
 uint8_t angle_2;
 
