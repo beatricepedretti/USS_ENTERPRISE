@@ -23,7 +23,7 @@
     char received;
     int distance;
     char message[STRING_LENGTH];
-    char message_1[STRING_LENGTH];
+    char message1[STRING_LENGTH];
 
     // Timer period value
     uint16_t timer_period;

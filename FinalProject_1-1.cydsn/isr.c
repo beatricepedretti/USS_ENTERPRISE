@@ -46,6 +46,10 @@ CY_ISR(Custom_UART_RX_ISR)
     if (UART_1_ReadRxStatus() == UART_1_RX_STS_FIFO_NOTEMPTY) 
     {
         received = UART_1_ReadRxData();
+        if(received=='v'){
+            sprintf (message1, "Device succesfully connected$");
+            UART_1_PutString(message1);
+        }
     }
 }
 
