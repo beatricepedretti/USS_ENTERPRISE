@@ -29,19 +29,20 @@ int main(void)
     
     for(;;)
     {
-        //state=received;
-        //if(state=='b'){
-        //    
-        //    begin_scann=1;
-        //}
-        //if(begin_scann){
-           // if(received==1 || received==5 || received==10){
-            //    STEP_SWEEP=received;
-           // }
+        state=received;
+        if(state=='b'){   
+            begin_scann=1;
+        }
+        if(begin_scann){
+            if(received==1 || received==5 || received==10){
+                STEP_SWEEP=received;
+            }
             if (clockwise == 0)
             {           
                 for (angle=SERVO_LIMIT_L; angle<=(SERVO_LIMIT_H/STEP_SWEEP); angle ++)
                 {
+                    sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
+                    UART_1_PutString(message);
                     Servo_SetPosition1(angle*STEP_SWEEP);
                     if (angle == (SERVO_LIMIT_H/STEP_SWEEP))
                     {                    
@@ -49,11 +50,11 @@ int main(void)
                         CyDelay(RISE_DELAY);
                         next_row();
                     }
-                    //check_state();
-                    //if (begin_scann==0)
-                    //    Servo_SetPosition1(0);
-                    //    Servo_SetPosition2(0);
-                    //    break;
+                    check_state();
+                    if (begin_scann==0)
+                        Servo_SetPosition1(0);
+                        Servo_SetPosition2(0);
+                        break;
                     CyDelay(SWEEP_DELAY);     
                 }
             }
@@ -61,6 +62,8 @@ int main(void)
             {
                 for (angle=(SERVO_LIMIT_H/STEP_SWEEP);angle >SERVO_LIMIT_L; angle --)
                 {
+                    sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
+                    UART_1_PutString(message);
                     Servo_SetPosition1(angle*STEP_SWEEP);
                     if (angle == (SERVO_LIMIT_L+1))
                     {
@@ -70,21 +73,22 @@ int main(void)
                         next_row();
                         
                     }
-                    //check_state();
-                    //if (begin_scann==0)
-                    //    break;
+                    check_state();
+                    if (begin_scann==0)
+                        Servo_SetPosition1(0);
+                        Servo_SetPosition2(0);
+                        break;
                     CyDelay(SWEEP_DELAY);
                 }
             }
-
         }
-        /*
-        if(state=='s'){
+        
+        /*if(state=='s'){
             begin_scann=0;
             STEP_SWEEP=1;
             break;
         }*/
-    //}
+    }
 }
 
 /* [] END OF FILE */

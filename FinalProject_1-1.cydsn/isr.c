@@ -36,8 +36,8 @@ CY_ISR(ISR_ULTRASONIC){
     distance=(uint)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);
     find_position();
     //sprintf(message, "%d\r\n", distance);
-    sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
-    UART_1_PutString(message);
+    //sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
+    //UART_1_PutString(message);
     
 }
 CY_ISR(Custom_UART_RX_ISR) 
