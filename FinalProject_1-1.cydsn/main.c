@@ -31,6 +31,7 @@ int main(void)
     {
         //state=received;
         //if(state=='b'){
+        //    
         //    begin_scann=1;
         //}
         //if(begin_scann){
@@ -50,6 +51,8 @@ int main(void)
                     }
                     //check_state();
                     //if (begin_scann==0)
+                    //    Servo_SetPosition1(0);
+                    //    Servo_SetPosition2(0);
                     //    break;
                     CyDelay(SWEEP_DELAY);     
                 }
