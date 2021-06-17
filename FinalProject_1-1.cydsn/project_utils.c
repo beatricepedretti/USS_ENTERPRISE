@@ -84,9 +84,14 @@ void find_position ()
     UART_1_PutString(message_1);
     */
     //CALCOLO COORDINATE PUNTO INDIVIDUATO
-    X = sin(pos_servo1_rad)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
-    Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
-    Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad);
+    
+    X=d_2*(sin(pos_servo1_rad))+(aggancio_sonar+distance)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
+    Y=d_2*cos(pos_servo1_rad)+(distance+aggancio_sonar)*cos(pos_servo2_rad)*cos(pos_servo1_rad);
+    Z=Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad);
+    
+    //X = sin(pos_servo1_rad)*(d_2+(distance+aggancio_sonar)); //-90 se consideriamo lo zero di pos_servo1 l'angolo totalmente a sinistra (180 gradi)
+    //Z = Z1+(distance+aggancio_sonar)*sin(pos_servo2_rad); //-90 sempre se consideriamo lo zero l'angolo totalmente a sinistra (quello che farà scendere il sonar di altezza)
+    //Y = (d_2+distance+aggancio_sonar)*cos(pos_servo1_rad);
     
    
     /*
