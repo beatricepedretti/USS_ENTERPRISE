@@ -20,6 +20,7 @@
     
     
     // Message to send over UART
+    uint8_t state;
     char received;
     int distance;
     char message[STRING_LENGTH];

@@ -124,7 +124,7 @@ void check_state ()
 {
     if(received=='s'){
         begin_scann=0;
-        STEP_SWEEP=1;
+        //STEP_SWEEP=1;
         
     }
 }

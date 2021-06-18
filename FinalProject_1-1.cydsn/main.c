@@ -10,12 +10,12 @@
 #include "project_utils.h"
 #include "isr.h"
 
-uint8_t STEP_SWEEP=5;
+uint8_t STEP_SWEEP=10;
 volatile uint8_t flag = 0; //flag che potrebbe segnalare a kivy che la scannerizzazione di un livello è pronta, NON so come funziona la comunicazione con kivy
 volatile uint8_t clockwise=0;
 volatile uint8_t get_position = 0;
 
-char state=0;
+//char state=0;
 int begin_scann=0;
 
 int main(void)
@@ -30,10 +30,10 @@ int main(void)
     for(;;)
     {
         state=received;
-        if(state=='b'){   
+        if(state=='b'){
             begin_scann=1;
         }
-        if(begin_scann){
+        if(begin_scann==1){
             if(received==1 || received==5 || received==10){
                 STEP_SWEEP=received;
             }
@@ -54,7 +54,7 @@ int main(void)
                     if (begin_scann==0)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
-                        break;
+                        //break;
                     CyDelay(SWEEP_DELAY);     
                 }
             }
@@ -77,17 +77,11 @@ int main(void)
                     if (begin_scann==0)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
-                        break;
+                        //break;
                     CyDelay(SWEEP_DELAY);
                 }
             }
         }
-        
-        /*if(state=='s'){
-            begin_scann=0;
-            STEP_SWEEP=1;
-            break;
-        }*/
     }
 }
 
