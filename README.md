@@ -17,7 +17,7 @@ and in a space that, at the end of the acquisition, will be filled with the reco
 
 <h3>UART communication settings</h3>
 
-The user has the possibility of connecting automatically the GUI with the device through UART communication by pushing the button named 'Connect'. If a board programmed with our code is connected to the computer, it will send back a string 'Device succesfully connected$' and our computer will understand which is the right COM to use. It will be possible to see at the bottom of the GUI the connection status. 
+The user has the chance to connect automatically the GUI with the device through UART communication by pushing the button named 'Connect'. If a board programmed with our code is connected to the computer, it will send back a string 'Device succesfully connected$' and our computer will understand which is the right COM to use. It will be possible to see at the bottom of the GUI the connection status. 
 
 <h3>Step angle settings</h3>
 
