@@ -5,11 +5,20 @@ Our project consists in developing a system able to perform a three-dimensional 
 
 <h2>Configuration through GUI</h2>
 -inserire immagine GUI-
-<h3>GUI settings</h3>
+Our GUI consists in six buttons: 
+<ul>
+  <li>Connect</li>
+  <li>Start</li>
+  <li>Stop</li>
+  <li>Step angle, three possibilities</li>
+</ul>
+and a space that at the end of the acquisition it will be filled with the reconstructed image. 
 
-Our GUI consists in six buttons: <em>Connect</em>, <em>Start</em>, <em>Stop</em>, <em>Step angle</em> and a space that at the end of the acquisition it will be filled with the reconstructed image. 
-The user has the possibility of connecting automatically the GUI with the device through UART communication by pushing the button named 'Connect'. The user can also configure some device settings through a GUI. The parameter that can be configured is: <em>Step angle of the servomotors</em>. This operation can allow the user to obtain a more defined image by improving the steps of the servomotors and so the number of points that describe the surface. 
+<h3>UART communication settings</h3>
+
+The user has the possibility of connecting automatically the GUI with the device through UART communication by pushing the button named 'Connect'. If a board programmed with our code is connected to the computer it will send back a string 'Device succesfully connected$' and our computer will understand which is the right COM to use.  
 
 
-<h3>Temperature settings</h3>
-In addition to the device settings, the
+<h3>Step angle settings</h3>
+
+The user can also configure some device settings through a GUI. The parameter that can be configured is: <em>Step angle</em> of the servomotors. This operation can allow the user to obtain a more defined image by improving the steps of the servomotors and so the number of points that describe the surface.
