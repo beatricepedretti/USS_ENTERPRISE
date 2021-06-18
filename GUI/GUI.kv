@@ -1,0 +1,89 @@
+#:kivy 1.11
+
+<Container>:
+    orientation: 'vertical'
+    connect_btn: connect_btn
+    start_btn: start_btn
+    stop_btn: stop_btn
+    one_btn: one_btn
+    five_btn: five_btn
+    ten_btn: ten_btn
+    #com_ports_spinner: _com_ports_spinner
+    debug_label: _debug_label
+    padding: 5
+    spacing: 5
+    #BoxLayout:
+    #    orientation: 'horizontal'
+    #    size_hint_y: 0.2
+    #    Button:
+    #        id: connect_btn
+    #        text: 'Connect'
+    #        on_press: root.on_Connect_callback()
+    #    Label:
+    #        text: 'Disconnected'
+
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: 0.2
+        spacing: 5
+        Image:
+            source: r'images/sonar.png'
+            size_hint_x: 0.2
+        Label:
+            text: 'Sonar 3D Scanner'
+            font_size: 35 
+            size_hint_x: 0.8
+        #Spinner:
+        #    id: _com_ports_spinner
+        #    size_hint_x: 0.6
+        Button:
+            id: connect_btn
+            size_hint_x: 0.2
+            text: 'Connect'
+            #on_press: root.button_pressed_callback()
+            on_press: root.threading_connection()
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint_y: 1
+    GridLayout:
+        cols: 7
+        size_hint_y: 0.15
+        Label:
+            text: 'Step angle'
+            font_size: 20
+        Button:
+            id: one_btn
+            text:'1'
+            on_press: root.threading_one()
+        Button:
+            id: five_btn
+            text:'5'
+            on_press: root.threading_five()
+        Button:
+            id: ten_btn
+            text:'10'
+            on_press: root.threading_ten()
+        Label:
+            text:
+        Button:
+            id: start_btn
+            background_color: (36/255, 252/255, 3/255, 1) 
+            text:'Start' 
+            on_press: root.threading_start()
+        Button:
+            id: stop_btn            
+            background_color: (252/255, 3/255, 3/255, 1) 
+            text:'Stop' 
+            on_press: root.threading_stop()
+    BoxLayout:
+        orientation: 'vertical'
+        size_hint_y: 0.1
+        #GridLayout:
+        #    cols: 1
+        #    size_hint_y: 0.1
+            #Label:
+            #    text: 
+        Label:
+            id: _debug_label
+            size_hint_y: 0.2
+            text: 'Connection status'

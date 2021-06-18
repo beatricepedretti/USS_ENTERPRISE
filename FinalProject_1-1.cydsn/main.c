@@ -41,6 +41,8 @@ int main(void)
             {           
                 for (angle=SERVO_LIMIT_L; angle<=(SERVO_LIMIT_H/STEP_SWEEP); angle ++)
                 {
+                    CyDelay(SWEEP_DELAY);
+                    find_position();
                     sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
                     UART_1_PutString(message);
                     Servo_SetPosition1(angle*STEP_SWEEP);
@@ -54,15 +56,16 @@ int main(void)
                     if (begin_scann==0)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
-                        //break;
-                        //per farlo uscire dal for potremmo fare angle=180
-                    CyDelay(SWEEP_DELAY);     
+                        break;
+                        //per farlo uscire dal for potremmo fare angle=180     
                 }
             }
             if (clockwise == 1)
             {
                 for (angle=(SERVO_LIMIT_H/STEP_SWEEP);angle >SERVO_LIMIT_L; angle --)
                 {
+                    CyDelay(SWEEP_DELAY);
+                    find_position();
                     sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
                     UART_1_PutString(message);
                     Servo_SetPosition1(angle*STEP_SWEEP);
@@ -78,9 +81,8 @@ int main(void)
                     if (begin_scann==0)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
-                        //break;
+                        break;
                         //per farlo uscire dal for potremmo fare angle=180
-                    CyDelay(SWEEP_DELAY);
                 }
             }
         }
