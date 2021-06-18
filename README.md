@@ -32,7 +32,7 @@ The user has to press the 'Start' button in order to start the three-dimensional
 In order to create our device different components have been used. 
 <ul>
   <li>Two servomotors</li>
-  <li>Connection in order to link the two servomotors and create a serial chain able to scann the proximal environment
+  <li>Connection elements in order to link the two servomotors and create a serial chain able to scann the proximal environment
   <li>An ultrasonic sensor, the HCSR04</li>
   <li>A cypress board</li>
   <li>An homemade wooden box that acts as a housing for the board and guarantees robustness and stability to the serial chain</li>
