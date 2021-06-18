@@ -1,7 +1,7 @@
 # AY2021_II_Project_1-1
 Code and files of the Final Project 1 - Variant 1. Academic Year 2020/2021, II Semester
 
-Our project consists in developing a system able to perform a three-dimensional scanning of an object using two servomotors , the , and one ultrasonic sensor, the HCSR04. Our sonar must be opportunely moved to detect the distance surfaces in the field of view of the USS.
+Our project consists in developing a system able to perform a three-dimensional scanning of an object using two servomotors , the ---, and one ultrasonic sensor, the HCSR04. Our sonar must be opportunely moved to detect the distance surfaces in the field of view of the USS.
 
 <h2>Configuration through GUI</h2>
 -inserire immagine GUI-
@@ -13,7 +13,7 @@ Our GUI consists in six buttons:
   <li>Stop</li>
   <li>Step angle, three possibilities</li>
 </ul>
-and in a space that at the end of the acquisition will be filled with the reconstructed image. 
+and in a space that, at the end of the acquisition, will be filled with the reconstructed image. 
 
 <h3>UART communication settings</h3>
 
