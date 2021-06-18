@@ -17,7 +17,7 @@ and in a space that at the end of the acquisition will be filled with the recons
 
 <h3>UART communication settings</h3>
 
-The user has the possibility of connecting automatically the GUI with the device through UART communication by pushing the button named 'Connect'. If a board programmed with our code is connected to the computer it will send back a string 'Device succesfully connected$' and our computer will understand which is the right COM to use.  
+The user has the possibility of connecting automatically the GUI with the device through UART communication by pushing the button named 'Connect'. If a board programmed with our code is connected to the computer it will send back a string 'Device succesfully connected$' and our computer will understand which is the right COM to use. It will be possible to see at the bottom of the GUI the connection status. 
 
 <h3>Step angle settings</h3>
 
@@ -26,3 +26,28 @@ The user can also configure some device settings through a GUI. The parameter th
 <h3>Start and Stop commands</h3>
 
 The user has to press the 'Start' button in order to start the three-dimensional scanning and the 'Stop' button can be pressed anytime the user wants. After the 'Stop' button has been pressed our device will come back at the 'zero configuration', ready to begin a new scanning process.
+
+<h2>Hardware setting</h2>
+
+In order to create our device different components have been used. 
+<ul>
+  <li>Two servomotors</li>
+  <li>Connection in order to link the two servomotors and create a serial chain able to scann the proximal environment
+  <li>An ultrasonic sensor, the HCSR04</li>
+  <li>A cypress board</li>
+  <li>An homemade wooden box that acts as a housing for the board and guarantees robustness and stability to the serial chain</li>
+</ul>
+All these components must be properly handled as follow.
+
+<h3>Board settings</h3>
+
+It is placed inside the wooden box and it is powered by the computer. The connection between the board and the computer can be performed using any COM the user wants, it will be recognized by our code. 
+
+<h3>Servomotors settings</h3>
+
+The first servomotor must be connected to --- PIN and it must have the crankshaft vertically positioned. The second servomotor must be connected at the --- PIN and placed at the top of the first servomotor with the crankshaft horizontally positioned. Both of the servos need an external power supply in order to work properly.  
+
+<h3>Ultrasonic sensor settings</h3>
+
+The HCSR04 must be linked at the crankshaft of the second servomotor through a special connection element in order to move solidly with this crankshaft.
+
