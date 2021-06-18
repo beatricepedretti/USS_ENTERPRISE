@@ -50,12 +50,6 @@ CY_ISR(Custom_UART_RX_ISR)
             sprintf (message1, "Device succesfully connected$");
             UART_1_PutString(message1);
         }
-        if(received=='b'){
-            state=1;
-        }
-        if(received=='s'){
-            state=2;
-        }
     }
 }
 

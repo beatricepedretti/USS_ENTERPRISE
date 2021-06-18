@@ -15,7 +15,7 @@ volatile uint8_t flag = 0; //flag che potrebbe segnalare a kivy che la scanneriz
 volatile uint8_t clockwise=0;
 volatile uint8_t get_position = 0;
 
-//char state=0;
+char state=0;
 int begin_scann=0;
 
 int main(void)
@@ -30,7 +30,7 @@ int main(void)
     for(;;)
     {
         state=received;
-        if(state=='b'){
+        if(state=='b'){         
             begin_scann=1;
         }
         if(begin_scann==1){
@@ -55,6 +55,7 @@ int main(void)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
                         //break;
+                        //per farlo uscire dal for potremmo fare angle=180
                     CyDelay(SWEEP_DELAY);     
                 }
             }
@@ -78,6 +79,7 @@ int main(void)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
                         //break;
+                        //per farlo uscire dal for potremmo fare angle=180
                     CyDelay(SWEEP_DELAY);
                 }
             }
