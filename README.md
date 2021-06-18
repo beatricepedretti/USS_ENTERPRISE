@@ -5,7 +5,7 @@ Our project consists in developing a system able to perform a three-dimensional 
 
 <h2>Configuration through GUI</h2>
 -inserire immagine GUI-
-<h3>MAX30101 settings</h3>
+<h3>GUI settings</h3>
 
 Our GUI consists in six buttons: <em>Connect</em>, <em>Start</em>, <em>Stop</em>, <em>Step angle</em> and a space that at the end of the acquisition it will be filled with the reconstructed image. 
 The user has the possibility of connecting automatically the GUI with the device through UART communication by pushing the button named 'Connect'. The user can also configure some device settings through a GUI. The parameter that can be configured is: <em>Step angle of the servomotors</em>. This operation can allow the user to obtain a more defined image by improving the steps of the servomotors and so the number of points that describe the surface. 
