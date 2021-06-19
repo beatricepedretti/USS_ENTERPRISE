@@ -5,7 +5,6 @@
     connect_btn: connect_btn
     start_btn: start_btn
     stop_btn: stop_btn
-    one_btn: one_btn
     five_btn: five_btn
     ten_btn: ten_btn
     #com_ports_spinner: _com_ports_spinner
@@ -52,29 +51,29 @@
             text: 'Step angle'
             font_size: 20
         Button:
-            id: one_btn
-            text:'1'
-            on_press: root.threading_one()
-        Button:
             id: five_btn
             text:'5'
-            on_press: root.threading_five()
+            on_press: root.threading_step('5')
+            disabled: True
         Button:
             id: ten_btn
             text:'10'
-            on_press: root.threading_ten()
+            on_press: root.threading_step('10')
+            disabled: True
         Label:
             text:
         Button:
             id: start_btn
             background_color: (36/255, 252/255, 3/255, 1) 
-            text:'Start' 
+            text:'Start'
             on_press: root.threading_start()
+            disabled: True
         Button:
             id: stop_btn            
             background_color: (252/255, 3/255, 3/255, 1) 
-            text:'Stop' 
+            text:'Stop'
             on_press: root.threading_stop()
+            disabled: True
     BoxLayout:
         orientation: 'vertical'
         size_hint_y: 0.1

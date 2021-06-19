@@ -82,7 +82,7 @@ int main(void)
                         Servo_SetPosition1(0);
                         Servo_SetPosition2(0);
                         break;
-                        //per farlo uscire dal for potremmo fare angle=180
+                        
                 }
             }
         }
