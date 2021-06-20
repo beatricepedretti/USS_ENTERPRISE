@@ -42,11 +42,14 @@ CY_ISR(ISR_ULTRASONIC){
 }
 CY_ISR(Custom_UART_RX_ISR) 
 { 
-    // We read the receive data, and echo it back
+    // We read the received data, and echo it back
     if (UART_1_ReadRxStatus() == UART_1_RX_STS_FIFO_NOTEMPTY) 
     {
         received = UART_1_ReadRxData();
         if(received=='v'){
+            
+            //if that allows the automatical UART connection through pc and psoc
+            
             sprintf (message1, "Device succesfully connected$");
             UART_1_PutString(message1);
         }

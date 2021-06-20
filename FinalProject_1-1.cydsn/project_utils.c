@@ -26,9 +26,9 @@ uint8_t Z1 = 73; //altezza albero servo2 in mm, quindi altezza servo1 + metà sp
 uint8_t aggancio_sonar = 57;//da misurare
 
 
-float x_array[COORD_ARRAY_LENGTH];
+/*float x_array[COORD_ARRAY_LENGTH];
 float y_array[COORD_ARRAY_LENGTH];
-float z_array[COORD_ARRAY_LENGTH];
+float z_array[COORD_ARRAY_LENGTH];*/
 
 extern char received;
 extern int begin_scann;
@@ -70,8 +70,14 @@ void set_servos (uint8_t servo_1, uint8_t servo_2)
 }
 
 
+
 void find_position ()
 {
+    
+    //this function compute the coordinates of a three dimensional point 
+    //thanks to the position returned by the two servos and the distance returned 
+    //by the USS
+    
     pos_servo1 = Servo_GetPosition1(); 
     pos_servo2 = Servo_GetPosition2(); 
 
@@ -79,10 +85,12 @@ void find_position ()
     //CONSIDERO L'ANGOLO IN RADIANTI PER FUNZIONE SIN E COS
     pos_servo1_rad=(pos_servo1-SERVO_MID_ANGLE)*val;
     pos_servo2_rad=(pos_servo2-SERVO_MID_ANGLE)*val;
+    
     /*
     sprintf(message_1, "coord: %d mm\r\n", (int)pos_servo1_rad);
     UART_1_PutString(message_1);
     */
+    
     //CALCOLO COORDINATE PUNTO INDIVIDUATO
     
     X=d_2*(sin(pos_servo1_rad))+(aggancio_sonar+distance)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
@@ -98,21 +106,11 @@ void find_position ()
     sprintf(message_1, "coord: %d mm\r\n", (int)Z);
     UART_1_PutString(message_1);
     */
-
-    
-    /*x_array[i]=X;
-    y_array[i]=Y;
-    z_array[i]=Z;
-    i++;
-        */      
+      
 }
 
 void next_row (void)
 {
-    /* memset(x_array,0,array_length);
-    memset(y_array,0,array_length);
-    memset(z_array,0,array_length);
-    */
     angle_2=angle_2+STEP_RISE;
     Servo_SetPosition2(angle_2);
     if (angle_2==RISE_LIMIT)

@@ -34,6 +34,8 @@ int main(void)
             begin_scann=1;
         }
         if(begin_scann==1){
+            //waiting for angle step command
+            while(received != 1 || received != 5 || received != 10);
             if(received==1 || received==5 || received==10){
                 STEP_SWEEP=received;
             }
@@ -41,11 +43,12 @@ int main(void)
             {           
                 for (angle=SERVO_LIMIT_L; angle<=(SERVO_LIMIT_H/STEP_SWEEP); angle ++)
                 {
-                    CyDelay(SWEEP_DELAY);
+                    Servo_SetPosition1(angle*STEP_SWEEP); 
+                    CyDelay(SWEEP_DELAY);                   
                     find_position();
+                    //capire se find position non deve restituire x y z
                     sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
                     UART_1_PutString(message);
-                    Servo_SetPosition1(angle*STEP_SWEEP);
                     if (angle == (SERVO_LIMIT_H/STEP_SWEEP))
                     {                    
                         clockwise=1;
@@ -64,11 +67,12 @@ int main(void)
             {
                 for (angle=(SERVO_LIMIT_H/STEP_SWEEP);angle >SERVO_LIMIT_L; angle --)
                 {
+                    Servo_SetPosition1(angle*STEP_SWEEP);
                     CyDelay(SWEEP_DELAY);
                     find_position();
+                    //capire se find position non deve restituire x y z
                     sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
                     UART_1_PutString(message);
-                    Servo_SetPosition1(angle*STEP_SWEEP);
                     if (angle == (SERVO_LIMIT_L+1))
                     {
                         clockwise = 0;
