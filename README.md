@@ -3,6 +3,14 @@ Code and files for the Final Project 1 - Variant 1. Academic Year 2020/2021, II 
 
 Our project consists in developing a system able to perform a three-dimensional scanning of an object using two servomotors (---) and one ultrasonic sensor (HCSR04). Our sonar must be opportunely moved to detect the distance surfaces in the field of view of the USS.
 
+<h2>Software requirements</h2>
+In order to let the device perform the functionality previously described, some software requirements must be fulfilled. Since our codes are written in PSoC and python, the following IDEs and softwares must be downloaded:
+<ul>
+  <li>PSoC Creator</li>
+  <li>Kivy</li>
+  <li>Visual Studio Code</li>
+</ul>
+
 <h2>Configuration through GUI</h2>
 -inserire immagine GUI-
 
