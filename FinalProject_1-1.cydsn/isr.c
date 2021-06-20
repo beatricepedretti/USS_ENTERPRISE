@@ -22,7 +22,6 @@
     #define TO_MM 10.00
 #endif
 
-extern volatile uint8_t get_position;
 
 void Custom_ISR_Start(void) {
     // Store the value of the timer
@@ -34,7 +33,8 @@ void Custom_ISR_Start(void) {
 CY_ISR(ISR_ULTRASONIC){
     // Compute distance and send it over uart
     distance=(uint)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);
-    find_position();
+    msg_ready = 1;
+    //find_position();
     //sprintf(message, "%d\r\n", distance);
     //sprintf (message, "%d %d %d\r\n", (int)X,(int)Y,(int)Z);
     //UART_1_PutString(message);
@@ -46,12 +46,18 @@ CY_ISR(Custom_UART_RX_ISR)
     if (UART_1_ReadRxStatus() == UART_1_RX_STS_FIFO_NOTEMPTY) 
     {
         received = UART_1_ReadRxData();
-        if(received=='v'){
-            
+        if(received=='v'){  
             //if that allows the automatical UART connection through pc and psoc
             
             sprintf (message1, "Device succesfully connected$");
             UART_1_PutString(message1);
+            state = IDLE;
+        }
+        if (received == 'b'){
+            state = SCAN_SX;
+        }
+        if (received == 's'){
+            state = IDLE;
         }
     }
 }

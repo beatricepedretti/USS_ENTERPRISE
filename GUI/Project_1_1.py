@@ -116,12 +116,15 @@ class Container(BoxLayout):
                     # Read data out of the buffer until a carraige return / new line is found
                     #serialString = self.ser.read(self.ser.in_waiting)
                     serialString = self.ser.readline()
-
+                    #serialString = self.ser.read_until("\n".encode())
+                    
                     # Print the contents of the serial data
                     try:
                         line = serialString.decode("utf-8").rstrip()
                         print(line)
                         output_file.write(line + '\n')
+                        self.ser.flushInput()
+                        
                     except:
                         pass
                 time.sleep(0.001)
