@@ -40,6 +40,10 @@ int main(void)
                     CyDelay(SWEEP_DELAY);
                 }
                 step_sweep = 5;
+<<<<<<< HEAD
+=======
+                flag = 0;    //che flag è?
+>>>>>>> dc1d0c933dd1952bd44c3bd59c4a4f89aee67182
                 break;
             
             case IDLE:
@@ -84,7 +88,7 @@ int main(void)
             
             
             case DISPLAY:
-                Servo_SetPosition1(90);
+                Servo_SetPosition1(90); //è un controllo che alla fine dovrà essere cancellato
                 break;
         }      
     }

@@ -12,7 +12,9 @@ In order to let the device perform the functionality previously described, some 
 </ul>
 
 <h2>Configuration through GUI</h2>
--inserire immagine GUI-
+![gui_image](https://user-images.githubusercontent.com/79861994/122760577-9070af80-d29b-11eb-8dda-4e11322e7c99.PNG)
+![gui_image2](https://user-images.githubusercontent.com/79861994/122761038-13920580-d29c-11eb-8d04-c434e1982800.PNG)
+
 
 Our GUI consists in six buttons: 
 <ul>
