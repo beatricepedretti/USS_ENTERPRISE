@@ -46,6 +46,6 @@
 
     void start_components(void);
     void next_row (void);
+    void stop_components(void);
     
-
 /* [] END OF FILE */

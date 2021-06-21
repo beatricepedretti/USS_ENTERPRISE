@@ -11,6 +11,8 @@
  *
  * =================================================
 */
+#ifndef __SONAR_H
+    #define __SONAR_H
 
     #include "Timer_HCSR04.h"
     #include "ISR_HCSR04.h"
@@ -21,5 +23,7 @@
     #define ARM_LENGTH 57 //distance between USS and servo2 drive shaft
 
     void find_position(void);
+    
+#endif
 
 /* [] END OF FILE */
