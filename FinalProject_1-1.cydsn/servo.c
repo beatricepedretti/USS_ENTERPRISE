@@ -15,11 +15,9 @@
 
 #include "project_utils.h"
 
-
 //This function sets both servo motors to start position
 void reset_servos (void)
 {
-    //this function resets the position of the servo motors to 0
     Servo_SetPosition1(SERVO_LIMIT_L);
     Servo_SetPosition2(SERVO_LIMIT_L);    
 }
@@ -94,45 +92,6 @@ uint16_t Servo_GetPosition2(void) {
     return Servo_Map(comparePWM, SERVO_PWM_LIMIT_L, SERVO_PWM_LIMIT_H, SERVO_LIMIT_L, SERVO_LIMIT_H);
     
 }
-
-/**
- *  \brief          Perform motion profile with servo motor.
- *  
- *  This function will sweep all the angles between \ref xi and \ref xf
- *  with a delay of \ref t between the two consecutive positions.
- *
- *  \param[in]      xi: the initial angle position.
- *  \param[in]      xf: the final angle position.
- *  \param[in]      t: the time between two consecutive positions.
- *  \note           This is a blocking function.
- */
-
-
-/*void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t) {
-    
-    // Check : current position = xi ?
-    if ( Servo_GetPosition1() != xi ) {
-        Servo_SetPosition1(xi);
-    }
- 
-    // Sleep time [ms]
-    uint16_t dt = abs(xf-xi)/t;
-    
-    // Direction
-    int8_t dx = (xf > xi) ? 1 : -1;
-    
-    while( xi != xf ) {
-    
-        xi += dx;
-        Servo_SetPosition1(xi);
-        CyDelay(dt);
-        
-    } 
-    
-    // Force final position --> ?
-    Servo_SetPosition1(xf);
-    
-}*/
 
 /* [] END OF FILE */
 

@@ -1,14 +1,17 @@
-/* ========================================
+/* =================================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
+ * U.S.S. E.N.T.E.R.P.R.I.S.E.
+ * Ultrasound Sensor for Environment Recording 
+ * and Reconstruction Integrated Scanning Equipment
+ * 
+ * Electronic Technologies and Biosensors Laboratory
+ * Final Project
+ * 
+ * Di Liddo, Goshen, Pedretti
  *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
+ * =================================================
 */
+
 #ifndef CYAPICALLBACKS_H
 #define CYAPICALLBACKS_H
     

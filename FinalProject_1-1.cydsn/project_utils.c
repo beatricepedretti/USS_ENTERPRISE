@@ -14,15 +14,6 @@
 
 #include "project_utils.h"
 
-double pos_servo1_rad;
-double pos_servo2_rad;
-
-uint16_t pos_servo1;
-uint16_t pos_servo2;
-
-extern uint8_t received;
-
-
 void start_components ()
 {
     //Init components
@@ -35,33 +26,6 @@ void start_components ()
     PWM_Servo2_Start();
     // Call the Custom_ISR_Start function -- defined in isr.c
     Custom_ISR_Start();
-    /* Send message over UART */
-    //UART_1_PutString("HC-SR04 Program Started\r\n");
-}
-
-void find_position ()
-{
-    //this function compute the coordinates of a three dimensional point 
-    //thanks to the position returned by the two servos and the distance returned 
-    //by the USS
-    
-    pos_servo1 = Servo_GetPosition1(); 
-    pos_servo2 = Servo_GetPosition2(); 
-
-    //conversion from degrees to rad
-    pos_servo1_rad=(SERVO_MID_ANGLE-pos_servo1)*(PI / SERVO_LIMIT_H);
-    pos_servo2_rad=(SERVO_MID_ANGLE-pos_servo2)*(PI / SERVO_LIMIT_H);
-    
-    
-    //pos_servo1_rad=(pos_servo1-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
-    //pos_servo2_rad=(pos_servo2-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
-    
-    //computation of coordinates    
-    x=D2*(sin(pos_servo1_rad))+(ARM_LENGTH+distance)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
-    y=D2*cos(pos_servo1_rad)+(distance+ARM_LENGTH)*cos(pos_servo2_rad)*cos(pos_servo1_rad);
-    z=Z1+(distance+ARM_LENGTH)*sin(pos_servo2_rad);
-    sprintf (message, "%d %d %d\r\n", (int)x,(int)y,(int)z);
-    UART_1_PutString(message);
 }
 
 void next_row (void)

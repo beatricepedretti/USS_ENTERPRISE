@@ -20,7 +20,8 @@
     #endif
     
     #include "project_utils.h"
-        
+    #include "PWM_Servo1.h"
+    #include "PWM_Servo2.h"    
     
     /*************************************
      *          API Constants            *

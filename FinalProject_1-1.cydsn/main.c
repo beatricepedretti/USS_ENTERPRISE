@@ -27,8 +27,6 @@ int main(void)
     step_sweep = 5;
     state = WAIT;
     
-
-    
     for(;;)
     {
         switch (state)
@@ -39,10 +37,6 @@ int main(void)
                     reset_servos();
                     CyDelay(SWEEP_DELAY);
                 }
-                step_sweep = 5;
-
-               
-
                 break;
             
             case IDLE:
@@ -60,9 +54,7 @@ int main(void)
                 
                 start_position = SCAN_LIMIT_L;
                 end_position =  SCAN_LIMIT_H;
-                direction = LEFT;
-                
-                
+                direction = LEFT;   
                 break;
             
             case SCAN:
