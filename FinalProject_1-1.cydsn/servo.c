@@ -1,18 +1,28 @@
-/* ========================================
+/* =================================================
  *
- * Copyright YOUR COMPANY, THE YEAR
- * All Rights Reserved
- * UNPUBLISHED, LICENSED SOFTWARE.
+ * U.S.S. E.N.T.E.R.P.R.I.S.E.
+ * Ultrasound Sensor for Environment Recording 
+ * and Reconstruction Integrated Scanning Equipment
+ * 
+ * Electronic Technologies and Biosensors Laboratory
+ * Final Project
+ * 
+ * Di Liddo, Goshen, Pedretti
  *
- * CONFIDENTIAL AND PROPRIETARY INFORMATION
- * WHICH IS THE PROPERTY OF your company.
- *
- * ========================================
+ * =================================================
 */
 
 
 #include "project_utils.h"
 
+
+//This function sets both servo motors to start position
+void reset_servos (void)
+{
+    //this function resets the position of the servo motors to 0
+    Servo_SetPosition1(SERVO_LIMIT_L);
+    Servo_SetPosition2(SERVO_LIMIT_L);    
+}
 
 
 /**
@@ -96,11 +106,13 @@ uint16_t Servo_GetPosition2(void) {
  *  \param[in]      t: the time between two consecutive positions.
  *  \note           This is a blocking function.
  */
+
+
 /*void Servo_MotionProfileBlocking(uint16_t xi, uint16_t xf, uint8_t t) {
     
     // Check : current position = xi ?
-    if ( Servo_GetPosition() != xi ) {
-        Servo_SetPosition(xi);
+    if ( Servo_GetPosition1() != xi ) {
+        Servo_SetPosition1(xi);
     }
  
     // Sleep time [ms]
@@ -112,13 +124,13 @@ uint16_t Servo_GetPosition2(void) {
     while( xi != xf ) {
     
         xi += dx;
-        Servo_SetPosition(xi);
+        Servo_SetPosition1(xi);
         CyDelay(dt);
         
     } 
     
     // Force final position --> ?
-    Servo_SetPosition(xf);
+    Servo_SetPosition1(xf);
     
 }*/
 

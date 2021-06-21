@@ -1,14 +1,18 @@
-/* ========================================
+/* =================================================
  *
- * @brief HC-SR04 Medium PSoC Project.
+ * U.S.S. E.N.T.E.R.P.R.I.S.E.
+ * Ultrasound Sensor for Environment Recording 
+ * and Reconstruction Integrated Scanning Equipment
+ * 
+ * Electronic Technologies and Biosensors Laboratory
+ * Final Project
+ * 
+ * Di Liddo, Goshen, Pedretti
  *
- * This project demonstrates the usage of 
- * the HC-SR04 UltraSonic sensor with the 
- * PSoC 5LP.
- *
+ * =================================================
 */
-#include "project_utils.h"
 
+#include "project_utils.h"
 
 int main(void)
 {
@@ -17,37 +21,27 @@ int main(void)
     start_components();
     
     //set both servo motors to starting position
-    set_servos(0,0);
+    reset_servos();
     step_sweep = 5;
-    
-    /*sprintf (message, "0: %d\r\n", Servo_GetPosition2());
-    UART_1_PutString(message);
-    
-    CyDelay(1000);
-    
-    Servo_SetPosition2(79);
-    sprintf (message, "79: %d\r\n", Servo_GetPosition2());
-    UART_1_PutString(message);
-    
-    CyDelay(1000);
-    
-    Servo_SetPosition2(180);
-    sprintf (message, "180: %d\r\n", Servo_GetPosition2());
-    UART_1_PutString(message);
-    
-    CyDelay(1000);
-    
-    Servo_SetPosition2(50);
-    sprintf (message, "50: %d\r\n", Servo_GetPosition2());
-    UART_1_PutString(message);*/
+    state = OFF;
     
     
     for(;;)
     {
         switch (state)
         {
+            case OFF:
+                reset_servos();
+                
+                step_sweep = 5;
+                flag = 0;
+                break;
+            
             case IDLE:
-                set_servos(0,0);
+                reset_servos();
+                Servo_SetPosition1(90);
+                CyDelay(500);
+                flag = 0;
                 if (received == 'f')
                 {
                     step_sweep = 5;
