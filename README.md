@@ -12,8 +12,8 @@ In order to let the device perform the functionality previously described, some 
 </ul>
 
 <h2>Configuration through GUI</h2>
-![](GUI/images/gui_image.png)
-![](GUI/images/gui_image2.png)
+![ ](GUI/images/gui_image.PNG)
+![ ](GUI/images/gui_image2.PNG)
 
 Our GUI consists in six buttons: 
 <ul>
