@@ -49,8 +49,12 @@ void find_position ()
     pos_servo2 = Servo_GetPosition2(); 
 
     //conversion from degrees to rad
-    pos_servo1_rad=(pos_servo1-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
-    pos_servo2_rad=(pos_servo2-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
+    pos_servo1_rad=(SERVO_MID_ANGLE-pos_servo1)*(PI / SERVO_LIMIT_H);
+    pos_servo2_rad=(SERVO_MID_ANGLE-pos_servo2)*(PI / SERVO_LIMIT_H);
+    
+    
+    //pos_servo1_rad=(pos_servo1-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
+    //pos_servo2_rad=(pos_servo2-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
     
     //computation of coordinates    
     x=D2*(sin(pos_servo1_rad))+(ARM_LENGTH+distance)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
