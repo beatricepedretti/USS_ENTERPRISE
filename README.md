@@ -12,7 +12,8 @@ In order to let the device perform the functionality previously described, some 
 </ul>
 
 <h2>Configuration through GUI</h2>
--inserire immagine GUI-
+![](GUI/images/gui_image.png)
+![](GUI/images/gui_image2.png)
 
 Our GUI consists in six buttons: 
 <ul>
