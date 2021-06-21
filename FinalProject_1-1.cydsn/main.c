@@ -34,7 +34,7 @@ int main(void)
                 reset_servos();
                 
                 step_sweep = 5;
-                flag = 0;
+                flag = 0;    //che flag è?
                 break;
             
             case IDLE:
@@ -59,7 +59,7 @@ int main(void)
                 break;
             
             case DISPLAY:
-                Servo_SetPosition1(90);
+                Servo_SetPosition1(90); //è un controllo che alla fine dovrà essere cancellato
                 break;
         }      
     }

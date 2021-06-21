@@ -66,6 +66,7 @@ void find_position ()
 
 void next_row (void)
 {
+    //this function increase the angle of the second servo motor allowing the scanning of the next "layer" of the environment
     angle_2=angle_2+STEP_RISE;
     Servo_SetPosition2(angle_2);
     CyDelay(RISE_DELAY);
@@ -78,6 +79,9 @@ void next_row (void)
 
 void sweep (uint8_t start_position, uint8_t end_position, uint8_t direction)
 {
+    //this function takes as inputs the start  and end position and the direction.
+    //it performs the scanning of the angle that exists between the start and end position
+    //with step: step_sweep
     if (Servo_GetPosition1() != start_position)
         angle= start_position; 
    
