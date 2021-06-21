@@ -26,52 +26,33 @@
     #include "stdlib.h"
     #include "sonar.h"
 
-
-    #ifndef HIGH
-        #define HIGH 1u
-    #endif
-
-    #ifndef LOW
-        #define LOW 0U
-    #endif
-
     #define PI 3.14159265
-    #define COORD_ARRAY_LENGTH 100 //non penso ci serva
     #define STEP_RISE 5
     #define RISE_LIMIT 90
     #define STRING_LENGTH 100
     #define RISE_DELAY 500
-    #define SWEEP_DELAY 600
-    #define DISTANCE_TH 300
-    #define SIMPLE_SWEEP 0
-    #define OBJECT_SHAPER 1
+    #define SWEEP_DELAY 500
+
     #define D2 13 //distance between servo1's drive shaft and servo2's drive shaft
     #define Z1 73 //servo2 drive shaft height from plane
     #define ARM_LENGTH 57 //distance between USS and servo2 drive shaft
-    #define SCAN 0
-    #define SCAN_SX 0  //anti-clockwise direction
-    #define SCAN_DX 1  //clockwise direction
-
-    #define IDLE 2
+    #define WAIT 0
+    #define IDLE 1
+    #define SCAN 2
     #define DISPLAY 3
-    #define OFF 4
-    #define LEFT 1
-    #define RIGHT -1
+    
+    #define LEFT 1 //anticlockwise direction
+    #define RIGHT -1 //clockwise direction
 
     volatile uint8_t state;
     uint16_t angle;
     uint16_t angle_2;
     int8_t direction;
-    uint8_t step_sweep;
-    volatile uint8_t msg_ready;
-    volatile uint8_t flag;
+    volatile uint8_t step_sweep;
 
+    float32 x, y, z;
 
-    float x, y, z;
-
-
-    void start_components();
-    
+    void start_components(void);
     void next_row (void);
     void find_position(void);
     void sweep (uint8_t, uint8_t);

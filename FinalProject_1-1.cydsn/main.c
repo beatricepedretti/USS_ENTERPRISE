@@ -25,7 +25,7 @@ int main(void)
     //set both servo motors to starting position
     reset_servos();
     step_sweep = 5;
-    state = OFF;
+    state = WAIT;
     
 
     
@@ -33,17 +33,16 @@ int main(void)
     {
         switch (state)
         {
-            case OFF:
+            case WAIT:
                 if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
                 {
                     reset_servos();
                     CyDelay(SWEEP_DELAY);
                 }
                 step_sweep = 5;
-<<<<<<< HEAD
-=======
-                flag = 0;    //che flag è?
->>>>>>> dc1d0c933dd1952bd44c3bd59c4a4f89aee67182
+
+               
+
                 break;
             
             case IDLE:
@@ -59,8 +58,8 @@ int main(void)
                 else if (received == 't')
                     step_sweep = 10;
                 
-                start_position = SERVO_LIMIT_L;
-                end_position =  SERVO_LIMIT_H;
+                start_position = SCAN_LIMIT_L;
+                end_position =  SCAN_LIMIT_H;
                 direction = LEFT;
                 
                 
@@ -84,9 +83,7 @@ int main(void)
                     }          
                 }
                 break;
-                
-            
-            
+
             case DISPLAY:
                 Servo_SetPosition1(90); //è un controllo che alla fine dovrà essere cancellato
                 break;
