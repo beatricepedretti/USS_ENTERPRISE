@@ -16,6 +16,7 @@ from serial.tools import list_ports
 import threading
 import time
 from kivy.uix.textinput import TextInput
+from kivy.uix.image import Image
 
 
 class Container(BoxLayout):
@@ -27,6 +28,7 @@ class Container(BoxLayout):
     one_btn = ObjectProperty(None)
     five_btn = ObjectProperty(None)
     ten_btn = ObjectProperty(None)
+    profile_image = ObjectProperty(None)
     debug_label = ObjectProperty(None)
 
     # NON SONO SICURO QUESTA FUNZIONE SERVA
@@ -143,6 +145,8 @@ class Container(BoxLayout):
             self.start_btn.disabled = True
             self.stop_btn.disabled = False
             self.ser.write("b".encode())
+            #self.profile_image.source = r'images/sonar.jpg'
+            #Clock.schedule_interval(lambda dt: self.profile_image.reload(), 0.2)
             threading.Thread(target=self.reader).start()
 
     def stopProcess(self):
@@ -153,7 +157,7 @@ class Container(BoxLayout):
             self.ten_btn.disabled = False
             self.start_btn.disabled = False
             self.stop_btn.disabled = True
-            self.ser.write('s'.encode())
+            self.ser.write('s'.encode())        
             time.sleep(1)
 
     def step_setter(self, step):
@@ -168,6 +172,7 @@ class GuiApp(App):
 
 
 GuiApp().run()
+
 
 
 

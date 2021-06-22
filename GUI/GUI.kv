@@ -7,6 +7,7 @@
     stop_btn: stop_btn
     five_btn: five_btn
     ten_btn: ten_btn
+    profile_image: profile_image
     #com_ports_spinner: _com_ports_spinner
     debug_label: _debug_label
     padding: 5
@@ -26,7 +27,8 @@
         size_hint_y: 0.2
         spacing: 5
         Image:
-            source: r'images/uss.png'
+            id: profile_image
+            source:  r'images/uss.png'
             size_hint_x: 0.3
         Label:
             text: 'USS E.N.T.E.R.P.R.I.S.E.'
@@ -86,3 +88,4 @@
             id: _debug_label
             size_hint_y: 0.2
             text: 'Connection status'
+
