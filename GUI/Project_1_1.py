@@ -8,7 +8,7 @@ from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
-from serial.serialutil import SerialException
+from serial.serialutil import EIGHTBITS, PARITY_EVEN, STOPBITS_ONE, SerialException
 from serial.serialwin32 import Serial
 from serial.tools.list_ports import comports
 import serial
@@ -225,7 +225,11 @@ class Container(BoxLayout):
                 if ('Bluetooth' not in element.description):
                     try:
                         self.ser = serial.Serial(
-                            port=element.name, baudrate=115200, timeout=0.5)
+                            port=element.name,
+                            baudrate=115200,
+                            bytesize=EIGHTBITS,
+                            stopbits=STOPBITS_ONE,
+                            xonxoff=True)
                         self.ser.write("v".encode())
                         time.sleep(1)
                         string = 0
@@ -241,7 +245,6 @@ class Container(BoxLayout):
                         print(f"Error opening port {element.name}")
 
             if(self.ser and self.ser.is_open):
-                self.ser.timeout = 0
                 self.connect_btn.text = 'Disconnect'
                 self.debug_label.color = (61/255, 235/255, 52/255, 1)
                 self.debug_label.text = 'Connected through port '+self.portConnected

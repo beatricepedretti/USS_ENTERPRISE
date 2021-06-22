@@ -18,14 +18,10 @@ void start_components ()
 {
     //Init components
     Timer_HCSR04_Start();
-    PWM_Trigger_Start();
-    Timer_TRIGGER_Start();
     UART_1_Start();
     isr_1_StartEx(Custom_UART_RX_ISR);
     PWM_Servo1_Start();
     PWM_Servo2_Start();
-    // Call the Custom_ISR_Start function -- defined in isr.c
-    Custom_ISR_Start();
 }
 
 void next_row (void)
@@ -45,8 +41,6 @@ void stop_components ()
 {
     //Init components
     Timer_HCSR04_Stop();
-    PWM_Trigger_Stop();
-    Timer_TRIGGER_Stop();
     PWM_Servo1_Stop();
     PWM_Servo2_Stop();
 }

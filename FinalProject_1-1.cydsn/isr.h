@@ -20,7 +20,7 @@
     // Message to send over UART
     //uint8_t state;
     uint16_t received;
-    uint16_t distance;
+    
     
 
     // Timer period value
