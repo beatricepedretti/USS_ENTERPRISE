@@ -37,14 +37,6 @@ void next_row (void)
     }
 }
 
-void stop_components ()
-{
-    //Init components
-    Timer_HCSR04_Stop();
-    PWM_Servo1_Stop();
-    PWM_Servo2_Stop();
-}
-
 void reset_variables ()
 {
     start_position = SERVO_LIMIT_L;

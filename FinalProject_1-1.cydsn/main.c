@@ -23,21 +23,14 @@ int main(void)
     //set both servo motors to starting position
     if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
         reset_servos();
+    reset_variables();
     step_sweep = 5;
-    state = WAIT;
-    
+ 
         
     for(;;)
     {
         switch (state)
-        {
-            case WAIT:
-                if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
-                    reset_servos(); 
-                reset_variables();
-                step_sweep = 5;
-                break;
-            
+        {            
             case IDLE:
                 if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
                     reset_servos();
@@ -81,7 +74,7 @@ int main(void)
                 step_sweep = 5;
                 sprintf (message1, "Done scanning\r\n");
                 UART_1_PutString(message1);
-                stop_components(); 
+                state = IDLE;
                 break;
         }      
     }

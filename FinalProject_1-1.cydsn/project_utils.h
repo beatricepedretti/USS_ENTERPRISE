@@ -50,7 +50,6 @@ float32 x, y, z;
 
 void start_components(void);
 void next_row (void);
-void stop_components(void);
 void reset_variables (void);
 
 /* [] END OF FILE */
