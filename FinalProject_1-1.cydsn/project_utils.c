@@ -47,12 +47,15 @@ void stop_components ()
     Timer_HCSR04_Stop();
     PWM_Trigger_Stop();
     Timer_TRIGGER_Stop();
-    UART_1_Stop();
-    isr_1_StartEx(Custom_UART_RX_ISR);
-    PWM_Servo1_Start();
-    PWM_Servo2_Start();
-    // Call the Custom_ISR_Start function -- defined in isr.c
-    Custom_ISR_Start();
+    PWM_Servo1_Stop();
+    PWM_Servo2_Stop();
+}
+
+void reset_variables ()
+{
+    start_position = SERVO_LIMIT_L;
+    end_position =  SERVO_LIMIT_H;
+    direction = LEFT; 
 }
 
 

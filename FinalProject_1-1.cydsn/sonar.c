@@ -21,17 +21,21 @@ void find_position ()
     
     float32 pos_servo1_rad;
     float32 pos_servo2_rad;
+    uint16_t distance_real;
     
     //conversion from degrees to rad
     pos_servo1_rad=(SERVO_MID_ANGLE-Servo_GetPosition1())*(PI / SERVO_LIMIT_H);
     pos_servo2_rad=(SERVO_MID_ANGLE-Servo_GetPosition2())*(PI / SERVO_LIMIT_H);
 
-    //computation of coordinates    
-    x=D2*(sin(pos_servo1_rad))+(ARM_LENGTH+distance)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
-    y=D2*cos(pos_servo1_rad)+(distance+ARM_LENGTH)*cos(pos_servo2_rad)*cos(pos_servo1_rad);
-    z=Z1+(distance+ARM_LENGTH)*sin(pos_servo2_rad);
+    //computation of coordinates
+    distance_real = distance;
+    
+    x=D2*(sin(pos_servo1_rad))+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
+    y=D2*cos(pos_servo1_rad)+(distance_real+ARM_LENGTH)*cos(pos_servo2_rad)*cos(pos_servo1_rad);
+    z=Z1+(distance_real+ARM_LENGTH)*sin(pos_servo2_rad);
     sprintf (message, "%d %d %d\r\n", (int)x,(int)y,(int)z);
     UART_1_PutString(message);
+    CyDelay(100);
 }
 
 /* [] END OF FILE */

@@ -14,8 +14,6 @@
 
 #include "project_utils.h"
 
-uint8_t start_position, end_position, temp_position;
-
 int main(void)
 {
     CyGlobalIntEnable; /* Enable global interrupts. */
@@ -23,28 +21,27 @@ int main(void)
     start_components();
     
     //set both servo motors to starting position
-    reset_servos();
+    if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
+        reset_servos();
     step_sweep = 5;
     state = WAIT;
     
+        
     for(;;)
     {
         switch (state)
         {
             case WAIT:
                 if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
-                {
-                    reset_servos();
-                    CyDelay(SWEEP_DELAY);
-                }
+                    reset_servos(); 
+                reset_variables();
+                step_sweep = 5;
                 break;
             
             case IDLE:
                 if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
-                {
                     reset_servos();
-                    CyDelay(SWEEP_DELAY);
-                }
+                
                 if (received == 'f')
                 {
                     step_sweep = 5;
@@ -52,9 +49,8 @@ int main(void)
                 else if (received == 't')
                     step_sweep = 10;
                 
-                start_position = SCAN_LIMIT_L;
-                end_position =  SCAN_LIMIT_H;
-                direction = LEFT;   
+                reset_variables();
+                
                 break;
             
             case SCAN:
@@ -78,6 +74,14 @@ int main(void)
 
             case DISPLAY:
                 Servo_SetPosition1(90); //è un controllo che alla fine dovrà essere cancellato
+                CyDelay(SWEEP_DELAY);
+                if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
+                    reset_servos();
+                reset_variables();
+                step_sweep = 5;
+                sprintf (message1, "Done scanning\r\n");
+                UART_1_PutString(message1);
+                stop_components(); 
                 break;
         }      
     }

@@ -19,7 +19,9 @@
 void reset_servos (void)
 {
     Servo_SetPosition1(SERVO_LIMIT_L);
-    Servo_SetPosition2(SERVO_LIMIT_L);    
+    CyDelay(SWEEP_DELAY);
+    Servo_SetPosition2(SERVO_LIMIT_L);
+    CyDelay(SWEEP_DELAY);
 }
 
 
@@ -84,7 +86,7 @@ uint16_t Servo_GetPosition1(void) {
 }
 
 uint16_t Servo_GetPosition2(void) {
- 
+
     // Get the actual compare value
     uint16_t comparePWM = PWM_Servo2_ReadCompare();
     

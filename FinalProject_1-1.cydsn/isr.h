@@ -19,10 +19,9 @@
     
     // Message to send over UART
     //uint8_t state;
-    uint8_t received;
+    uint16_t received;
     uint16_t distance;
-    char message[STRING_LENGTH];
-    char message1[STRING_LENGTH];
+    
 
     // Timer period value
     uint16_t timer_period;
