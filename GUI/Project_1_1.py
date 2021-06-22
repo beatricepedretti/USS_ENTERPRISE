@@ -23,12 +23,13 @@ class Container(BoxLayout):
 
     connect_btn = ObjectProperty(None)
     #com_ports_spinner = ObjectProperty(None)
+    display_btn=ObjectProperty(None)
     start_btn = ObjectProperty(None)
     stop_btn = ObjectProperty(None)
     one_btn = ObjectProperty(None)
     five_btn = ObjectProperty(None)
     ten_btn = ObjectProperty(None)
-    profile_image = ObjectProperty(None)
+    image = ObjectProperty(None)
     debug_label = ObjectProperty(None)
 
     # NON SONO SICURO QUESTA FUNZIONE SERVA
@@ -49,6 +50,9 @@ class Container(BoxLayout):
 
     def threading_stop(self):
         threading.Thread(target=self.stopProcess).start()
+
+    def threading_display(self):
+        threading.Thread(target=self.displayProcess).start()
 
     def threading_step(self, step):
         threading.Thread(target=self.step_setter, args=(step, )).start()
@@ -92,6 +96,7 @@ class Container(BoxLayout):
                 self.ten_btn.disabled = False
                 self.start_btn.disabled = False
                 self.stop_btn.disabled = True
+                self.display_btn.disabled = True
             else:
                 self.connect_btn.text = 'Connect'
                 self.debug_label.color = (250/255, 250/255, 250/255, 1)
@@ -108,12 +113,22 @@ class Container(BoxLayout):
             self.debug_label.text = 'Waiting for connection'
 
             # Disable all buttons after disconnecting
-            self.connect_btn.disabled = True
+            self.connect_btn.disabled = False
+            self.display_btn.disabled = True
             self.five_btn.disabled = True
             self.ten_btn.disabled = True
             self.start_btn.disabled = True
             self.stop_btn.disabled = True
 
+    def displayProcess(self):
+        if(self.display_btn.text == 'display'):
+            self.connect_btn.disabled = False
+            self.five_btn.disabled = True
+            self.ten_btn.disabled = True
+            self.start_btn.disabled = True
+            self.stop_btn.disabled = True
+
+    
     def reader(self):
         with open("coordinates.xyz", "w") as output_file:
             while self.do_read:
@@ -123,6 +138,8 @@ class Container(BoxLayout):
                     # Read data out of the buffer until a carraige return / new line is found
                     #serialString = self.ser.read(self.ser.in_waiting)
                     serialString = self.ser.readline()
+                    if(serialString=='e'):
+                        self.display_btn.disabled=False
                     #serialString = self.ser.read_until("\n".encode())
                     
                     # Print the contents of the serial data
@@ -145,19 +162,18 @@ class Container(BoxLayout):
             self.start_btn.disabled = True
             self.stop_btn.disabled = False
             self.ser.write("b".encode())
-            #self.profile_image.source = r'images/sonar.jpg'
-            #Clock.schedule_interval(lambda dt: self.profile_image.reload(), 0.2)
             threading.Thread(target=self.reader).start()
 
     def stopProcess(self):
         if(self.stop_btn.text == 'Stop'):
             self.do_read = False
+            #self.display_btn.disabled=False
             self.connect_btn.disabled = False
             self.five_btn.disabled = False
             self.ten_btn.disabled = False
             self.start_btn.disabled = False
             self.stop_btn.disabled = True
-            self.ser.write('s'.encode())        
+            self.ser.write('s'.encode())
             time.sleep(1)
 
     def step_setter(self, step):
@@ -172,7 +188,6 @@ class GuiApp(App):
 
 
 GuiApp().run()
-
 
 
 

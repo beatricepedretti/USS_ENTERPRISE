@@ -2,12 +2,13 @@
 
 <Container>:
     orientation: 'vertical'
+    display_btn: display_btn
     connect_btn: connect_btn
     start_btn: start_btn
     stop_btn: stop_btn
     five_btn: five_btn
     ten_btn: ten_btn
-    profile_image: profile_image
+    image: image
     #com_ports_spinner: _com_ports_spinner
     debug_label: _debug_label
     padding: 5
@@ -27,12 +28,11 @@
         size_hint_y: 0.2
         spacing: 5
         Image:
-            id: profile_image
             source:  r'images/uss.png'
             size_hint_x: 0.3
         Label:
             text: 'USS E.N.T.E.R.P.R.I.S.E.'
-            font_size: 25 
+            font_size: 30 
             size_hint_x: 0.8
         #Spinner:
         #    id: _com_ports_spinner
@@ -43,9 +43,25 @@
             text: 'Connect'
             #on_press: root.button_pressed_callback()
             on_press: root.threading_connection()
+    GridLayout:
+        cols:2
+        size_hint_y: 0.2
+        Label:
+            text:
+        Button:
+            id: display_btn
+            size_hint_x: 0.18
+            text: 'Display'
+            on_press: root.threading_display()
+            on_release: image.source =  r'images/sonar.png'
+            disabled: True
+        
     BoxLayout:
         orientation:'horizontal'
         size_hint_y: 1
+        Image:
+            id: image
+            source: r'images/black.png'
     GridLayout:
         cols: 7
         size_hint_y: 0.15
