@@ -24,7 +24,7 @@ int main(void)
     if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
         reset_servos();
     reset_variables();
-    step_sweep = 5;
+    step_sweep = 4;
  
         
     for(;;)
@@ -66,12 +66,10 @@ int main(void)
                 break;
 
             case DISPLAY:
-                Servo_SetPosition1(90); //è un controllo che alla fine dovrà essere cancellato
-                CyDelay(SWEEP_DELAY);
                 if (Servo_GetPosition1()!=0 || Servo_GetPosition2 ()!= 0)
                     reset_servos();
                 reset_variables();
-                step_sweep = 5;
+                step_sweep = 4;
                 sprintf (message1, "Done scanning\r\n");
                 UART_1_PutString(message1);
                 state = IDLE;

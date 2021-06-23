@@ -23,7 +23,7 @@
     #define TO_MM 10.00
 #endif
 
-/*
+
 void Custom_ISR_Start(void) {
     // Store the value of the timer
     timer_period = Timer_HCSR04_ReadPeriod();
@@ -33,9 +33,13 @@ void Custom_ISR_Start(void) {
 
 CY_ISR(ISR_ULTRASONIC){
     // Compute distance
-    distance=(uint)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);    
+    distance=(uint)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);  
+    sprintf (message, "%d\r\n", (int16_t)distance);
+    UART_1_PutString(message);
+    distance_acc+=distance;
+    distance_count++;
 }
-*/
+
 CY_ISR(Custom_UART_RX_ISR) 
 { 
     // We read the received data, and echo it back

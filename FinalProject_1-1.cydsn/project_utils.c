@@ -18,10 +18,14 @@ void start_components ()
 {
     //Init components
     Timer_HCSR04_Start();
+    PWM_Trigger_Start();
+    Timer_TRIGGER_Start();
     UART_1_Start();
     isr_1_StartEx(Custom_UART_RX_ISR);
     PWM_Servo1_Start();
     PWM_Servo2_Start();
+    // Call the Custom_ISR_Start function -- defined in isr.c
+    Custom_ISR_Start();
 }
 
 void next_row (void)
@@ -39,9 +43,11 @@ void next_row (void)
 
 void reset_variables ()
 {
-    start_position = SERVO_LIMIT_L;
-    end_position =  SERVO_LIMIT_H;
-    direction = LEFT; 
+    start_position = SCAN_LIMIT_L;
+    end_position =  SCAN_LIMIT_H;
+    direction = LEFT;
+    distance_count = 0;
+    distance_acc = 0;
 }
 
 

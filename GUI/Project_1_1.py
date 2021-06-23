@@ -289,7 +289,11 @@ class Container(BoxLayout):
             self.pcd = PointCloud(point_cloud)
             self.pcd.cloud_output_png("images/cloud.png")
         self.pcd.cloud_visualize()
-        image.source=img_src
+        self.pcd.poisson()
+        self.pcd.ballpoint()
+        self.pcd.poisson_visualize()
+        self.pcd.poisson_write()
+       # image.source=img_src
 
     
     def reader(self):
