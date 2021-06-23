@@ -26,7 +26,7 @@
 #define RISE_LIMIT 60
 #define STRING_LENGTH 100
 #define RISE_DELAY 500
-#define SWEEP_DELAY 400
+#define SWEEP_DELAY 600
 
 #define WAIT 0
 #define IDLE 1

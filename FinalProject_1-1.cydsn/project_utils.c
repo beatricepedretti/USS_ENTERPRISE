@@ -48,6 +48,7 @@ void reset_variables ()
     direction = LEFT;
     distance_count = 0;
     distance_acc = 0;
+    angle_2 = SERVO_LIMIT_L;
 }
 
 

@@ -21,8 +21,8 @@
     //uint8_t state;
     uint16_t received;
     uint16_t distance;
-    uint8_t distance_count;
-    uint distance_acc;
+    uint16_t distance_count;
+    uint16_t distance_acc;
     
     
 
