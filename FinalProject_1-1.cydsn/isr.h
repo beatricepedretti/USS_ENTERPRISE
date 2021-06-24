@@ -18,14 +18,9 @@
     #include "project_utils.h"
     
     // Message to send over UART
-    //uint8_t state;
     uint16_t received;
     uint16_t distance;
-    uint16_t distance_count;
-    uint16_t distance_acc;
-    
-    
-
+   
     // Timer period value
     uint16_t timer_period;
     

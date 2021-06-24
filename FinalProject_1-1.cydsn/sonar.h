@@ -30,7 +30,7 @@
     #define D2 9 //distance between servo1's drive shaft and servo2's drive shaft
     #define Z1 113 //servo2 drive shaft height from plane
     #define ARM_LENGTH 53 //distance between USS and servo2 drive shaft
-    #define DISTANCE_TH 350
+    #define DISTANCE_TH 500
     
     void find_position(void);
     uint16_t compute_distance(void);

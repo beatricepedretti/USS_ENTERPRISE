@@ -12,7 +12,6 @@
  * =================================================
 */
 
-
 #include "project_utils.h"
 
 //This function sets both servo motors to start position
