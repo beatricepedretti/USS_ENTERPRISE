@@ -34,6 +34,7 @@ void next_row (void)
     angle_2=angle_2+STEP_RISE;
     Servo_SetPosition2(angle_2);
     CyDelay(RISE_DELAY);
+    empty_row = 0;
     if (angle_2==RISE_LIMIT)
     {
         angle_2=SERVO_LIMIT_L; 
@@ -49,6 +50,7 @@ void reset_variables ()
     distance_count = 0;
     distance_acc = 0;
     angle_2 = SERVO_LIMIT_L;
+    flag_print = 0;
 }
 
 

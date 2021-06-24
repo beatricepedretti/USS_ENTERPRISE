@@ -38,10 +38,12 @@
 
 volatile uint8_t state;
 uint16_t angle;
+volatile uint8_t flag_print;
 uint16_t angle_2;
 int8_t direction;
 volatile uint8_t step_sweep;
 uint8_t start_position, end_position, temp_position;
+volatile uint8_t empty_row;
 
 char message[STRING_LENGTH];
 char message1[STRING_LENGTH];

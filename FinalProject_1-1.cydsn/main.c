@@ -51,10 +51,14 @@ int main(void)
                 {
                     Servo_SetPosition1(angle);
                     CyDelay(SWEEP_DELAY);
-                    find_position();
+                    if (Servo_GetPosition1()<(angle+2) && Servo_GetPosition1()>(angle-2))
+                        find_position();
                     if ((direction==LEFT && angle==end_position) || (direction == RIGHT && angle == (end_position+step_sweep)) )
                     {
+                        if (flag_print == 0)
+                            state = DISPLAY;
                         next_row();
+                        flag_print = 0;
                         //end_position = (direction == LEFT) ? (SERVO_LIMIT_H - end_position) : end_position;
                         //start_position = (direction == LEFT) ? (SERVO_LIMIT_H - start_position) : start_position;
                         temp_position = end_position;

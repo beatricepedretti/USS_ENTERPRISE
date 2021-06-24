@@ -14,8 +14,6 @@
 #include "project_utils.h"
 
 
-
-
 void find_position ()
 {
     //this function compute the coordinates of a three dimensional point 
@@ -39,17 +37,20 @@ void find_position ()
     //y=D2*cos(pos_servo1_rad)+(distance_real+ARM_LENGTH)*cos(pos_servo2_rad)*cos(pos_servo1_rad);
     //z=Z1+(distance_real+ARM_LENGTH)*sin(pos_servo2_rad);
     
-    if(distance_real<DISTANCE_TH){     
-        y=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad);
-        
-        if(y<Y_TH)
-        {   
+    if(distance_real<DISTANCE_TH)
+    {     
+        y=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad);    
+        //if(y<Y_TH)
+        //{   
             x=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*sin(pos_servo1_rad);
             z=Z1-(ARM_LENGTH+distance_real)*cos(pos_servo2_z_rad);
             sprintf (message, "%d %d %d\r\n", (int16_t)x,(int16_t)y,(int16_t)z);
             UART_1_PutString(message);
-        }
+            flag_print = 1;
+        //}
+        
     }
+    else empty_row++;
     distance_acc = 0;
     distance_count = 0;
 }
