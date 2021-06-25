@@ -30,10 +30,11 @@ void start_components ()
 
 void next_row (void)
 {
-    //this function increase the angle of the second servo motor allowing the scanning of the next "layer" of the environment
+    //this function increases the angle of the second servo motor allowing the scanning of the next "layer" of the environment
     angle_2=angle_2+STEP_RISE;
     Servo_SetPosition2(angle_2);
     CyDelay(RISE_DELAY);
+    //if I have ended the scanning, go to DISPLAY state
     if (angle_2==RISE_LIMIT)
     {
         angle_2=SERVO_LIMIT_L; 
@@ -41,21 +42,14 @@ void next_row (void)
     }
 }
 
-void stop_components ()
-{
-    //Init components
-    Timer_HCSR04_Stop();
-    PWM_Trigger_Stop();
-    Timer_TRIGGER_Stop();
-    PWM_Servo1_Stop();
-    PWM_Servo2_Stop();
-}
-
+//this function resets all variables except for step_sweep which can be changed in the GUI
 void reset_variables ()
 {
-    start_position = SERVO_LIMIT_L;
-    end_position =  SERVO_LIMIT_H;
-    direction = LEFT; 
+    start_position = SCAN_LIMIT_L;
+    end_position =  SCAN_LIMIT_H;
+    direction = LEFT;
+    angle_2 = SERVO_LIMIT_L;
+    flag_print = 0;
 }
 
 

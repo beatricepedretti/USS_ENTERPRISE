@@ -13,29 +13,37 @@
 */
 #include "project_utils.h"
 
+
 void find_position ()
 {
     //this function compute the coordinates of a three dimensional point 
     //thanks to the position returned by the two servos and the distance returned 
     //by the USS
     
-    float32 pos_servo1_rad;
-    float32 pos_servo2_rad;
-    uint16_t distance_real;
+    double pos_servo1_rad;
+    double pos_servo2_rad;
+    double pos_servo2_z_rad;
+    int16_t distance_real;
     
     //conversion from degrees to rad
-    pos_servo1_rad=(SERVO_MID_ANGLE-Servo_GetPosition1())*(PI / SERVO_LIMIT_H);
-    pos_servo2_rad=(SERVO_MID_ANGLE-Servo_GetPosition2())*(PI / SERVO_LIMIT_H);
+    pos_servo1_rad= (double)(SERVO_MID_ANGLE-Servo_GetPosition1())*(PI / SERVO_LIMIT_H);
+    pos_servo2_rad=(double)(Servo_GetPosition2()+ANGLE_ZERO-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
+    pos_servo2_z_rad=(double)(Servo_GetPosition2()+ANGLE_ZERO)*(PI / SERVO_LIMIT_H);
 
     //computation of coordinates
     distance_real = distance;
     
-    x=D2*(sin(pos_servo1_rad))+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad)*sin(pos_servo1_rad);
-    y=D2*cos(pos_servo1_rad)+(distance_real+ARM_LENGTH)*cos(pos_servo2_rad)*cos(pos_servo1_rad);
-    z=Z1+(distance_real+ARM_LENGTH)*sin(pos_servo2_rad);
-    sprintf (message, "%d %d %d\r\n", (int)x,(int)y,(int)z);
-    UART_1_PutString(message);
-    CyDelay(100);
+    //if the point is within a certain distance
+    if(distance_real<DISTANCE_TH)
+    {     
+        y=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad);
+        x=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*sin(pos_servo1_rad);
+        z=Z1-(ARM_LENGTH+distance_real)*cos(pos_servo2_z_rad);
+        //send coordinates to UART
+        sprintf (message, "%d %d %d\r\n", (int16_t)x,(int16_t)y,(int16_t)z);
+        UART_1_PutString(message);
+        //if at least one point is found in the row, set this flag to 1
+        flag_print = 1;  
+    }
 }
-
 /* [] END OF FILE */

@@ -29,3 +29,5 @@ FinalProject.cywrk.mauro
 
 # End of https://www.gitignore.io/api/psoccreator
 beyaenv/
+
+*.asv

@@ -39,6 +39,9 @@
     //Highest servo angle
     #define SERVO_LIMIT_H   180
     
+    //Offset servo2
+    #define ANGLE_ZERO 60
+    
     //Middle servo angle
     #define SERVO_MID_ANGLE 90
     

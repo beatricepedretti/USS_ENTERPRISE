@@ -12,13 +12,12 @@
  * =================================================
 */
 
-
 #include "project_utils.h"
 
 //This function sets both servo motors to start position
 void reset_servos (void)
 {
-    Servo_SetPosition1(SERVO_LIMIT_L);
+    Servo_SetPosition1(SCAN_LIMIT_L);
     CyDelay(SWEEP_DELAY);
     Servo_SetPosition2(SERVO_LIMIT_L);
     CyDelay(SWEEP_DELAY);

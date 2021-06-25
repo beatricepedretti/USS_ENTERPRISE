@@ -8,7 +8,7 @@ from kivy.clock import Clock
 from kivy.uix.boxlayout import BoxLayout
 from kivy.properties import ObjectProperty
 from kivy.properties import StringProperty
-from serial.serialutil import SerialException
+from serial.serialutil import EIGHTBITS, PARITY_EVEN, STOPBITS_ONE, SerialException
 from serial.serialwin32 import Serial
 from serial.tools.list_ports import comports
 import serial
@@ -18,8 +18,9 @@ import threading
 import time
 from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
-import numpy as np
-import open3d as o3d
+#import numpy as np
+#import open3d as o3d
+import os
 
 class PointCloud:
     # TODO: alpha non visualizza
@@ -197,6 +198,7 @@ class Container(BoxLayout):
         self.connected = False
         self.ser = None
         self.do_read = False
+        self.pcd=None
         super(Container, self).__init__(*kwargs)
 
     def threading_connection(self):
@@ -225,7 +227,11 @@ class Container(BoxLayout):
                 if ('Bluetooth' not in element.description):
                     try:
                         self.ser = serial.Serial(
-                            port=element.name, baudrate=115200, timeout=0.5)
+                            port=element.name,
+                            baudrate=115200,
+                            bytesize=EIGHTBITS,
+                            stopbits=STOPBITS_ONE,
+                            xonxoff=True)
                         self.ser.write("v".encode())
                         time.sleep(1)
                         string = 0
@@ -241,7 +247,6 @@ class Container(BoxLayout):
                         print(f"Error opening port {element.name}")
 
             if(self.ser and self.ser.is_open):
-                self.ser.timeout = 0
                 self.connect_btn.text = 'Disconnect'
                 self.debug_label.color = (61/255, 235/255, 52/255, 1)
                 self.debug_label.text = 'Connected through port '+self.portConnected
@@ -279,11 +284,16 @@ class Container(BoxLayout):
 
     def displayProcess(self):
         print("Creating image...")
-        point_cloud = np.loadtxt("coordinates.xyz", skiprows=1)
-        pcd = PointCloud(point_cloud)
-        pcd.cloud_visualize()
-        pcd.cloud_output_png("images/cloud.png")
-        image.source=img_src
+        if self.pcd == None:
+            point_cloud = np.loadtxt("coordinates.xyz", skiprows=1)
+            self.pcd = PointCloud(point_cloud)
+            self.pcd.cloud_output_png("images/cloud.png")
+        self.pcd.cloud_visualize()
+        self.pcd.poisson()
+        self.pcd.ballpoint()
+        self.pcd.poisson_visualize()
+        self.pcd.poisson_write()
+       # image.source=img_src
 
     
     def reader(self):
@@ -322,12 +332,16 @@ class Container(BoxLayout):
 
     def startProcess(self):
         if(self.start_btn.text == 'Start'):
+            # TODO: destroy pcd
+            self.pcd = None
             self.do_read = True
             self.connect_btn.disabled = True
             self.five_btn.disabled = True
             self.ten_btn.disabled = True
             self.start_btn.disabled = True
             self.stop_btn.disabled = False
+            self.debug_label.color = (250/255, 250/255, 250/255, 1)
+            self.debug_label.text = 'Acquisition...'
             self.ser.write("b".encode())
             threading.Thread(target=self.reader).start()
 
@@ -340,6 +354,8 @@ class Container(BoxLayout):
             self.ten_btn.disabled = False
             self.start_btn.disabled = False
             self.stop_btn.disabled = True
+            self.debug_label.color = (173/255, 3/255, 3/255, 1) 
+            self.debug_label.text = 'Stopped acquisition'
             self.ser.write('s'.encode())
             time.sleep(1)
 
