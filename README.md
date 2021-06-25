@@ -48,8 +48,6 @@ It is possible to see and understand the conversion from angles to three-dimensi
 The Z-axis is the extension of the crankshaft of the first servomotor and it remains integral with it. This servomotor is placed in the exact middle of the X-axis so that the bottom of its crankshaft consists in the origin of the reference system. Y-axis is aligned with the direction of the long side of the first servo motor. REMEMBER: the second servomotor rotates jointly and solidally with the crankshaft of the first servomotor.
 
 <h3>Angles description</h3>
-
-<img src="GUI/images/DACAMBIARE.PNG" alt="angles description" width="500" height="400"/>
  
 The rotation of the crankshaft 1 allows to sweep the XY plane, its motion is described by the alpha angle. <i>Alpha is the angle between the Y-axis and the plane perpendicular to XY, aligned with the direction of the arm to which the sonar is linked.</i><br>
 The rotation of the crankshaft 2 allows to sweep the plane perpendicular to XY and aligned with the direction of the long side of the second servomotor and its motion is described by the beta angle. <i>Beta is the angle between the straight line determined by the arm to which the sonar is attached and the plane on which the crankshaft of the second servo motor lies.</i><br>
@@ -71,6 +69,7 @@ Second servomotor:
 According to the information reported:<br>
 
 SERVO_MID_ANGLE=90<br>
+ANGLE_ZERO=60<br>
 <i>alpha = SERVO_MID_ANGLE-Servo_GetPosition1()</i><br>
 <i>beta = Servo_GetPosition2()+ANGLE_ZERO-SERVO_MID_ANGLE</i><br>
 
