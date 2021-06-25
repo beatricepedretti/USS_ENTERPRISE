@@ -100,8 +100,9 @@ Our GUI consists in six buttons:
   <li>Start</li>
   <li>Stop</li>
   <li>Step angle, with three possibilities</li>
+  <li>Display</li>
 </ul>
-and in a space that, at the end of the acquisition, will be filled with the reconstructed image. 
+and in a space that, at the end of the acquisition, will be filled with the reconstructed image after 'display' button has been pushed. 
 
 <h3>UART communication settings</h3>
 
