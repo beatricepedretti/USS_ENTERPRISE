@@ -30,7 +30,7 @@ int main(void)
     //every time I turn on the device, reset variables
     reset_variables();
     //reset sweep step to 5 degrees in case the step is not selected by the user
-    step_sweep = 2;
+    step_sweep = 5;
         
     for(;;)
     {
@@ -104,7 +104,7 @@ int main(void)
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
                 reset_variables();
-                step_sweep = 2;
+                step_sweep = 5;
                 sprintf (message1, "Done scanning\r\n");
                 UART_1_PutString(message1);
                 state = IDLE;
