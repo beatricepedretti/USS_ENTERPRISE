@@ -90,8 +90,8 @@ the coordinates computed using those two angles are:<br>
 <i>Z=Z1-(ARM_LENGTH+distance_real)*cos(pos_servo2_z_rad);</i><br>
 
 <h2>Configuration through GUI</h2>
-<img src="GUI/images/gui_image.PNG" alt="GUI" width="500" height="600"/>
-<img src="GUI/images/gui_image2.PNG" alt="GUI" width="500" height="600"/>
+<img src="GUI/images/gui_image.PNG" alt="GUI" width="500" height="400"/>
+<img src="GUI/images/gui_image2.PNG" alt="GUI" width="500" height="400"/>
 
 Our GUI consists in seven buttons: 
 <ul>
