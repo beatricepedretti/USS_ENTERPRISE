@@ -18,8 +18,8 @@ import threading
 import time
 from kivy.uix.textinput import TextInput
 from kivy.uix.image import Image
-import numpy as np
-import open3d as o3d
+#import numpy as np
+#import open3d as o3d
 import os
 
 class PointCloud:
