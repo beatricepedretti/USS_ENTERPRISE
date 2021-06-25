@@ -41,10 +41,18 @@ In this repository it can be found the solidworks file where our configuration i
 
 <h2>Calibration and angle/coordinates conversion</h2>
 
-It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapterit will be described the computation that allows the representation of the object putted in front of our device.<br> The Z-axis is the extension of the crankshaft of the first servomotor and it remains integral with it. This servomotor is placed in the exact middle of the X-axis so that the bottom of its crankshaft consists in the origin of the reference system. Y-axis is aligned with the direction of the long side of the first servo motor. REMEMBER: the second servomotor rotates jointly and solidally with the crankshaft of the first servomotor.<br> 
+It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapter it will be described the computation that allows the representation of the object putted in front of our device.
+
+<h3>X-Y-Z system</h3>
+
+The Z-axis is the extension of the crankshaft of the first servomotor and it remains integral with it. This servomotor is placed in the exact middle of the X-axis so that the bottom of its crankshaft consists in the origin of the reference system. Y-axis is aligned with the direction of the long side of the first servo motor. REMEMBER: the second servomotor rotates jointly and solidally with the crankshaft of the first servomotor.
+
+<h3>Angles description</h3>
+ 
 The rotation of the crankshaft 1 allows to sweep the XY plane, its motion is described by the alpha angle. <i>Alpha is the angle between the Y-axis and the plane perpendicular to XY, aligned with the direction of the arm to which the sonar is linked.</i><br>
 The rotation of the crankshaft 2 allows to sweep the plane perpendicular to XY and aligned with the direction of the long side of the second servomotor and its motion is described by the beta angle. <i>Beta is the angle between the straight line determined by the arm to which the sonar is attached and the plane on which the crankshaft of the second servo motor lies.</i><br>
 Functions getPosition() and setPosition(X°) allow to return and set the angle (degrees) of one servomotor respectively.  
+
 First servomotor: 
 <ul>
   <li>0 angle: lies on the positive portion of the X-axis</li>
@@ -63,6 +71,8 @@ According to the information reported:<br>
 SERVO_MID_ANGLE=90<br>
 <i>alpha = SERVO_MID_ANGLE-Servo_GetPosition1()</i><br>
 <i>beta = Servo_GetPosition2()+ANGLE_ZERO-SERVO_MID_ANGLE</i><br>
+
+<h3>Coordinates computation</h3>
 
 Knowing that :
 <ul>
