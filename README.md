@@ -83,7 +83,7 @@ Knowing that :
   <li>ARM_LENGTH is the length of the connection component that allows the rotation of the sonar solidally with the second crankshaft</li>
   <li>pos_servo1_rad is alpha in rad</li>
   <li>pos_servo2_rad is beta in rad</li>
-  <li>pos_servo2_z_rad is beta+90° in rad</li>
+  <li>pos_servo2_z_rad is beta+ANGLE_ZERO° in rad</li>
   <li>Z1 is the height of the crankshaft of the second servomotor</li>
 </ul>
 the coordinates computed using those two angles are:<br>
