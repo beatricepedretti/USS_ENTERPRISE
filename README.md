@@ -59,8 +59,11 @@ Second servomotor:
 </ul>
 
 According to the information reported:
+
 SERVO_MID_ANGLE=90
+
 <i>alpha = SERVO_MID_ANGLE-Servo_GetPosition1()</i>
+
 <i>beta = Servo_GetPosition2()+ANGLE_ZERO-SERVO_MID_ANGLE</i>
 
 Knowing that :
@@ -73,8 +76,11 @@ Knowing that :
   <li>Z1 is the height of the crankshaft of the second servomotor</li>
 </ul>
 the coordinates computed using those two angles are:
+
 <i>X=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*sin(pos_servo1_rad);</i>
+
 <i>Y=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad);</i>
+
 <i>Z=Z1-(ARM_LENGTH+distance_real)*cos(pos_servo2_z_rad);</i>
 
 <h2>Configuration through GUI</h2>
