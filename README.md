@@ -94,7 +94,7 @@ the coordinates computed using those two angles are:<br>
 ![gui_image2](https://user-images.githubusercontent.com/79861994/122761038-13920580-d29c-11eb-8d04-c434e1982800.PNG)
 
 
-Our GUI consists in six buttons: 
+Our GUI consists in seven buttons: 
 <ul>
   <li>Connect</li>
   <li>Start</li>
@@ -116,5 +116,6 @@ The user can also configure the <em>Step angle</em> of the servomotors through o
 
 The user has to press the 'Start' button in order to start the three-dimensional scanning and the 'Stop' button can be pressed anytime the user wants. After the 'Stop' button has been pressed our device will come back at the 'zero configuration', ready to begin a new scanning process.
 
+<h3>Display command</h3>
 
-
+This button will be disabled until the end of the acquisition. Once the acquisition is done the 'display' button will be activated. The user will be able then to push it and display the reconstructed image.
