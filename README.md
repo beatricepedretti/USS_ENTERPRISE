@@ -65,7 +65,7 @@ First servomotor:
 Second servomotor:
 <ul>
   <li>0 angle: due to structural reason it consists in a 60° angle between the Z-axis and the straight line which is the extension of the arm to which the sonar is linked.</li>
-  <li>90 angle: 0 angle + 90° = 150° (almost)</li>
+  <li>60 angle: 0 angle + 60° = 120° (almost)</li>
 </ul>
 
 According to the information reported:<br>
