@@ -50,7 +50,7 @@ The Z-axis is the extension of the crankshaft of the first servomotor and it rem
 
 <h3>Angles description</h3>
 
-<img src="GUI/images/graphic_calibration.PNG" alt="GUI" width="500" height="400"/>
+<img src="GUI/images/graphic_calibration.png" alt="GUI" width="500" height="400"/>
  
 The rotation of the crankshaft 1 allows to sweep the XY plane, its motion is described by the alpha angle. <i>Alpha is the angle between the Y-axis and the plane perpendicular to XY, containing the point detected and aligned with the direction of the arm to which the sonar is linked.</i><br>
 The rotation of the crankshaft 2 allows to sweep the plane perpendicular to XY and aligned with the direction of the long side of the second servomotor and its motion is described by the beta angle. <i>Beta is the angle between the straight line determined by the arm to which the sonar is attached and the plane on which the crankshaft of the second servo motor lies.</i><br>
