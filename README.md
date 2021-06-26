@@ -1,10 +1,11 @@
 # AY2021_II_Project_1-1
-Code and files for the Final Project 1 - Variant 1. Academic Year 2020/2021, II Semester
+
+This repository contains the code and files for the Final Project 1 - Variant 1. Academic Year 2020/2021, II Semester
 
 Our project consists in developing a system able to perform a three-dimensional scanning of an object using two servomotors (MG996R) and one ultrasonic sensor (HCSR04). Our sonar must be opportunely moved to detect the distance surfaces in the field of view of the USS.
 
 <h2>Software requirements</h2>
-In order to let the device perform the functionality previously described, some software requirements must be fulfilled. Since our codes are written in PSoC and python, the following IDEs and softwares must be downloaded:
+In order to let our device perform the functionality previously described, some software requirements must be fulfilled. Since our codes are written in PSoC and python, the following IDEs and softwares must be downloaded:
 <ul>
   <li>PSoC Creator</li>
   <li>Kivy</li>
@@ -38,11 +39,11 @@ The HCSR04 must be linked at the crankshaft of the second servomotor through a s
 
 <h3>Complete device arrangement</h3>
 
-In this repository it can be found the solidworks file where our configuration is graphically shown. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
+This repository contains the solidworks file where our configuration is graphically shown. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
 
 <h2>Calibration procedure and angle-coordinates conversion</h2>
 
-It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapter it will be described the computation that allows the representation of the object putted in front of our device.
+It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapter the computation, that allows the representation of the object put in front of our device, will be described.
 
 <h3>X-Y-Z system</h3>
 
@@ -54,7 +55,7 @@ The Z-axis is the extension of the crankshaft of the first servomotor and it rem
  
 The rotation of the crankshaft 1 allows to sweep the XY plane, its motion is described by the alpha angle. <i>Alpha is the angle between the Y-axis and the plane perpendicular to XY, containing the point detected and aligned with the direction of the arm to which the sonar is linked.</i><br>
 The rotation of the crankshaft 2 allows to sweep the plane perpendicular to XY and aligned with the direction of the long side of the second servomotor and its motion is described by the beta angle. <i>Beta is the angle between the straight line determined by the arm to which the sonar is attached and the plane on which the crankshaft of the second servo motor lies.</i><br>
-Functions getPosition() and setPosition(X°) allow to return and set the angle (degrees) of one servomotor respectively.  
+Functions getPosition() and setPosition(X°) allow to, respectively, return and set the angle (degrees) of one servo motor.  
 
 First servomotor: 
 <ul>
@@ -126,5 +127,5 @@ This button will be disabled until the end of the acquisition. Once the acquisit
 <h2>Operating instructions</h2>
 
 Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, must be placed at a distance of --- cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface.<br>
-Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.<br>Please be adviced that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
+Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.<br>Please be advised that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
 suggest the user to scan small dimension objects. By doing this we let the sonar to work in its optimal conditions. 
