@@ -30,6 +30,7 @@ FinalProject.cywrk.mauro
 beyaenv/
 *.asv
 venv/
+.vscode/
 GUI/mesher.py
 GUI/scan_reconstruction.py
 GUI/instructions.txt

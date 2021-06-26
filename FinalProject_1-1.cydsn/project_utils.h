@@ -15,7 +15,7 @@
 //this file includes all tools of the project
 //for example, here we have all the includes for all header files so that in further .c and .h files we can only import "project_utils.h"
 
-//we have here the defines, variables and functions that regulate the movement of the cinematic chain
+//we have here the defines, variables and functions that regulate the movement of the kinematic chain
 
 #include "isr.h"
 #include "project.h"
