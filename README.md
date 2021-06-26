@@ -137,9 +137,9 @@ Our GUI consists in six buttons:
 <ul>
   <li>FinalProject_1-1.cydsn: folder containint PSOC Creator files</li>
   <li>GUI:</li>
-      <li><i>GUI.kv</i>: graphic implementation of GUI</li>
-      <li><i>Project_1_1.py</i>: python file containing GUI commands and image reconstruction</li>
-      <li><i>interpolation_plane.m</i>: MATLAB script with one section to reconstruct point cloud representation of coordinates (needs Computer Vision Toolbox) and another section that interpolates a plane in the point cloud representation</li>
-      <li><i>requirements.txt</i>: required python libraries and dependencies</li>
+  		<li><i>GUI.kv</i>: graphic implementation of GUI</li>
+  		<li><i>Project_1_1.py</i>: python file containing GUI commands and image reconstruction</li>
+  		<li><i>interpolation_plane.m</i>: MATLAB script with one section to reconstruct point cloud representation of coordinates (needs Computer Vision Toolbox) and another section that interpolates a plane in the point cloud representation</li>
+  		<li><i>requirements.txt</i>: required python libraries and dependencies</li>
   <li>coordinates: folder that contains acquisition results of relevant objects such as planes and bottles</li>
 </ul>
