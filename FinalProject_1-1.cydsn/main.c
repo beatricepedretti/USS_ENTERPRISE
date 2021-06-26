@@ -76,9 +76,6 @@ int main(void)
                 for (angle = start_position; angle != end_position/step_sweep && state == SCAN; angle+=(step_sweep*direction))
                 {
                     Servo_SetPosition1(angle);
-                    //reset ISR variables
-                    distance_count = 0;
-                    distance_sum = 0;
                     //wait for servo to be in position
                     CyDelay(SWEEP_DELAY);
                     

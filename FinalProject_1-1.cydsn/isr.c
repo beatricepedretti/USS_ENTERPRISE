@@ -35,11 +35,6 @@ void Custom_ISR_Start(void) {
 CY_ISR(ISR_ULTRASONIC){
     // Compute distance   
     distance=(uint16_t)((timer_period - Timer_HCSR04_ReadCapture())/CONV_FACTOR*TO_MM);  
-    if (distance<DISTANCE_TH_H && distance>DISTANCE_TH_L)
-    {
-        distance_sum = distance_sum + distance;
-        distance_count++;
-    }
 }
 
 CY_ISR(Custom_UART_RX_ISR) 
