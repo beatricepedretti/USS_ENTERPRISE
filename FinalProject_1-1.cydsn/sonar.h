@@ -35,7 +35,6 @@
     
     
     void find_position(void);
-    uint16_t compute_distance(void);
     
 #endif
 

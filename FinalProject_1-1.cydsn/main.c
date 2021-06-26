@@ -20,6 +20,7 @@ int main(void)
     uint16_t angle;
     uint8_t temp_position;
     
+    state = IDLE;
     CyGlobalIntEnable; /* Enable global interrupts. */
     // Init components 
     start_components();
@@ -31,6 +32,7 @@ int main(void)
     reset_variables();
     //reset sweep step to 5 degrees in case the step is not selected by the user
     step_sweep = 5;
+    
         
     for(;;)
     {
@@ -39,9 +41,15 @@ int main(void)
             //IDLE state: wait for user to press "START" in GUI
             //while in idle state, the user can select the step for the sweep between two choices
             case IDLE:
+                ISR_HCSR04_Disable();
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
-                
+                if (flag_connected == 1)
+                {
+                    flag_connected  = 0;
+                    sprintf (message1, "Device succesfully connected$");
+                    UART_1_PutString(message1);
+                }
                 //if user selects '5' in GUI, UART sends over 'f' character and step_sweep is set to 5
                 if (received == 'f')
                 {
@@ -57,6 +65,10 @@ int main(void)
             
             //SCAN state: the chain performs the sweep motion while the ISR activates and reads values from the  sensor
             case SCAN:
+                //I don't use flags because after this line, the program gets stuck in the following for cycle
+                //until the acquisition is stopped via GUI or scan is completed
+                //so ISR is enabled only once
+                ISR_HCSR04_Enable();
                 //FIRST SWEEP: the servo starts at 40 degrees, which is the first start position, and goes on until 140 degrees
                 //the increment is the step selected in the GUI
                 //this for cycle goes on until the state is SCAN (second condition)
@@ -64,8 +76,12 @@ int main(void)
                 for (angle = start_position; angle != end_position/step_sweep && state == SCAN; angle+=(step_sweep*direction))
                 {
                     Servo_SetPosition1(angle);
+                    //reset ISR variables
+                    distance_count = 0;
+                    distance_sum = 0;
                     //wait for servo to be in position
                     CyDelay(SWEEP_DELAY);
+                    
                     //read the value of the angle
                     //the servos' resolution is a mechanical limitation, so we check if the angle we set (known position) and the position we read are the same
                     //because different positions could lead to wrong calculations
@@ -93,7 +109,9 @@ int main(void)
                         start_position = temp_position;
                         //swap directions
                         direction = direction == LEFT ? RIGHT : LEFT;
-                    }          
+                    }
+                    
+                    
                 }
                 break;
             

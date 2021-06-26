@@ -30,7 +30,7 @@
 #define STEP_RISE 5 //step by which the chain moves in vertical direction
 #define RISE_LIMIT 60 //end of the rise
 #define STRING_LENGTH 100
-#define RISE_DELAY 500
+#define RISE_DELAY 600
 #define SWEEP_DELAY 600
 #define ANGLE_TOLERANCE 2
 
@@ -38,6 +38,7 @@
 #define IDLE 0
 #define SCAN 1
 #define DISPLAY 2
+
 
 #define LEFT 1 //anticlockwise direction
 #define RIGHT -1 //clockwise direction
@@ -48,11 +49,12 @@ uint16_t angle_2;
 int8_t direction;
 volatile uint8_t step_sweep;
 uint8_t start_position, end_position;
+volatile uint8_t flag_connected;
 
 char message[STRING_LENGTH];
 char message1[STRING_LENGTH];
 
-double x, y, z; //coordinates
+float32 x, y, z; //coordinates
 
 void start_components(void);
 void next_row (void);

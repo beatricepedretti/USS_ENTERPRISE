@@ -50,6 +50,8 @@ void reset_variables ()
     direction = LEFT;
     angle_2 = SERVO_LIMIT_L;
     flag_print = 0;
+    flag_connected  = 0;
+
 }
 
 

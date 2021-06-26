@@ -1,4 +1,29 @@
-#:kivy 1.11
+#:kivy 2.0.0
+
+<BackgroundColor@Widget>
+    background_color: 0.5, 0, 0, 0.5
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+# Now you can simply Mix the `BackgroundColor` class with almost
+# any other widget... to give it a background.
+<Tooltip@Label+BackgroundColor>
+    # Default the background color for this label
+    # to r 0, g 0, b 0, a 0
+    text: "Enterprise acronimo"
+    size: self.texture_size[0] + 10, self.texture_size[1] + 10
+    pos: -100, -100
+
+<EnterpriseLabel>:
+    tooltip: tooltip
+    text: 'USS E.N.T.E.R.P.R.I.S.E.'
+    font_size: 30 
+    size_hint_x: 0.8
+    Tooltip:
+        id: tooltip
 
 <Container>:
     orientation: 'vertical'
@@ -9,19 +34,9 @@
     five_btn: five_btn
     ten_btn: ten_btn
     image: image
-    #com_ports_spinner: _com_ports_spinner
     debug_label: _debug_label
     padding: 5
     spacing: 5
-    #BoxLayout:
-    #    orientation: 'horizontal'
-    #    size_hint_y: 0.2
-    #    Button:
-    #        id: connect_btn
-    #        text: 'Connect'
-    #        on_press: root.on_Connect_callback()
-    #    Label:
-    #        text: 'Disconnected'
 
     BoxLayout:
         orientation: 'horizontal'
@@ -30,19 +45,23 @@
         Image:
             source:  r'images/uss.png'
             size_hint_x: 0.3
-        Label:
-            text: 'USS E.N.T.E.R.P.R.I.S.E.'
-            font_size: 30 
-            size_hint_x: 0.8
-        #Spinner:
-        #    id: _com_ports_spinner
-        #    size_hint_x: 0.6
+        EnterpriseLabel:
+            id: enterpriseLabel
+            
         Button:
             id: connect_btn
             size_hint_x: 0.2
             text: 'Connect'
             #on_press: root.button_pressed_callback()
             on_press: root.threading_connection()
+
+    BoxLayout:
+        orientation:'horizontal'
+        size_hint_y: 1
+        Image:
+            id: image
+            source: 'images/danger.zip'
+
     GridLayout:
         cols: 7
         size_hint_y: 0.15
@@ -73,12 +92,7 @@
             text:'Stop'
             on_press: root.threading_stop()
             disabled: True
-    BoxLayout:
-        orientation:'horizontal'
-        size_hint_y: 1
-        Image:
-            id: image
-            source: r'images/black.png'
+
     GridLayout:
         cols:3
         size_hint_y: 0.15
@@ -89,7 +103,6 @@
             size_hint_x: 0.8
             text: 'Display'
             on_press: root.threading_display()
-            #on_release: image.source =  r'images/cloud.png'
             disabled: True
         Label:
             text:
@@ -97,11 +110,6 @@
     BoxLayout:
         orientation: 'vertical'
         size_hint_y: 0.1
-        #GridLayout:
-        #    cols: 1
-        #    size_hint_y: 0.1
-            #Label:
-            #    text: 
         Label:
             id: _debug_label
             size_hint_y: 0.2

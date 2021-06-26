@@ -19,6 +19,8 @@
     
     // Message to send over UART
     uint16_t received;
+    uint16_t distance_sum;
+    uint16_t distance_count;
     uint16_t distance;
    
     // Timer period value
