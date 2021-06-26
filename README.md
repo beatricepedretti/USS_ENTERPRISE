@@ -27,7 +27,7 @@ All these components must be properly handled as follow.
 
 <h3>Board settings</h3>
 
-It is placed inside the wooden box and it is powered by the computer. The connection between the board and the computer can be performed using any COM the user wants, it will be recognized by our code. 
+The board is placed inside the wooden box with custom sliding plexiglass cover, and it is powered by the computer. The connection between the board and the computer can be performed using any COM the user wants, it will be recognized by our code. 
 
 <h3>Servomotors settings</h3>
 
@@ -35,7 +35,7 @@ The first servomotor must be connected to 2.6 PIN and it must have the crankshaf
 
 <h3>Ultrasonic sensor settings</h3>
 
-The HCSR04 must be linked at the crankshaft of the second servomotor through a special connection element in order to move solidly with this crankshaft. It works thanks to two connections, the Echo, the Trigger, that must be connected respectively to the 2.5 and 2.4 PINs.
+The HCSR04 must be linked at the crankshaft of the second servomotor through a special connection element in order to move solidly with this crankshaft. It works thanks to two connections, the Echo, the Trigger, that must be connected respectively to the 2.5 and 2.4 PINs. The cables are shielded with copper wires to prevent interference from the servo motor wiring and help reduce electronic noise.
 
 <h3>Complete device arrangement</h3>
 
@@ -43,7 +43,7 @@ This repository contains the solidworks file where our configuration is graphica
 
 <h2>Calibration procedure and angle-coordinates conversion</h2>
 
-It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapter the computation, that allows the representation of the object put in front of our device, will be described.
+It is possible to see and understand the conversion from angles to three-dimensional coordinates in the image below. In the following chapter the computation, that allows the representation of the object put in front of our device, will be described.
 
 <h3>X-Y-Z system</h3>
 
@@ -129,3 +129,17 @@ This button will be disabled until the end of the acquisition. Once the acquisit
 Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, must be placed at a distance between approximately 7 and 40 cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface. Recommended distance is in the 10 - 20 cm range. <br>
 Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.<br>Please be advised that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
 suggest the user to scan small dimension objects. By doing this we let the sonar to work in its optimal conditions. 
+
+<h2>Repository organization</h2>
+Inside this repository you will find the following files and folders:
+
+Our GUI consists in six buttons: 
+<ul>
+  <li>FinalProject_1-1.cydsn: folder containint PSOC Creator files</li>
+  <li>GUI:</li>
+      <li><i>GUI.kv</i>: graphic implementation of GUI</li>
+      <li><i>Project_1_1.py</i>: python file containing GUI commands and image reconstruction</li>
+      <li><i>interpolation_plane.m</i>: MATLAB script with one section to reconstruct point cloud representation of coordinates (needs Computer Vision Toolbox) and another section that interpolates a plane in the point cloud representation</li>
+      <li><i>requirements.txt</i>: required python libraries and dependencies</li>
+  <li>coordinates: folder that contains acquisition results of relevant objects such as planes and bottles</li>
+</ul>
