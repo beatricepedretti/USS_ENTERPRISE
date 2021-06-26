@@ -121,3 +121,9 @@ The user has to press the 'Start' button in order to start the three-dimensional
 <h3>Display command</h3>
 
 This button will be disabled until the end of the acquisition. Once the acquisition is done the 'display' button will be activated. The user will be able then to push it and display the reconstructed image.
+
+<h2>Operating instructions</h2>
+
+Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, must be placed at a distance of --- cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface.<br>
+Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be putted at the centre of this range in order to let the device scan the entire shape.<br>Please be adviced that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
+suggest the user to scan small dimension objects. By doing this we let the sonar to work in its optimal conditions. 
