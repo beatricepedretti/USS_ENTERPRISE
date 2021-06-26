@@ -16,7 +16,7 @@ In order to let the device perform the functionality previously described, some 
 In order to create our device different components have been used. 
 <ul>
   <li>Two servomotors</li>
-  <li>Connection elements in order to link the two servomotors and create a serial chain able to scann the proximal environment
+  <li>Connection elements in order to link the two servomotors and create a serial chain able to scan the proximal environment
   <li>An ultrasonic sensor, the HCSR04</li>
   <li>A cypress board</li>
   <li>An homemade wooden box that acts as a housing for the board and guarantees robustness and stability to the serial chain</li>
@@ -39,7 +39,7 @@ The HCSR04 must be linked at the crankshaft of the second servomotor through a s
 
 In this repository it can be found the solidworks file where our configuration is graphically shown. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
 
-<h2>Calibration and angle/coordinates conversion</h2>
+<h2>Calibration and angle-coordinates conversion</h2>
 
 It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapter it will be described the computation that allows the representation of the object putted in front of our device.
 
@@ -51,7 +51,7 @@ The Z-axis is the extension of the crankshaft of the first servomotor and it rem
 
 <img src="GUI/images/DACAMBIARE.PNG" alt="GUI" width="500" height="400"/>
  
-The rotation of the crankshaft 1 allows to sweep the XY plane, its motion is described by the alpha angle. <i>Alpha is the angle between the Y-axis and the plane perpendicular to XY, aligned with the direction of the arm to which the sonar is linked.</i><br>
+The rotation of the crankshaft 1 allows to sweep the XY plane, its motion is described by the alpha angle. <i>Alpha is the angle between the Y-axis and the plane perpendicular to XY, containing the point detected and aligned with the direction of the arm to which the sonar is linked.</i><br>
 The rotation of the crankshaft 2 allows to sweep the plane perpendicular to XY and aligned with the direction of the long side of the second servomotor and its motion is described by the beta angle. <i>Beta is the angle between the straight line determined by the arm to which the sonar is attached and the plane on which the crankshaft of the second servo motor lies.</i><br>
 Functions getPosition() and setPosition(X°) allow to return and set the angle (degrees) of one servomotor respectively.  
 
