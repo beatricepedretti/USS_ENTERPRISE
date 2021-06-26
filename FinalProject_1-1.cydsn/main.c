@@ -69,9 +69,9 @@ int main(void)
                     //read the value of the angle
                     //the servos' resolution is a mechanical limitation, so we check if the angle we set (known position) and the position we read are the same
                     //because different positions could lead to wrong calculations
-                    //we still give a confidence value, which is a range of 2 degrees above and below the position we set
+                    //we still give a confidence value, which is a range of (ANGLE_TOLERANCE) degrees above and below the position we set
                     //so if the servos give a wrong position that is within this range, the point is still computed as the difference is low
-                    if (Servo_GetPosition1()<(angle+2) && Servo_GetPosition1()>(angle-2))
+                    if (Servo_GetPosition1()<(angle+ANGLE_TOLERANCE) && Servo_GetPosition1()>(angle-ANGLE_TOLERANCE))
                         //find position is a function in sonar.c as it involves the USS
                         find_position();
                     //we enter this if below when we complete a "row", so when the chain does a sweep in one direction

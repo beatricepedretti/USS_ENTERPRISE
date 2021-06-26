@@ -34,7 +34,7 @@ void find_position ()
     distance_real = distance;
     
     //if the point is within a certain distance
-    if(distance_real<DISTANCE_TH)
+    if(distance_real<DISTANCE_TH_H && distance_real>DISTANCE_TH_L)
     {     
         y=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad);
         x=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*sin(pos_servo1_rad);
