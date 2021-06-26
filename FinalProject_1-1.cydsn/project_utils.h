@@ -32,6 +32,7 @@
 #define STRING_LENGTH 100
 #define RISE_DELAY 500
 #define SWEEP_DELAY 600
+#define ANGLE_TOLERANCE 2
 
 //states
 #define IDLE 0

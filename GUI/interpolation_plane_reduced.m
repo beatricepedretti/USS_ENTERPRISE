@@ -2,7 +2,7 @@
 %import it in MATLAB
 
 %import .txt file with coordinates of point cloud
-coord = importdata ('coordinates_plane_2.txt')
+coord = importdata ('coordinates_bag.txt')
 
 %% POINT CLOUD 
 %DISCLAIMER: point cloud functions need to have computer vision toolbox
@@ -12,7 +12,7 @@ coord = importdata ('coordinates_plane_2.txt')
 ptCloud = pointCloud(coord);
 figure
 pcshow(ptCloud)
-xlabel('X(m)')
-ylabel('Y(m)')
-zlabel('Z(m)')
+xlabel('X(mm)')
+ylabel('Y(mm)')
+zlabel('Z(mm)')
 title('Original Point Cloud')

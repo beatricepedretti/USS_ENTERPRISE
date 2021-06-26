@@ -36,3 +36,5 @@ GUI/scan_reconstruction.py
 GUI/instructions.txt
 coordinates/coordinates_bowl.txt
 coordinates/coordinates_bowl.xyz
+*.obj
+*.ply

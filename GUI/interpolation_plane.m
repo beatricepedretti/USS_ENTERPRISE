@@ -12,9 +12,9 @@ coord = importdata ('coordinates_plane_2.txt')
 ptCloud = pointCloud(coord);
 figure
 pcshow(ptCloud)
-xlabel('X(m)')
-ylabel('Y(m)')
-zlabel('Z(m)')
+xlabel('X(mm)')
+ylabel('Y(mm)')
+zlabel('Z(mm)')
 title('Original Point Cloud')
 
 %native MATLAB function to fit a regression plane and compute MSE (mean
