@@ -27,7 +27,11 @@ FinalProject.cywrk.mauro
 *.Beatrice
 *.david
 
-# End of https://www.gitignore.io/api/psoccreator
 beyaenv/
-
 *.asv
+venv/
+GUI/mesher.py
+GUI/scan_reconstruction.py
+GUI/instructions.txt
+coordinates/coordinates_bowl.txt
+coordinates/coordinates_bowl.xyz
