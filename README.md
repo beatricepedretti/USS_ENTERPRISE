@@ -40,7 +40,7 @@ The HCSR04 must be linked at the crankshaft of the second servomotor through a s
 
 In this repository it can be found the solidworks file where our configuration is graphically shown. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
 
-<h2>Calibration and angle-coordinates conversion</h2>
+<h2>Calibration procedure and angle-coordinates conversion</h2>
 
 It is possible to see and understand the conversion from angles to three-dimensional coordinates in the ..... file. In the following chapter it will be described the computation that allows the representation of the object putted in front of our device.
 
