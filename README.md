@@ -9,6 +9,7 @@ In order to let the device perform the functionality previously described, some 
   <li>PSoC Creator</li>
   <li>Kivy</li>
   <li>Visual Studio Code</li>
+  <li>MATLAB 2017b version</li>
 </ul>
 
 <h2>Hardware requirements</h2>
@@ -79,7 +80,7 @@ ANGLE_ZERO=60<br>
 
 Knowing that :
 <ul>
-  <li>D2 is the distance between the middle of the crankshaft and the Z-axis</li>
+  <li>D2 is the distance between the middle of the crankshaft of the second servomotor and the Z-axis</li>
   <li>ARM_LENGTH is the length of the connection component that allows the rotation of the sonar solidally with the second crankshaft</li>
   <li>pos_servo1_rad is alpha in rad</li>
   <li>pos_servo2_rad is beta in rad</li>
@@ -96,12 +97,12 @@ the coordinates computed using those two angles are:<br>
 <img src="GUI/images/gui_image.PNG" alt="GUI" width="500" height="400"/>
 <img src="GUI/images/gui_image2.PNG" alt="GUI" width="500" height="400"/>
 
-Our GUI consists in seven buttons: 
+Our GUI consists in six buttons: 
 <ul>
   <li>Connect</li>
   <li>Start</li>
   <li>Stop</li>
-  <li>Step angle, with three possibilities</li>
+  <li>Step angle, with two possibilities</li>
   <li>Display</li>
 </ul>
 and in a space that, at the end of the acquisition, will be filled with the reconstructed image after 'display' button has been pushed. 
@@ -120,10 +121,10 @@ The user has to press the 'Start' button in order to start the three-dimensional
 
 <h3>Display command</h3>
 
-This button will be disabled until the end of the acquisition. Once the acquisition is done the 'display' button will be activated. The user will be able then to push it and display the reconstructed image.
+This button will be disabled until the end of the acquisition. Once the acquisition is done the 'display' button will be activated. The user will be able then to push it and display the reconstructed image.<br> The user has also the chance to change the perspective of the object using the mouse and by pushing the 'p' key a screenshot will be performed and saved in the repository. 
 
 <h2>Operating instructions</h2>
 
 Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, must be placed at a distance of --- cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface.<br>
-Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be putted at the centre of this range in order to let the device scan the entire shape.<br>Please be adviced that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
+Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.<br>Please be adviced that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
 suggest the user to scan small dimension objects. By doing this we let the sonar to work in its optimal conditions. 
