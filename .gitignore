@@ -39,3 +39,5 @@ coordinates/coordinates_bowl.xyz
 *.obj
 *.ply
 Screen*
+renders/
+coordinates/coordinates_2021_*
