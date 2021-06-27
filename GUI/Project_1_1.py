@@ -1,3 +1,4 @@
+#useful imports
 import kivy
 from kivy.app import App
 from kivy.lang import Builder
@@ -23,7 +24,6 @@ import open3d as o3d
 import os
 import datetime
 import io
-
 from kivy.graphics import Rectangle, Color
 
 
@@ -312,6 +312,7 @@ class Container(BoxLayout):
         self.pcd.ballpoint_visualize()
 
     def reader(self):
+        self.pcd = None
         output_dir = "coordinates"
         os.makedirs(output_dir, exist_ok=True)
         now = datetime.datetime.now()

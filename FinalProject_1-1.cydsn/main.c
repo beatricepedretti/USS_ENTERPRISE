@@ -77,20 +77,12 @@ int main(void)
                 {
                     Servo_SetPosition1(angle);
                     //wait for servo to be in position
-                    CyDelay(SWEEP_DELAY);
-                    
-                    //read the value of the angle
-                    //the servos' resolution is a mechanical limitation, so we check if the angle we set (known position) and the position we read are the same
-                    //because different positions could lead to wrong calculations
-                    //we still give a confidence value, which is a range of (ANGLE_TOLERANCE) degrees above and below the position we set
-                    //so if the servos give a wrong position that is within this range, the point is still computed as the difference is low
-                    if (Servo_GetPosition1()<(angle+ANGLE_TOLERANCE) && Servo_GetPosition1()>(angle-ANGLE_TOLERANCE))
-                        //find position is a function in sonar.c as it involves the USS
-                        find_position();
+                    CyDelay(SWEEP_DELAY);         
+ 
                     //we enter this if below when we complete a "row", so when the chain does a sweep in one direction
                     if ((direction==LEFT && angle==end_position) || (direction == RIGHT && angle == (end_position+step_sweep)) )
                     {
-                        //this is a flag that is checked in sonar.c
+                        //the following is a flag that is checked in sonar.c
                         //it is reset each row, and if becomes 1 if at least one point in that row is computed
                         //if this flag is still 0 after I completed a row, I assume that there isn't an object, 
                         //or that the object scanning is complete, or that the object has been removed
@@ -107,8 +99,17 @@ int main(void)
                         //swap directions
                         direction = direction == LEFT ? RIGHT : LEFT;
                     }
-                    
-                    
+                    else
+                    {
+                        //read the value of the angle
+                        //the servos' resolution is a mechanical limitation, so we check if the angle we set (known position) and the position we read are the same
+                        //because different positions could lead to wrong calculations
+                        //we still give a confidence value, which is a range of (ANGLE_TOLERANCE) degrees above and below the position we set
+                        //so if the servos give a wrong position that is within this range, the point is still computed as the difference is low
+                        if (Servo_GetPosition1()<(angle+ANGLE_TOLERANCE) && Servo_GetPosition1()>(angle-ANGLE_TOLERANCE))
+                            //find position is a function in sonar.c as it involves the USS
+                            find_position();
+                    }     
                 }
                 break;
             
