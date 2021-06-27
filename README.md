@@ -39,7 +39,7 @@ The HCSR04 must be linked at the crankshaft of the second servomotor through a s
 
 <h3>Complete device arrangement</h3>
 
-This repository contains the solidworks file where our configuration is graphically shown. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
+This repository contains the 'CAD' folder with the solidworks file of our configuration. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
 
 <h2>Calibration procedure and angle-coordinates conversion</h2>
 
@@ -119,6 +119,10 @@ The user can also configure the <em>Step angle</em> of the servomotors through o
 <h3>Start and Stop commands</h3>
 
 The user has to press the 'Start' button in order to start the three-dimensional scanning and the 'Stop' button can be pressed anytime the user wants. After the 'Stop' button has been pressed our device will come back at the 'zero configuration', ready to begin a new scanning process.
+
+<h3>Stop functionality</h3>
+
+If our device will not find any point during an entire sweep of the XY plane it will automatically reset to the zero configuration (no object has been found or object scanning ended).
 
 <h3>Display command</h3>
 
