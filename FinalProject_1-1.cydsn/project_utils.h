@@ -22,7 +22,7 @@
 #include "project.h"
 #include "stdio.h"
 #include "servo.h"
-#include "UART_1.h"
+#include "UART.h"
 #include "cytypes.h"
 #include "math.h"
 #include "stdlib.h"

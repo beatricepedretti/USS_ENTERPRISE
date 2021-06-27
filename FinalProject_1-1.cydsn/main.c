@@ -128,6 +128,7 @@ int main(void)
             
             //state DISCONNECTED: when "Disconnect" button is pressed in the GUI, turn off components (except for UART)
             case DISCONNECTED:
+                //i use the flag so that it turns off peripherals only once
                 if (flag_disconnected == 1)
                 {
                     Timer_HCSR04_Stop();
@@ -142,7 +143,7 @@ int main(void)
                 break;
         }      
     }
-}
+} 
 
 
 /* [] END OF FILE */

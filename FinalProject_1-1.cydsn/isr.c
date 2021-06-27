@@ -40,7 +40,7 @@ CY_ISR(ISR_ULTRASONIC){
 CY_ISR(Custom_UART_RX_ISR) 
 { 
     // We read the received data, and echo it back
-    if (UART_ReadRxStatus() == UART_1_RX_STS_FIFO_NOTEMPTY) 
+    if (UART_ReadRxStatus() == UART_RX_STS_FIFO_NOTEMPTY) 
     {
         received = UART_ReadRxData();
         if(received=='v'){  
