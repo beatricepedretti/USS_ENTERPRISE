@@ -20,25 +20,25 @@ void find_position ()
     //thanks to the position returned by the two servos and the distance returned 
     //by the USS
     
-    double pos_servo1_rad;
-    double pos_servo2_rad;
-    double pos_servo2_z_rad;
+    float32 pos_servo1_rad;
+    float32 pos_servo2_rad;
+    float32 pos_servo2_z_rad;
     int16_t distance_real;
     
     //conversion from degrees to rad
-    pos_servo1_rad= (double)(SERVO_MID_ANGLE-Servo_GetPosition1())*(PI / SERVO_LIMIT_H);
-    pos_servo2_rad=(double)(Servo_GetPosition2()+ANGLE_ZERO-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
-    pos_servo2_z_rad=(double)(Servo_GetPosition2()+ANGLE_ZERO)*(PI / SERVO_LIMIT_H);
+    pos_servo1_rad= (float32)(SERVO_MID_ANGLE-Servo_GetPosition1())*(PI / SERVO_LIMIT_H);
+    pos_servo2_rad=(float32)(Servo_GetPosition2()+ANGLE_ZERO-SERVO_MID_ANGLE)*(PI / SERVO_LIMIT_H);
+    pos_servo2_z_rad=(float32)(Servo_GetPosition2()+ANGLE_ZERO)*(PI / SERVO_LIMIT_H);
 
     //setting distance_real = distance because distance is computed in ISR and may change during computation of coordinates
     // by setting distance_real = distance and using only distance_real we keep one value of distance for the computation
     distance_real = distance;
-    
+
     //if the point is within a certain distance
-    if(distance_real<DISTANCE_TH_H && distance_real>DISTANCE_TH_L)
-    {   
+    if (distance_real<DISTANCE_TH_H && distance_real>DISTANCE_TH_L)
+    {
         z=Z1-(ARM_LENGTH+distance_real)*cos(pos_servo2_z_rad);
-        if (z >= 0)
+        if (z>0)
         {
             y=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad);
             x=(D2+(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*sin(pos_servo1_rad);            
