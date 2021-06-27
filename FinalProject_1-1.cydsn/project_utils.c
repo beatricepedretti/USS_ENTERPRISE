@@ -51,6 +51,7 @@ void reset_variables ()
     angle_2 = SERVO_LIMIT_L;
     flag_print = 0;
     flag_connected  = 0;
+    flag_disconnected = 0;
 }
 
 /* [] END OF FILE */

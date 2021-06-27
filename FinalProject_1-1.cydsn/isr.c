@@ -49,15 +49,16 @@ CY_ISR(Custom_UART_RX_ISR)
             flag_connected = 1;
         }
         //when user selects START in GUI
-        else if (received == 'b'){
+        if (received == 'b'){
             state = SCAN;
         }
         //when user selects STOP 
-        else if (received == 's'){
+        if (received == 's'){
             state = IDLE;
         }
-        else if (received == 'd'){
+        if (received == 'd'){
             state = DISCONNECTED;
+            flag_disconnected = 1;
         }
     }
 }

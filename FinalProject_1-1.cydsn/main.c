@@ -18,7 +18,7 @@ int main(void)
 { 
     uint16_t angle;
     uint8_t temp_position;
-    
+    //upon turning on, state is IDLE and all peripherals are turned on
     state = IDLE;
     CyGlobalIntEnable; /* Enable global interrupts. */
     // Init components 
@@ -40,10 +40,12 @@ int main(void)
             //IDLE state: wait for user to press "START" in GUI
             //while in idle state, the user can select the step for the sweep between two choices
             case IDLE:
-                
+                //disable ISR: we on't need distance computation at the moment
                 ISR_HCSR04_Disable();
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
+                //this flag is set in the isr: if I just pushed connect in the GUI, I have to start the components (I come from the DISCONNECTED state)
+                
                 if (flag_connected == 1)
                 {
                     start_components();
@@ -66,7 +68,7 @@ int main(void)
             
             //SCAN state: the chain performs the sweep motion while the ISR activates and reads values from the  sensor
             case SCAN:
-                //I don't use flags because after this line, the program gets stuck in the following for cycle
+                //I don't use flags for enabling the ISR because after this line, the program gets stuck in the following for cycle
                 //until the acquisition is stopped via GUI or scan is completed
                 //so ISR is enabled only once
                 ISR_HCSR04_Enable();
@@ -117,20 +119,26 @@ int main(void)
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
                 reset_variables();
+                //redet step sweep
                 step_sweep = 5;
                 sprintf (message1, "Done scanning\r\n");
                 UART_PutString(message1);
                 state = IDLE;
                 break;
             
-            //state DISCONNECRED: when "Disconnect" button is pressed in the GUI, turn off components (except for UART)
+            //state DISCONNECTED: when "Disconnect" button is pressed in the GUI, turn off components (except for UART)
             case DISCONNECTED:
-                Timer_HCSR04_Stop();
-                PWM_Trigger_Stop();
-                Timer_TRIGGER_Stop();
-                PWM_Servo1_Stop();
-                PWM_Servo2_Stop();
-                ISR_HCSR04_Disable();
+                if (flag_disconnected == 1)
+                {
+                    Timer_HCSR04_Stop();
+                    PWM_Trigger_Stop();
+                    Timer_TRIGGER_Stop();
+                    PWM_Servo1_Stop();
+                    PWM_Servo2_Stop();
+                    ISR_HCSR04_Disable();
+                    flag_disconnected = 0;
+                    step_sweep = 5;
+                }
                 break;
         }      
     }

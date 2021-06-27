@@ -10,7 +10,8 @@ In order to let our device perform the functionality previously described, some 
   <li>PSoC Creator</li>
   <li>Kivy</li>
   <li>Visual Studio Code</li>
-  <li>MATLAB 2017b version</li>
+  <li>MATLAB 2017b version with Computer Visio Toolbox</li>
+  <li>Autodesk Fusion 360</li>
 </ul>
 
 <h2>Hardware requirements</h2>

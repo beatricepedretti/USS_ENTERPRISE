@@ -36,11 +36,10 @@
 #define ANGLE_TOLERANCE 2 //used to check computation of servo position because the servos' reaolution is 1.2 degrees
 
 //states
-#define IDLE 0
-#define SCAN 1
-#define DISPLAY 2
-#define DISCONNECTED 3
-
+#define DISCONNECTED 0
+#define IDLE 1
+#define SCAN 2
+#define DISPLAY 3
 
 #define LEFT 1 //anticlockwise direction
 #define RIGHT -1 //clockwise direction
@@ -52,6 +51,8 @@ int8_t direction;
 volatile uint8_t step_sweep;
 uint8_t start_position, end_position;
 volatile uint8_t flag_connected;
+volatile uint8_t flag_disconnected;
+
 
 char message[STRING_LENGTH];
 char message1[STRING_LENGTH];

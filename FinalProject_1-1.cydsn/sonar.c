@@ -39,8 +39,11 @@ void find_position ()
     if (distance_real<DISTANCE_TH_H && distance_real>DISTANCE_TH_L)
     {
         z=(double)(Z1-(double)(ARM_LENGTH+distance_real)*cos(pos_servo2_z_rad));
+        //negative zs are artifacts, so I check
+        //if the z is negative, the point is neglected
         if (z>0)
         {
+            //compute the other coordinates here to save CPU
             y=(double)((D2+(double)(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*cos(pos_servo1_rad));
             x=(double)((D2+(double)(ARM_LENGTH+distance_real)*cos(pos_servo2_rad))*sin(pos_servo1_rad));            
             //send coordinates to UART
