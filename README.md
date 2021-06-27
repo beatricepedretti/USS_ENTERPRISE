@@ -39,7 +39,7 @@ The HCSR04 must be linked at the crankshaft of the second servomotor through a s
 
 <h3>Complete device arrangement</h3>
 
-This repository contains the solidworks file where our configuration is graphically shown. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
+This repository contains the 'CAD' folder with the solidworks file of our configuration. It is possible to recreate the device following the image, as long as the user has all the components listed before. 
 
 <h2>Calibration procedure and angle-coordinates conversion</h2>
 
@@ -63,13 +63,14 @@ First servomotor:
   <li>90 angle: lies on the positive portion of the Y-axis</li>
   <li>180 angle: lies on the negative portion of the X-axis</li>
 </ul>
+In order to scan the width of the object put in front of the device, the first servomotor will sweep a 100° angle, starting from 40° up to 140°.
 
 Second servomotor:
 <ul>
   <li>0 angle: due to structural reason it consists in a 60° angle between the Z-axis and the straight line which is the extension of the arm to which the sonar is linked.</li>
-  <li>60 angle: 0 angle + 60° = 120° (almost)</li>
+  <li>90 angle: 0 angle + 90° = 150° (almost)</li>
 </ul>
-
+In order to scan the height of the object put in front of the device, the second servomotor will sweep a 60° angle, starting from 60° up to 120°.<br><br>
 According to the information reported:<br>
 
 SERVO_MID_ANGLE=90<br>
@@ -119,6 +120,10 @@ The user can also configure the <em>Step angle</em> of the servomotors through o
 <h3>Start and Stop commands</h3>
 
 The user has to press the 'Start' button in order to start the three-dimensional scanning and the 'Stop' button can be pressed anytime the user wants. After the 'Stop' button has been pressed our device will come back at the 'zero configuration', ready to begin a new scanning process.
+
+<h3>Stop functionality</h3>
+
+If our device will not find any point during an entire sweep of the XY plane it will automatically reset to the zero configuration (no object has been found or object scanning ended).
 
 <h3>Display command</h3>
 
