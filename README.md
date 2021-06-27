@@ -63,13 +63,14 @@ First servomotor:
   <li>90 angle: lies on the positive portion of the Y-axis</li>
   <li>180 angle: lies on the negative portion of the X-axis</li>
 </ul>
+In order to scan the width of the object put in front of the device, the first servomotor will sweep a 100° angle, starting from 40° up to 140°.
 
 Second servomotor:
 <ul>
   <li>0 angle: due to structural reason it consists in a 60° angle between the Z-axis and the straight line which is the extension of the arm to which the sonar is linked.</li>
-  <li>60 angle: 0 angle + 60° = 120° (almost)</li>
+  <li>90 angle: 0 angle + 90° = 150° (almost)</li>
 </ul>
-
+In order to scan the height of the object put in front of the device, the second servomotor will sweep a 60° angle, starting from 60° up to 120°.<br><br>
 According to the information reported:<br>
 
 SERVO_MID_ANGLE=90<br>
