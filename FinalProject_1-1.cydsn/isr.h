@@ -1,8 +1,8 @@
 /* =================================================
  *
  * U.S.S. E.N.T.E.R.P.R.I.S.E.
- * Ultrasound Sensor for Environment Recording 
- * and Reconstruction Integrated Scanning Equipment
+ * Ultrasound Sensor for ENvironmenT Recording 
+ * and Point-cloud Reconstruction Integrated Scanning Equipment
  * 
  * Electronic Technologies and Biosensors Laboratory
  * Final Project
@@ -20,10 +20,11 @@
     // Message to send over UART
     uint16_t received;
     uint16_t distance;
+    uint16_t distance_count;
    
     // Timer period value
     uint16_t timer_period;
-    
+
     /**
     * @brief Start the ISR component.
     *

@@ -41,6 +41,7 @@ int main(void)
             //IDLE state: wait for user to press "START" in GUI
             //while in idle state, the user can select the step for the sweep between two choices
             case IDLE:
+                start_components();
                 ISR_HCSR04_Disable();
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
@@ -48,7 +49,7 @@ int main(void)
                 {
                     flag_connected  = 0;
                     sprintf (message1, "Device succesfully connected$");
-                    UART_1_PutString(message1);
+                    UART_PutString(message1);
                 }
                 //if user selects '5' in GUI, UART sends over 'f' character and step_sweep is set to 5
                 if (received == 'f')
@@ -78,7 +79,14 @@ int main(void)
                     Servo_SetPosition1(angle);
                     //wait for servo to be in position
                     CyDelay(SWEEP_DELAY);         
- 
+                    //read the value of the angle
+                    //the servos' resolution is a mechanical limitation, so we check if the angle we set (known position) and the position we read are the same
+                    //because different positions could lead to wrong calculations
+                    //we still give a confidence value, which is a range of (ANGLE_TOLERANCE) degrees above and below the position we set
+                    //so if the servos give a wrong position that is within this range, the point is still computed as the difference is low
+                    if (Servo_GetPosition1()<(angle+ANGLE_TOLERANCE) && Servo_GetPosition1()>(angle-ANGLE_TOLERANCE))
+                        //find position is a function in sonar.c as it involves the USS
+                        find_position();   
                     //we enter this if below when we complete a "row", so when the chain does a sweep in one direction
                     if ((direction==LEFT && angle==end_position) || (direction == RIGHT && angle == (end_position+step_sweep)) )
                     {
@@ -99,17 +107,7 @@ int main(void)
                         //swap directions
                         direction = direction == LEFT ? RIGHT : LEFT;
                     }
-                    else
-                    {
-                        //read the value of the angle
-                        //the servos' resolution is a mechanical limitation, so we check if the angle we set (known position) and the position we read are the same
-                        //because different positions could lead to wrong calculations
-                        //we still give a confidence value, which is a range of (ANGLE_TOLERANCE) degrees above and below the position we set
-                        //so if the servos give a wrong position that is within this range, the point is still computed as the difference is low
-                        if (Servo_GetPosition1()<(angle+ANGLE_TOLERANCE) && Servo_GetPosition1()>(angle-ANGLE_TOLERANCE))
-                            //find position is a function in sonar.c as it involves the USS
-                            find_position();
-                    }     
+                         
                 }
                 break;
             
@@ -122,8 +120,12 @@ int main(void)
                 reset_variables();
                 step_sweep = 5;
                 sprintf (message1, "Done scanning\r\n");
-                UART_1_PutString(message1);
+                UART_PutString(message1);
                 state = IDLE;
+                break;
+                
+            case DISCONNECTED:
+                stop_components();
                 break;
         }      
     }

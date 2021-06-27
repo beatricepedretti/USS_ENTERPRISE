@@ -278,6 +278,7 @@ class Container(BoxLayout):
                 self.connect_btn.text = 'Connect'
                 self.debug_label.color = (250/255, 250/255, 250/255, 1)
                 self.debug_label.text = 'Waiting for connection'
+                self.ser.write("d".encode())
 
         elif(self.connect_btn.text == 'Disconnect'):
             if self.ser != None:

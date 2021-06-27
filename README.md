@@ -31,11 +31,11 @@ The board is placed inside the wooden box with custom sliding plexiglass cover, 
 
 <h3>Servomotors settings</h3>
 
-The first servomotor must be connected to 2.6 PIN and it must have the crankshaft positioned vertically. The second servomotor must be connected at the 2.7 PIN and placed at the top of the first servomotor with the crankshaft positioned horizontally. Both of the servos need an external power supply in order to work properly.  
+The first servomotor must be connected to 2.6 PIN and it must have the crankshaft positioned vertically. The second servomotor must be connected at the 2.7 PIN and placed at the top of the first servomotor with the crankshaft positioned horizontally. Both of the servos need an external power supply in order to work properly.
 
 <h3>Ultrasonic sensor settings</h3>
 
-The HCSR04 must be linked at the crankshaft of the second servomotor through a special connection element in order to move solidly with this crankshaft. It works thanks to two connections, the Echo, the Trigger, that must be connected respectively to the 2.5 and 2.4 PINs. The cables are shielded with copper wires to prevent interference from the servo motor wiring and help reduce electronic noise.
+The HCSR04 must be linked to the crankshaft of the second servomotor through a special connection element in order to move solidly with this crankshaft. It works thanks to two connections, the Echo, the Trigger, that must be connected respectively to the 2.5 and 2.4 PINs. The cables are shielded with copper wires to prevent interference from the servo motor wiring and help reduce electronic noise.
 
 <h3>Complete device arrangement</h3>
 

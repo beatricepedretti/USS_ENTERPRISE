@@ -20,8 +20,8 @@ void start_components ()
     Timer_HCSR04_Start();
     PWM_Trigger_Start();
     Timer_TRIGGER_Start();
-    UART_1_Start();
-    isr_1_StartEx(Custom_UART_RX_ISR);
+    UART_Start();
+    isr_UART_StartEx(Custom_UART_RX_ISR);
     PWM_Servo1_Start();
     PWM_Servo2_Start();
     // Call the Custom_ISR_Start function -- defined in isr.c
@@ -51,9 +51,19 @@ void reset_variables ()
     angle_2 = SERVO_LIMIT_L;
     flag_print = 0;
     flag_connected  = 0;
-
 }
 
+
+void stop_components ()
+{
+    //Init components
+    Timer_HCSR04_Stop();
+    PWM_Trigger_Stop();
+    Timer_TRIGGER_Stop();
+    PWM_Servo1_Stop();
+    PWM_Servo2_Stop();
+    ISR_HCSR04_Disable();
+}
 
 
 /* [] END OF FILE */
