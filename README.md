@@ -107,11 +107,11 @@ Our GUI consists in six buttons:
   <li>Step angle, with two possibilities</li>
   <li>Display</li>
 </ul>
-and in a space that, at the end of the acquisition, will be filled with the reconstructed image after 'display' button has been pushed. 
+and in a space filled with a GIF during the acquisition process.
 
 <h3>UART communication settings</h3>
 
-The user has the chance to connect automatically the GUI with the device through UART communication by pushing the button 'Connect'. If a board programmed with our code is connected to the computer, it will send back the string 'Device succesfully connected$' and our computer will understand which is the right COM to use. It will be possible to see at the bottom of the GUI the connection status. 
+The user has the chance to connect automatically the GUI with the device through UART communication by pushing the button 'Connect'. If a board programmed with our code is connected to the computer, it will send back the string 'Device succesfully connected$' and our computer will understand which is the right COM to use. <br> After the 'Connect' status has been pressed, it changes name to 'Disconnect'. If 'Disconnect' button is pressed all the peripherals are turned off.<br>It will be possible to see at the bottom of the GUI the connection status  
 
 <h3>Step angle settings</h3>
 
@@ -127,25 +127,23 @@ If our device will not find any point during an entire sweep of the XY plane it 
 
 <h3>Display command</h3>
 
-This button will be disabled until the end of the acquisition. Once the acquisition is done the 'display' button will be activated. The user will be able then to push it and display the reconstructed image.<br> The user has also the chance to change the perspective of the object using the mouse and by pushing the 'p' key a screenshot will be performed and saved in the repository. 
+This button will be disabled until the end of the acquisition. Once the acquisition is done the 'display' button will be activated. The user will be able then to push it and display the reconstructed image.<br> The reconstructed image consists in a point cloud that appears inside a pop-up.<br> The user has also the chance to change the perspective of the object using the mouse. <i><U>Additional functionality: by pushing the 'p' key a screenshot will be performed and saved in the repository</U></i>. 
 
 <h2>Operating instructions</h2>
 
-Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, must be placed at a distance between approximately 7 and 40 cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface. Recommended distance is in the 10 - 20 cm range. <br>
+Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, MUST be placed at a distance between approximately 7 and 50 cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface. <b>Recommended</b> distance is in the 10 - 25 cm range. <br>
 Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.<br>Please be advised that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
 suggest the user to scan small dimension objects. By doing this we let the sonar to work in its optimal conditions. 
 
 <h2>Repository organization</h2>
-Inside this repository you will find the following files and folders:
-
-Our GUI consists in six buttons: 
+Inside this repository you will find the following files and folders: 
 <ul>
   <li>FinalProject_1-1.cydsn: folder containing PSOC Creator files</li>
   <li>GUI:</li>
   <ul>
   	<li><i>GUI.kv</i>: graphic implementation of GUI</li>
   	<li><i>Project_1_1.py</i>: python file containing GUI commands and image reconstruction</li>
-  	<li><i>interpolation_plane.m</i>: MATLAB script with one section to reconstruct point cloud representation of coordinates (needs Computer Vision Toolbox) and another section that interpolates a plane in the point cloud representation</li>
+  	<li><i>interpolation_plane.m</i>: MATLAB script with one section to reconstruct point cloud representation with axes (needs Computer Vision Toolbox) and another section that interpolates a plane in the point cloud representation (usefull to understand the quality of the reconstruction for <i>planar</i> objects)</li>
   	<li><i>requirements.txt</i>: required python libraries and dependencies</li>
   </ul>
   <li>coordinates: folder that contains acquisition results of relevant objects such as planes and bottles</li>
