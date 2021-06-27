@@ -131,8 +131,17 @@ This button will be disabled until the end of the acquisition. Once the acquisit
 
 <h2>Operating instructions</h2>
 
+<h3>Distance suggestion</h3>
+
 Due to its dimensions and due to specific hardware limits, this device is able to understand the shape and concavity of an object with small dimensions. The object, moreover, MUST be placed at a distance between approximately 7 and 50 cm in order to have a higher quality reconstruction, otherwise the device will not be able to detect properly the object's surface. <b>Recommended</b> distance is in the 10 - 25 cm range. <br>
-Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.<br>Please be advised that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
+
+<h3>Positioning suggestion</h3>
+
+Sweep on the XY plane is performed with a 100° angle; more specifically, the first servo motor goes from 40° to 140°, so alpha will go from 50° to -50°. The object should be put at the centre of this range in order to let the device scan the entire shape.
+
+<h3>Limits considerations</h3>
+
+Please be advised that, by nature, the sonar will return correct distances only for points on planes parallel or almost parallel to it. Our device, instead, works by rotating around two pins, and it does not use sliding tracks. For this reason, distances detected at the limits of our 100° range could be affected by bias. In order to manage this conditions we decided to narrow the sweeping range to 100° and to
 suggest the user to scan small dimension objects. By doing this we let the sonar to work in its optimal conditions. 
 
 <h2>Repository organization</h2>
