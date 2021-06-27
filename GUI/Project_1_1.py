@@ -1,4 +1,4 @@
-#useful imports
+# useful imports
 import kivy
 from kivy.app import App
 from kivy.lang import Builder
@@ -27,6 +27,8 @@ import io
 from kivy.graphics import Rectangle, Color
 
 # Represents a cloudpoint and its recosntructed triangle meshes
+
+
 class PointCloud:
     def __init__(self, coordinates):
         self.pcd = o3d.geometry.PointCloud()
@@ -79,7 +81,7 @@ class PointCloud:
     # Default folder is "mesh" and default filename is "mesh.{ply|obj}"
     # Current date and time is appended to filename by default
     @staticmethod
-    def write(mesh, filename="mesh", output_folder="mesh",  append_datetime=True):
+    def write(mesh, filename="mesh", output_folder="mesh", append_datetime=True):
         # Make sure the output folder exists
         os.makedirs(output_folder, exist_ok=True)
         now = datetime.datetime.now()
@@ -125,7 +127,7 @@ class PointCloud:
         vis.capture_screen_image(os.path.join(output_folder, filename))
         vis.destroy_window()
 
-    # Generate a triangle mesh using Poisson reconstruction method    
+    # Generate a triangle mesh using Poisson reconstruction method
     def poisson(self, depth=8, scale=1.1, linear_fit=True):
         # If the mesh already exists just return it
         if self.poisson_mesh:
@@ -194,7 +196,8 @@ class EnterpriseLabel(Label):
     tooltip = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        Window.bind(mouse_pos=self.on_mouse_pos) # Bind the mouse movement event to this class' handler
+        # Bind the mouse movement event to this class' handler
+        Window.bind(mouse_pos=self.on_mouse_pos)
         super(EnterpriseLabel, self).__init__(**kwargs)
 
     # Check if the mouse moved hovering on this label,
@@ -205,7 +208,7 @@ class EnterpriseLabel(Label):
         pos = args[1]
         # Cancel scheduled event since I moved the cursor
         Clock.unschedule(self.display_tooltip)
-        self.close_tooltip() # Close any open tooltip
+        self.close_tooltip()  # Close any open tooltip
         # Check if the mouse movement is inside of the label boundaries
         if self.collide_point(*self.to_widget(*pos)):
             self.tooltip.pos = [pos[0] + 20, pos[1] - 30]
@@ -262,6 +265,7 @@ class Container(BoxLayout):
         threading.Thread(target=self.step_setter, args=(step, )).start()
 
     def connectionProcess(self):
+        self.disabled = True
         # When starting the connection
         if(self.connect_btn.text == 'Connect'):
             self.debug_label.text = 'Connecting...'
@@ -276,15 +280,15 @@ class Container(BoxLayout):
                             baudrate=115200,
                             bytesize=EIGHTBITS,
                             stopbits=STOPBITS_ONE,
-                            xonxoff=True)
+                            xonxoff=True,
+                            timeout=1)
                         self.ser.write("v".encode())
                         time.sleep(1)
-                        string = 0
                         string = self.ser.read_until("$".encode()).decode()
 
-                        # If the repy matches salve the port and break out of the loop
+                        # If the reply matches, save the port and break out of the loop
                         if(string == "Device succesfully connected$"):
-                            self.isPortConnected = True
+                            self.ser.timeout = None
                             self.portConnected = element.name
                             time.sleep(1)
                             break
@@ -296,7 +300,7 @@ class Container(BoxLayout):
                 # Adjust GUI to the match the connected status
                 self.connect_btn.text = 'Disconnect'
                 self.debug_label.color = (61/255, 235/255, 52/255, 1)
-                self.debug_label.text = 'Connected through port '+self.portConnected
+                self.debug_label.text = 'Connected through port ' + self.portConnected
                 self.do_read = True
 
                 # Enable all buttons after connecting
@@ -310,7 +314,7 @@ class Container(BoxLayout):
                 self.connect_btn.text = 'Connect'
                 self.debug_label.color = (250/255, 250/255, 250/255, 1)
                 self.debug_label.text = 'Waiting for connection'
-                
+
         # When closing the connection
         elif(self.connect_btn.text == 'Disconnect'):
             # Check if the COM port is still connected and close it
@@ -319,7 +323,6 @@ class Container(BoxLayout):
                 self.ser.close()
                 self.ser = None
             # Adjust GUI to the match the disconnected status
-            self.isPortConnected = False
             self.portConnected = None
             self.connect_btn.text = 'Connect'
             self.debug_label.color = (250/255, 250/255, 250/255, 1)
@@ -333,7 +336,11 @@ class Container(BoxLayout):
             self.start_btn.disabled = True
             self.stop_btn.disabled = True
 
+        time.sleep(1)
+        self.disabled = False
+
     def displayProcess(self):
+        self.disabled = True
         print("Creating image...")
         # If needed a new pointcloud, create it
         if self.pcd == None:
@@ -354,6 +361,8 @@ class Container(BoxLayout):
         # Visualized the bare pointcloud and the reconstructed mesh
         self.pcd.cloud_visualize()
         self.pcd.ballpoint_visualize()
+        time.sleep(1)
+        self.disabled = False
 
      # Read from the COM port until either the flag is unset or the port signals it's done sending data
     def reader(self):
@@ -397,11 +406,13 @@ class Container(BoxLayout):
                 time.sleep(0.001)
 
         try:
-            os.link(os.path.join(output_dir, self.filename), os.path.join(output_dir, "latest.xyz"))
+            os.link(os.path.join(output_dir, self.filename),
+                    os.path.join(output_dir, "latest.xyz"))
         except:
-            pass                
+            pass
 
     def startProcess(self):
+        self.disabled = True
         if(self.start_btn.text == 'Start'):
             self.image._coreimage.anim_reset(True)
             self.do_read = True
@@ -412,8 +423,11 @@ class Container(BoxLayout):
             self.stop_btn.disabled = False
             self.ser.write("b".encode())
             threading.Thread(target=self.reader, daemon=True).start()
+        time.sleep(1)
+        self.disabled = False
 
     def stopProcess(self):
+        self.disabled = True
         if(self.stop_btn.text == 'Stop'):
             self.image._coreimage.anim_reset(False)
             self.do_read = False
@@ -423,12 +437,15 @@ class Container(BoxLayout):
             self.start_btn.disabled = False
             self.stop_btn.disabled = True
             self.ser.write('s'.encode())
-            time.sleep(1)
+        time.sleep(1)
+        self.disabled = False
 
     def step_setter(self, step):
+        self.disabled = True
         print(f"Setting step {step}")
         self.ser.write(step.encode())
         time.sleep(1)
+        self.disabled = False
 
 
 class GuiApp(App):
