@@ -1,5 +1,3 @@
-# Created by https://www.gitignore.io/api/psoccreator
-
 ### PSoCCreator ###
 # Project Settings
 *.cywrk.*
@@ -27,6 +25,7 @@ FinalProject.cywrk.mauro
 *.Beatrice
 *.david
 
+##PYTHON ENVIRONMENT##
 beyaenv/
 *.asv
 venv/
