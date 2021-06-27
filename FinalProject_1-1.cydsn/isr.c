@@ -1,15 +1,15 @@
-/* =================================================
+/* =========================================================
  *
  * U.S.S. E.N.T.E.R.P.R.I.S.E.
- * Ultrasound Sensor for Environment Recording 
- * and Reconstruction Integrated Scanning Equipment
+ * Ultrasound Sensor for ENvironmenT Recording and
+ * Point-cloud Reconstruction Integrated Scanning Equipment
  * 
  * Electronic Technologies and Biosensors Laboratory
  * Final Project
  * 
  * Di Liddo, Goshen, Pedretti
  *
- * =================================================
+ * =========================================================
 */
 
 #include "project_utils.h"
@@ -44,6 +44,7 @@ CY_ISR(Custom_UART_RX_ISR)
     {
         received = UART_ReadRxData();
         if(received=='v'){  
+            state = IDLE;
             //if that allows the automatical UART connection through pc and psoc
             flag_connected = 1;
         }

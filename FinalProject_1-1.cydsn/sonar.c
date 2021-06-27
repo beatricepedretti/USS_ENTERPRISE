@@ -1,22 +1,22 @@
-/* =================================================
+/* =========================================================
  *
  * U.S.S. E.N.T.E.R.P.R.I.S.E.
- * Ultrasound Sensor for Environment Recording 
- * and Reconstruction Integrated Scanning Equipment
+ * Ultrasound Sensor for ENvironmenT Recording and
+ * Point-cloud Reconstruction Integrated Scanning Equipment
  * 
  * Electronic Technologies and Biosensors Laboratory
  * Final Project
  * 
  * Di Liddo, Goshen, Pedretti
  *
- * =================================================
+ * =========================================================
 */
-#include "project_utils.h"
 
+#include "project_utils.h"
 
 void find_position ()
 {
-    //this function compute the coordinates of a three dimensional point 
+    //this function computes the coordinates of a three dimensional point 
     //thanks to the position returned by the two servos and the distance returned 
     //by the USS
     

@@ -1,15 +1,15 @@
-/* =================================================
+/* =========================================================
  *
  * U.S.S. E.N.T.E.R.P.R.I.S.E.
- * Ultrasound Sensor for ENvironmenT Recording 
- * and Point-cloud Reconstruction Integrated Scanning Equipment
+ * Ultrasound Sensor for ENvironmenT Recording and
+ * Point-cloud Reconstruction Integrated Scanning Equipment
  * 
  * Electronic Technologies and Biosensors Laboratory
  * Final Project
  * 
  * Di Liddo, Goshen, Pedretti
  *
- * =================================================
+ * =========================================================
 */
 
 
@@ -59,6 +59,5 @@ char message1[STRING_LENGTH];
 void start_components(void);
 void next_row (void);
 void reset_variables (void);
-void stop_components(void);
 
 /* [] END OF FILE */

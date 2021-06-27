@@ -1,22 +1,21 @@
-/* =================================================
+/* =========================================================
  *
  * U.S.S. E.N.T.E.R.P.R.I.S.E.
- * Ultrasound Sensor for Environment Recording 
- * and Reconstruction Integrated Scanning Equipment
+ * Ultrasound Sensor for ENvironmenT Recording and
+ * Point-cloud Reconstruction Integrated Scanning Equipment
  * 
  * Electronic Technologies and Biosensors Laboratory
  * Final Project
  * 
  * Di Liddo, Goshen, Pedretti
  *
- * =================================================
+ * =========================================================
 */
 
 #include "project_utils.h"
 
 int main(void)
-{
-    
+{ 
     uint16_t angle;
     uint8_t temp_position;
     
@@ -41,12 +40,13 @@ int main(void)
             //IDLE state: wait for user to press "START" in GUI
             //while in idle state, the user can select the step for the sweep between two choices
             case IDLE:
-                start_components();
+                
                 ISR_HCSR04_Disable();
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
                 if (flag_connected == 1)
                 {
+                    start_components();
                     flag_connected  = 0;
                     sprintf (message1, "Device succesfully connected$");
                     UART_PutString(message1);
@@ -106,8 +106,7 @@ int main(void)
                         start_position = temp_position;
                         //swap directions
                         direction = direction == LEFT ? RIGHT : LEFT;
-                    }
-                         
+                    }        
                 }
                 break;
             
@@ -123,9 +122,15 @@ int main(void)
                 UART_PutString(message1);
                 state = IDLE;
                 break;
-                
+            
+            //state DISCONNECRED: when "Disconnect" button is pressed in the GUI, turn off components (except for UART)
             case DISCONNECTED:
-                stop_components();
+                Timer_HCSR04_Stop();
+                PWM_Trigger_Stop();
+                Timer_TRIGGER_Stop();
+                PWM_Servo1_Stop();
+                PWM_Servo2_Stop();
+                ISR_HCSR04_Disable();
                 break;
         }      
     }

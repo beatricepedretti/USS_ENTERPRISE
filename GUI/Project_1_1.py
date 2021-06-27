@@ -26,7 +26,7 @@ import datetime
 import io
 from kivy.graphics import Rectangle, Color
 
-
+# Represents a cloudpoint and its recosntructed triangle meshes
 class PointCloud:
     def __init__(self, coordinates):
         self.pcd = o3d.geometry.PointCloud()
@@ -36,29 +36,35 @@ class PointCloud:
         self.tetra_mesh = None
         self.pt_map = None
 
+    # Create the point cloud with points' normals
     @classmethod
     def with_normals(cls, coordinates, normals):
         pcd = cls(coordinates)
         pcd.add_normals(normals)
         return pcd
 
+    # Create the point cloud with points' colors
     @classmethod
     def with_colors(cls, coordinates, colors):
         pcd = cls(coordinates)
         pcd.add_colors(colors)
 
+    # Create the point cloud with points' colors and normals
     @classmethod
     def with_colors_and_normals(cls, coordinates, normals, colors):
         pcd = cls(coordinates)
         pcd.add_normals(normals)
         pcd.add_colors(colors)
 
+    # Add points' normals
     def add_normals(self, normals):
         self.pcd.normals = o3d.utility.Vector3dVector(normals[:, :3])
 
+    # Add points' colors
     def add_colors(self, colors):
         self.pcd.colors = o3d.utility.Vector3dVector(colors[:, :3])
 
+    # Visualize a triangle mesh in a new window
     @staticmethod
     def visualize(mesh):
         vis = o3d.visualization.Visualizer()
@@ -69,11 +75,17 @@ class PointCloud:
         vis.run()
         vis.destroy_window()
 
+    # Write the 3D triangle mesh in PLY and OBJ format
+    # Default folder is "mesh" and default filename is "mesh.{ply|obj}"
+    # Current date and time is appended to filename by default
     @staticmethod
-    def write(mesh, filename="mesh", output_folder="mesh"):
+    def write(mesh, filename="mesh", output_folder="mesh",  append_datetime=True):
+        # Make sure the output folder exists
         os.makedirs(output_folder, exist_ok=True)
         now = datetime.datetime.now()
-        filename = f"{filename}_{now.strftime('%Y_%m_%dT%H_%M_%S')}"
+        if append_datetime:
+            now = datetime.datetime.now()
+            filename = f"{filename}_{now.strftime('%Y_%m_%dT%H_%M_%S')}"
 
         print(f"Writing {filename} obj... ", end="", flush=True)
         try:
@@ -97,11 +109,12 @@ class PointCloud:
         self.output_png(self.pcd, filename)
 
     @staticmethod
-    def output_png(mesh, filename):
-        output_dir = "renders"
-        os.makedirs(output_dir, exist_ok=True)
-        now = datetime.datetime.now()
-        filename = f"{filename}_{now.strftime('%Y_%m_%dT%H_%M_%S')}.png"
+    def output_png(mesh, filename, output_folder="renders", append_datetime=True):
+        # Make sure the output folder exists
+        os.makedirs(output_folder, exist_ok=True)
+        if append_datetime:
+            now = datetime.datetime.now()
+            filename = f"{filename}_{now.strftime('%Y_%m_%dT%H_%M_%S')}.png"
 
         vis = o3d.visualization.Visualizer()
         vis.create_window(visible=False)
@@ -109,12 +122,15 @@ class PointCloud:
         vis.update_geometry(mesh)
         vis.poll_events()
         vis.update_renderer()
-        vis.capture_screen_image(os.path.join(output_dir, filename))
+        vis.capture_screen_image(os.path.join(output_folder, filename))
         vis.destroy_window()
 
+    # Generate a triangle mesh using Poisson reconstruction method    
     def poisson(self, depth=8, scale=1.1, linear_fit=True):
+        # If the mesh already exists just return it
         if self.poisson_mesh:
             return self.poisson_mesh
+        # Estimate normals if not present
         if not self.pcd.has_normals():
             self.pcd.estimate_normals()
         print("Generating poisson mesh... ", end="", flush=True)
@@ -135,9 +151,12 @@ class PointCloud:
     def poisson_output_png(self, filename="poisson"):
         self.output_png(self.poisson_mesh, filename)
 
+    # Generate a triangle mesh using ball pivoting method
     def ballpoint(self):
+        # If the mesh already exists just return it
         if self.ballpoint_mesh:
             return self.ballpoint_mesh
+        # Estimate normals if not present
         if not self.pcd.has_normals():
             self.pcd.estimate_normals()
         print("Generating ballpoint mesh... ", end="", flush=True)
@@ -159,6 +178,7 @@ class PointCloud:
     def ballpoint_output_png(self, filename="ballpoint"):
         self.output_png(self.ballpoint_mesh, filename)
 
+    # Try to lower the number of generated triangles discarding degenerate/duplicated ones
     @staticmethod
     def clean_mesh(mesh):
         dec_mesh = mesh.simplify_quadric_decimation(100000)
@@ -169,20 +189,24 @@ class PointCloud:
         return dec_mesh
 
 
+# Label with tooltip
 class EnterpriseLabel(Label):
     tooltip = ObjectProperty(None)
 
     def __init__(self, **kwargs):
-        Window.bind(mouse_pos=self.on_mouse_pos)
+        Window.bind(mouse_pos=self.on_mouse_pos) # Bind the mouse movement event to this class' handler
         super(EnterpriseLabel, self).__init__(**kwargs)
 
+    # Check if the mouse moved hovering on this label,
+    # if so show a tooltip
     def on_mouse_pos(self, *args):
         if not self.get_root_window():
             return
         pos = args[1]
-        # cancel scheduled event since I moved the cursor
+        # Cancel scheduled event since I moved the cursor
         Clock.unschedule(self.display_tooltip)
-        self.close_tooltip()  # close if it's opened
+        self.close_tooltip() # Close any open tooltip
+        # Check if the mouse movement is inside of the label boundaries
         if self.collide_point(*self.to_widget(*pos)):
             self.tooltip.pos = [pos[0] + 20, pos[1] - 30]
             Clock.schedule_once(self.display_tooltip, 1)
@@ -195,6 +219,7 @@ class EnterpriseLabel(Label):
         self.add_widget(self.tooltip)
 
 
+# GUI main widget's behaviour
 class Container(BoxLayout):
 
     connect_btn = ObjectProperty(None)
@@ -209,9 +234,6 @@ class Container(BoxLayout):
 
     def __init__(self, **kwargs):
         super(Container, self).__init__(*kwargs)
-        '''super().__init__(**kwargs)
-        self.isPortConnected = False
-        self.portConnected = None'''
         self.connected = False
         self.ser = None
         self.do_read = False
@@ -219,28 +241,36 @@ class Container(BoxLayout):
         self.image.anim_delay = 0.05
         self.image._coreimage.anim_reset(False)
 
+    # On Connect/Disconnect button press
     def threading_connection(self):
         threading.Thread(target=self.connectionProcess).start()
 
+    # On Start button press
     def threading_start(self):
         threading.Thread(target=self.startProcess).start()
 
+    # On Stop button press
     def threading_stop(self):
         threading.Thread(target=self.stopProcess).start()
 
+    # On Display button press
     def threading_display(self):
         threading.Thread(target=self.displayProcess).start()
 
+    # On step selection
     def threading_step(self, step):
         threading.Thread(target=self.step_setter, args=(step, )).start()
 
     def connectionProcess(self):
+        # When starting the connection
         if(self.connect_btn.text == 'Connect'):
             self.debug_label.text = 'Connecting...'
+            # Loop over every COM port
             ports_info = list_ports.comports()
             for element in ports_info:
-                if ('Bluetooth' not in element.description):
+                if ('Bluetooth' not in element.description):  # skip Bluetooth COM ports
                     try:
+                        # Try to open a connection and wait for a reply at the 'v' command
                         self.ser = serial.Serial(
                             port=element.name,
                             baudrate=115200,
@@ -252,6 +282,7 @@ class Container(BoxLayout):
                         string = 0
                         string = self.ser.read_until("$".encode()).decode()
 
+                        # If the repy matches salve the port and break out of the loop
                         if(string == "Device succesfully connected$"):
                             self.isPortConnected = True
                             self.portConnected = element.name
@@ -262,6 +293,7 @@ class Container(BoxLayout):
                         print(f"Error opening port {element.name}")
 
             if(self.ser and self.ser.is_open):
+                # Adjust GUI to the match the connected status
                 self.connect_btn.text = 'Disconnect'
                 self.debug_label.color = (61/255, 235/255, 52/255, 1)
                 self.debug_label.text = 'Connected through port '+self.portConnected
@@ -278,12 +310,15 @@ class Container(BoxLayout):
                 self.connect_btn.text = 'Connect'
                 self.debug_label.color = (250/255, 250/255, 250/255, 1)
                 self.debug_label.text = 'Waiting for connection'
-                self.ser.write("d".encode())
-
+                
+        # When closing the connection
         elif(self.connect_btn.text == 'Disconnect'):
+            # Check if the COM port is still connected and close it
             if self.ser != None:
+                self.ser.write("d".encode())
                 self.ser.close()
                 self.ser = None
+            # Adjust GUI to the match the disconnected status
             self.isPortConnected = False
             self.portConnected = None
             self.connect_btn.text = 'Connect'
@@ -300,38 +335,48 @@ class Container(BoxLayout):
 
     def displayProcess(self):
         print("Creating image...")
+        # If needed a new pointcloud, create it
         if self.pcd == None:
-            point_cloud = np.loadtxt(os.path.join("coordinates", self.filename), skiprows=1)
+            point_cloud = np.loadtxt(os.path.join(
+                "coordinates", self.filename), skiprows=1)
             self.pcd = PointCloud(point_cloud)
-            self.pcd.ballpoint()
-            matrix = self.pcd.ballpoint_mesh.get_rotation_matrix_from_xyz(
+            # Rotate the pointcloud so that it's exactly front facing
+            matrix = self.pcd.pcd.get_rotation_matrix_from_xyz(
                 (-np.pi / 3, 0, np.pi / 10))
-            self.pcd.ballpoint_mesh.rotate(matrix)
+            self.pcd.pcd.rotate(matrix)
+            self.pcd.ballpoint()
+
+        # Write pngs and mesh files
+        self.pcd.cloud_output_png()
         self.pcd.ballpoint_output_png()
         self.pcd.ballpoint_write()
+
+        # Visualized the bare pointcloud and the reconstructed mesh
         self.pcd.cloud_visualize()
         self.pcd.ballpoint_visualize()
 
+     # Read from the COM port until either the flag is unset or the port signals it's done sending data
     def reader(self):
         self.pcd = None
+        # Make sure the output folder exists
         output_dir = "coordinates"
         os.makedirs(output_dir, exist_ok=True)
         now = datetime.datetime.now()
         self.filename = f"coordinates_{now.strftime('%Y_%m_%dT%H_%M_%S')}.xyz"
+        # Open two files for writing: one for storage, one will always contain the latest reads
         with open(os.path.join(output_dir, self.filename), "w") as output_file:
             while self.do_read:
                 # Wait until there is data waiting in the serial buffer
                 if self.ser.in_waiting > 0:
 
                     # Read data out of the buffer until a carraige return / new line is found
-                    # serialString = self.ser.read(self.ser.in_waiting)
                     serialString = self.ser.readline()
-                    # serialString = self.ser.read_until("\n".encode())
 
                     # Print the contents of the serial data
                     try:
                         line = serialString.decode("utf-8").rstrip()
                         print(line)
+                        # When the transmission stops, adjust the GUI and exit
                         if 'Done' in line:
                             self.image._coreimage.anim_reset(False)
                             self.debug_label.text = 'Done scanning around'
@@ -350,6 +395,11 @@ class Container(BoxLayout):
                     except:
                         pass
                 time.sleep(0.001)
+
+        try:
+            os.link(os.path.join(output_dir, self.filename), os.path.join(output_dir, "latest.xyz"))
+        except:
+            pass                
 
     def startProcess(self):
         if(self.start_btn.text == 'Start'):

@@ -1,15 +1,15 @@
-/* =================================================
+/* =========================================================
  *
  * U.S.S. E.N.T.E.R.P.R.I.S.E.
- * Ultrasound Sensor for Environment Recording 
- * and Reconstruction Integrated Scanning Equipment
+ * Ultrasound Sensor for ENvironmenT Recording and
+ * Point-cloud Reconstruction Integrated Scanning Equipment
  * 
  * Electronic Technologies and Biosensors Laboratory
  * Final Project
  * 
  * Di Liddo, Goshen, Pedretti
  *
- * =================================================
+ * =========================================================
 */
 
 #include "project_utils.h"
@@ -52,18 +52,5 @@ void reset_variables ()
     flag_print = 0;
     flag_connected  = 0;
 }
-
-
-void stop_components ()
-{
-    //Init components
-    Timer_HCSR04_Stop();
-    PWM_Trigger_Stop();
-    Timer_TRIGGER_Stop();
-    PWM_Servo1_Stop();
-    PWM_Servo2_Stop();
-    ISR_HCSR04_Disable();
-}
-
 
 /* [] END OF FILE */
