@@ -111,7 +111,7 @@ and in a space filled with a GIF during the acquisition process.
 
 <h3>UART communication settings</h3>
 
-The user has the chance to connect automatically the GUI with the device through UART communication by pushing the button 'Connect'. If a board programmed with our code is connected to the computer, it will send back the string 'Device succesfully connected$' and our computer will understand which is the right COM to use. <br> After the 'Connect' status has been pressed, it changes name to 'Disconnect'. If 'Disconnect' button is pressed all the peripherals are turned off.<br>It will be possible to see at the bottom of the GUI the connection status  
+The user has the chance to connect automatically the GUI with the device through UART communication by pushing the button 'Connect'. If a board programmed with our code is connected to the computer, it will send back the string 'Device succesfully connected$' and our computer will understand which is the right COM to use. <br> After the 'Connect' button has been pressed, it changes name to 'Disconnect'. If 'Disconnect' button is pressed all the peripherals are turned off.<br>It will be possible to see at the bottom of the GUI the connection status  
 
 <h3>Step angle settings</h3>
 
