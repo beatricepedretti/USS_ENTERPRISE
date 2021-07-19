@@ -23,7 +23,7 @@ int main(void)
     CyGlobalIntEnable; /* Enable global interrupts. */
     // Init components 
     start_components();
-    
+    ISR_HCSR04_Enable();
     //set both servo motors to starting position if they are not already 
     if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
         reset_servos();
@@ -41,7 +41,7 @@ int main(void)
             //while in idle state, the user can select the step for the sweep between two choices
             case IDLE:
                 //disable ISR: we on't need distance computation at the moment
-                ISR_HCSR04_Disable();
+                //ISR_HCSR04_Disable();
                 if (Servo_GetPosition1()!=SCAN_LIMIT_L || Servo_GetPosition2 ()!= SERVO_LIMIT_L)
                     reset_servos();
                 //this flag is set in the isr: if I just pushed connect in the GUI, I have to start the components (I come from the DISCONNECTED state)
@@ -71,7 +71,7 @@ int main(void)
                 //I don't use flags for enabling the ISR because after this line, the program gets stuck in the following for cycle
                 //until the acquisition is stopped via GUI or scan is completed
                 //so ISR is enabled only once
-                ISR_HCSR04_Enable();
+                //ISR_HCSR04_Enable();
                 //FIRST SWEEP: the servo starts at 40 degrees, which is the first start position, and goes on until 140 degrees
                 //the increment is the step selected in the GUI
                 //this for cycle goes on until the state is SCAN (second condition)
@@ -136,7 +136,7 @@ int main(void)
                     Timer_TRIGGER_Stop();
                     PWM_Servo1_Stop();
                     PWM_Servo2_Stop();
-                    ISR_HCSR04_Disable();
+                    //ISR_HCSR04_Disable();
                     flag_disconnected = 0;
                     step_sweep = 5;
                 }

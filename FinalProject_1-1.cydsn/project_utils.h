@@ -32,7 +32,7 @@
 #define RISE_LIMIT 60 //end of the rise
 #define STRING_LENGTH 100 //generic define for UART message
 #define RISE_DELAY 600 //kinematic chain delays
-#define SWEEP_DELAY 800
+#define SWEEP_DELAY 600
 #define ANGLE_TOLERANCE 2 //used to check computation of servo position because the servos' reaolution is 1.2 degrees
 
 //states
