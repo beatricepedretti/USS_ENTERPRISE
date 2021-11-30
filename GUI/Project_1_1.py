@@ -27,8 +27,6 @@ import io
 from kivy.graphics import Rectangle, Color
 
 # Represents a cloudpoint and its recosntructed triangle meshes
-
-
 class PointCloud:
     def __init__(self, coordinates):
         self.pcd = o3d.geometry.PointCloud()
@@ -280,8 +278,7 @@ class Container(BoxLayout):
                             baudrate=115200,
                             bytesize=EIGHTBITS,
                             stopbits=STOPBITS_ONE,
-                            xonxoff=True,
-                            timeout=1)
+                            xonxoff=True)
                         self.ser.write("v".encode())
                         time.sleep(1)
                         string = self.ser.read_until("$".encode()).decode()
